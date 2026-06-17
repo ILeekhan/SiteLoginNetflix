@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Netflix Login</title>
+
+<link rel="stylesheet" href="CSS/login.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="background"></div>
+
+<header>
+
+    <h1 class="logo">
+        NETFLIX
+    </h1>
+
+</header>
+
+<main>
+
+<div class="login-container">
+
+    <h2>Entrar</h2>
+
+    <form id="loginForm">
+
+        <input
+        type="email"
+        id="email"
+        placeholder="E-mail"
+        required>
+
+        <div class="password-box">
+
+            <input
+            type="password"
+            id="password"
+            placeholder="Senha"
+            required>
+
+            <button
+            type="button"
+            id="togglePassword">
+            👁
+            </button>
+
+        </div>
+
+        <button
+        type="submit"
+        class="btn-red">
+
+            Entrar
+
+        </button>
+
+    </form>
+
+    <div id="message"></div>
+
+    <div class="links">
+
+        <button id="openRegister">
+            Criar Conta
+        </button>
+
+        <button id="openRecovery">
+            Esqueci Minha Senha
+        </button>
+
+    </div>
+
+</div>
+
+</main>
+
+<!-- CADASTRO -->
+
+<div class="modal" id="registerModal">
+
+<div class="modal-content">
+
+    <span
+    class="close"
+    id="closeRegister">
+    &times;
+    </span>
+
+    <h2>Criar Conta</h2>
+
+    <form id="registerForm">
+
+        <input
+        type="text"
+        id="registerName"
+        placeholder="Nome Completo"
+        required>
+
+        <input
+        type="email"
+        id="registerEmail"
+        placeholder="E-mail"
+        required>
+
+        <input
+        type="password"
+        id="registerPassword"
+        placeholder="Senha"
+        required>
+
+        <input
+        type="password"
+        id="registerConfirmPassword"
+        placeholder="Confirmar Senha"
+        required>
+
+        <button
+        type="submit"
+        class="btn-red">
+
+            Criar Conta
+
+        </button>
+
+    </form>
+
+</div>
+
+</div>
+
+<!-- RECUPERAR -->
+
+<div class="modal" id="recoveryModal">
+
+<div class="modal-content">
+
+    <span
+    class="close"
+    id="closeRecovery">
+    &times;
+    </span>
+
+    <h2>Recuperação</h2>
+
+    <form id="recoveryForm">
+
+        <input
+        type="email"
+        placeholder="Digite seu e-mail"
+        required>
+
+        <button
+        type="submit"
+        class="btn-red">
+
+            Enviar
+
+        </button>
+
+    </form>
+
+</div>
+
+</div>
+
+<script src="Js/auth.js"></script>
+
+</body>
+</html>

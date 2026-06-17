@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Netflix Player</title>
+
+<link rel="stylesheet" href="CSS/player.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<header>
+
+    <h1 class="logo">
+        NETFLIX
+    </h1>
+
+    <button id="backBtn">
+        ← Voltar
+    </button>
+
+</header>
+
+<div class="player-container">
+
+    <h1 id="movieTitle">
+        Filme
+    </h1>
+
+    <p id="movieDescription">
+        Descrição
+    </p>
+
+    <!-- EPISÓDIOS -->
+
+    <div class="episodes-container">
+
+        <button
+        class="episode-btn"
+        data-episode="1">
+        Episódio 1
+        </button>
+
+        <button
+        class="episode-btn"
+        data-episode="2">
+        Episódio 2
+        </button>
+
+        <button
+        class="episode-btn"
+        data-episode="3">
+        Episódio 3
+        </button>
+
+    </div>
+
+    <!-- PLAYER -->
+
+    <div class="video-wrapper">
+
+        <iframe
+        id="movieTrailer"
+        width="100%"
+        height="500"
+        src=""
+        frameborder="0"
+        allowfullscreen>
+        </iframe>
+
+    </div>
+
+</div>
+
+<script src="Js/player.js"></script>
+
+</body>
+</html>
