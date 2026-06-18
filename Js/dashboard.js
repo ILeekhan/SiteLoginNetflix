@@ -49,10 +49,15 @@ const userName =
         "userName"
     );
 
+const selectedProfile =
+    localStorage.getItem(
+        "selectedProfile"
+    );
+
 if (userName) {
 
     userName.textContent =
-        `Olá, ${user.name} 👋`;
+        `Olá, ${selectedProfile || user.name} 👋`;
 
 }
 
@@ -65,14 +70,17 @@ const avatar =
         ".avatar"
     );
 
+const avatarName =
+    selectedProfile ||
+    user.name;
+
 if (
     avatar &&
-    user &&
-    user.name
+    avatarName
 ) {
 
     avatar.textContent =
-        user.name
+        avatarName
             .charAt(0)
             .toUpperCase();
 
