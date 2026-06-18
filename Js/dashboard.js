@@ -461,6 +461,8 @@ if(favoritesList){
 
     favorites.forEach(movie => {
 
+        if(!images[movie]) return;
+
         favoritesList.innerHTML += `
 
         <div
@@ -612,6 +614,8 @@ if(recentMovies){
 
     watched.forEach(movie => {
 
+        if(!images[movie]) return;
+
         recentMovies.innerHTML += `
 
         <div
@@ -676,7 +680,15 @@ function changeBanner(){
 
 }
 
-setInterval(
-changeBanner,
-5000
-);
+if(
+    bannerImage &&
+    bannerTitle &&
+    bannerDescription
+){
+
+    setInterval(
+        changeBanner,
+        5000
+    );
+
+}
