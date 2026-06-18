@@ -1,73 +1,73 @@
 const message =
-document.getElementById("message");
+    document.getElementById("message");
 
 /* =====================
    ELEMENTOS DOS MODAIS
 ===================== */
 
 const registerModal =
-document.getElementById("registerModal");
+    document.getElementById("registerModal");
 
 const recoveryModal =
-document.getElementById("recoveryModal");
+    document.getElementById("recoveryModal");
 
 const openRegister =
-document.getElementById("openRegister");
+    document.getElementById("openRegister");
 
 const closeRegister =
-document.getElementById("closeRegister");
+    document.getElementById("closeRegister");
 
 const openRecovery =
-document.getElementById("openRecovery");
+    document.getElementById("openRecovery");
 
 const closeRecovery =
-document.getElementById("closeRecovery");
+    document.getElementById("closeRecovery");
 
 /* =====================
    ABRIR / FECHAR MODAIS
 ===================== */
 
 openRegister.addEventListener(
-"click",
-() => {
-    registerModal.style.display = "flex";
-}
+    "click",
+    () => {
+        registerModal.style.display = "flex";
+    }
 );
 
 closeRegister.addEventListener(
-"click",
-() => {
-    registerModal.style.display = "none";
-}
+    "click",
+    () => {
+        registerModal.style.display = "none";
+    }
 );
 
 openRecovery.addEventListener(
-"click",
-() => {
-    recoveryModal.style.display = "flex";
-}
+    "click",
+    () => {
+        recoveryModal.style.display = "flex";
+    }
 );
 
 closeRecovery.addEventListener(
-"click",
-() => {
-    recoveryModal.style.display = "none";
-}
+    "click",
+    () => {
+        recoveryModal.style.display = "none";
+    }
 );
 
 window.addEventListener(
-"click",
-(e) => {
+    "click",
+    (e) => {
 
-    if(e.target === registerModal){
-        registerModal.style.display = "none";
+        if (e.target === registerModal) {
+            registerModal.style.display = "none";
+        }
+
+        if (e.target === recoveryModal) {
+            recoveryModal.style.display = "none";
+        }
+
     }
-
-    if(e.target === recoveryModal){
-        recoveryModal.style.display = "none";
-    }
-
-}
 );
 
 /* =====================
@@ -75,26 +75,26 @@ window.addEventListener(
 ===================== */
 
 const togglePassword =
-document.getElementById("togglePassword");
+    document.getElementById("togglePassword");
 
 const passwordInput =
-document.getElementById("password");
+    document.getElementById("password");
 
 togglePassword.addEventListener(
-"click",
-() => {
+    "click",
+    () => {
 
-    if(passwordInput.type === "password"){
+        if (passwordInput.type === "password") {
 
-        passwordInput.type = "text";
+            passwordInput.type = "text";
 
-    }else{
+        } else {
 
-        passwordInput.type = "password";
+            passwordInput.type = "password";
+
+        }
 
     }
-
-}
 );
 
 /* =====================
@@ -102,152 +102,152 @@ togglePassword.addEventListener(
 ===================== */
 
 document
-.getElementById("loginForm")
-.addEventListener(
-"submit",
-function(e){
+    .getElementById("loginForm")
+    .addEventListener(
+        "submit",
+        function (e) {
 
-    e.preventDefault();
+            e.preventDefault();
 
-    const email =
-    document.getElementById("email").value;
+            const email =
+                document.getElementById("email").value;
 
-    const password =
-    document.getElementById("password").value;
+            const password =
+                document.getElementById("password").value;
 
-    const users =
-    JSON.parse(
-    localStorage.getItem("users")
-    ) || [];
+            const users =
+                JSON.parse(
+                    localStorage.getItem("users")
+                ) || [];
 
-    const user =
-    users.find(user =>
+            const user =
+                users.find(user =>
 
-        user.email === email &&
-        user.password === password
+                    user.email === email &&
+                    user.password === password
 
+                );
+
+            if (user) {
+
+                localStorage.setItem(
+                    "currentUser",
+                    JSON.stringify(user)
+                );
+
+                window.location.href =
+                    "profiles.html";
+
+            } else {
+
+                message.innerHTML =
+                    "E-mail ou senha inválidos.";
+
+            }
+
+        }
     );
-
-    if(user){
-
-        localStorage.setItem(
-        "currentUser",
-        JSON.stringify(user)
-        );
-
-        window.location.href =
-        "profiles.html";
-
-    }else{
-
-        message.innerHTML =
-        "E-mail ou senha inválidos.";
-
-    }
-
-}
-);
 
 /* =====================
    CADASTRO
 ===================== */
 
 document
-.getElementById("registerForm")
-.addEventListener(
-"submit",
-function(e){
-
-    e.preventDefault();
-
-    const name =
-    document.getElementById("registerName").value;
-
-    const email =
-    document.getElementById("registerEmail").value;
-
-    const password =
-    document.getElementById("registerPassword").value;
-
-    const confirm =
-    document.getElementById("registerConfirmPassword").value;
-
-    if(password !== confirm){
-
-        alert(
-        "As senhas não coincidem."
-        );
-
-        return;
-
-    }
-
-    const users =
-    JSON.parse(
-    localStorage.getItem("users")
-    ) || [];
-
-    const exists =
-    users.find(
-    user =>
-    user.email === email
-    );
-
-    if(exists){
-
-        alert(
-        "Usuário já cadastrado."
-        );
-
-        return;
-
-    }
-
-    users.push({
-
-        name,
-        email,
-        password
-
-    });
-
-    localStorage.setItem(
-    "users",
-    JSON.stringify(users)
-    );
-
-    alert(
-    "Conta criada com sucesso!"
-    );
-
-    registerModal.style.display =
-    "none";
-
-    document
     .getElementById("registerForm")
-    .reset();
+    .addEventListener(
+        "submit",
+        function (e) {
 
-}
-);
+            e.preventDefault();
+
+            const name =
+                document.getElementById("registerName").value;
+
+            const email =
+                document.getElementById("registerEmail").value;
+
+            const password =
+                document.getElementById("registerPassword").value;
+
+            const confirm =
+                document.getElementById("registerConfirmPassword").value;
+
+            if (password !== confirm) {
+
+                alert(
+                    "As senhas não coincidem."
+                );
+
+                return;
+
+            }
+
+            const users =
+                JSON.parse(
+                    localStorage.getItem("users")
+                ) || [];
+
+            const exists =
+                users.find(
+                    user =>
+                        user.email === email
+                );
+
+            if (exists) {
+
+                alert(
+                    "Usuário já cadastrado."
+                );
+
+                return;
+
+            }
+
+            users.push({
+
+                name,
+                email,
+                password
+
+            });
+
+            localStorage.setItem(
+                "users",
+                JSON.stringify(users)
+            );
+
+            alert(
+                "Conta criada com sucesso!"
+            );
+
+            registerModal.style.display =
+                "none";
+
+            document
+                .getElementById("registerForm")
+                .reset();
+
+        }
+    );
 
 /* =====================
    RECUPERAÇÃO
 ===================== */
 
 document
-.getElementById("recoveryForm")
-.addEventListener(
-"submit",
-function(e){
+    .getElementById("recoveryForm")
+    .addEventListener(
+        "submit",
+        function (e) {
 
-    e.preventDefault();
+            e.preventDefault();
 
-    alert(
-    "Funcionalidade simulada para portfólio."
+            alert(
+                "Funcionalidade simulada para portfólio."
+            );
+
+            recoveryModal.style.display =
+                "none";
+
+        }
     );
-
-    recoveryModal.style.display =
-    "none";
-
-}
-);

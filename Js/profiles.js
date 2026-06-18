@@ -1,25 +1,25 @@
 const profiles =
-document.querySelectorAll(
-".profile-card"
-);
+    document.querySelectorAll(
+        ".profile-card"
+    );
 
 profiles.forEach(profile => {
 
     profile.addEventListener(
-    "click",
-    function(){
+        "click",
+        function () {
 
-        const selectedProfile =
-        this.dataset.profile;
+            const selectedProfile =
+                this.dataset.profile;
 
-        localStorage.setItem(
-        "selectedProfile",
-        selectedProfile
-        );
+            localStorage.setItem(
+                "selectedProfile",
+                selectedProfile
+            );
 
-        window.location.href =
-        "dashboard.html";
+            window.location.href =
+                "dashboard.html";
 
-    });
+        });
 
 });

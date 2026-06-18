@@ -1,66 +1,65 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
 }
 
-body{
+body {
     min-height: 100vh;
     background: #000;
     overflow-x: hidden;
 }
 
-.background{
-    position:fixed;
-    width:100%;
-    height:100%;
+.background {
+    position: fixed;
+    width: 100%;
+    height: 100%;
     background:
-    linear-gradient(
-    rgba(0,0,0,0.7),
-    rgba(0,0,0,0.7)),
-    url("https://images.unsplash.com/photo-1489599849927-2ee91cede3ba");
-    background-size:cover;
-    background-position:center;
-    z-index:-1;
+        linear-gradient(rgba(0, 0, 0, 0.7),
+            rgba(0, 0, 0, 0.7)),
+        url("https://images.unsplash.com/photo-1489599849927-2ee91cede3ba");
+    background-size: cover;
+    background-position: center;
+    z-index: -1;
 }
 
-header{
-    padding:20px 60px;
+header {
+    padding: 20px 60px;
 }
 
-.logo{
+.logo {
     color: #E50914;
     font-size: 2.5rem;
     font-weight: 700;
 }
 
-main{
+main {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 85vh;
 }
 
-.login-container{
+.login-container {
     width: 100%;
     max-width: 420px;
-    background: rgba(0,0,0,0.80);
+    background: rgba(0, 0, 0, 0.80);
     padding: 40px;
     border-radius: 10px;
     backdrop-filter: blur(10px);
 }
 
-.login-container h2{
-    color:white;
+.login-container h2 {
+    color: white;
     margin-bottom: 30px;
 }
 
-.input-group{
+.input-group {
     margin-bottom: 15px;
 }
 
-.input-group input{
+.input-group input {
     width: 100%;
     padding: 14px;
     border: none;
@@ -69,21 +68,21 @@ main{
     color: white;
 }
 
-.password-container{
+.password-container {
     position: relative;
 }
 
-#togglePassword{
+#togglePassword {
     position: absolute;
     right: 10px;
     top: 10px;
-    border:none;
+    border: none;
     background: none;
     color: white;
     cursor: pointer;
 }
 
-.btn-login{
+.btn-login {
     width: 100%;
     background: #E50914;
     color: white;
@@ -95,29 +94,29 @@ main{
     font-size: 1rem;
 }
 
-.links{
-    display:flex;
+.links {
+    display: flex;
     justify-content: space-between;
     margin-top: 20px;
 }
 
-.links button{
-   background:none;
-   border: none;
-   color: #ccc;
-   cursor: pointer;
+.links button {
+    background: none;
+    border: none;
+    color: #ccc;
+    cursor: pointer;
 }
 
-.modal{
+.modal {
     display: none;
     position: fixed;
     inset: 0;
-    background: rgba(0,0,0,0.8);
+    background: rgba(0, 0, 0, 0.8);
     justify-content: center;
     align-items: center;
 }
 
-.modal-content{
+.modal-content {
     width: 90%;
     max-width: 400px;
     background: #141414;
@@ -126,12 +125,12 @@ main{
     position: relative;
 }
 
-.modal-content h2{
+.modal-content h2 {
     color: white;
     margin-bottom: 20px;
 }
 
-.modal-content input{
+.modal-content input {
     width: 100%;
     padding: 12px;
     margin-bottom: 10px;
@@ -141,21 +140,21 @@ main{
     color: white;
 }
 
-.modal-content button{
+.modal-content button {
     width: 100%;
     padding: 12px;
-    border:none;
+    border: none;
     background: #E50914;
     color: white;
     border-radius: 5px;
     cursor: pointer;
 }
 
-.close{
+.close {
     position: absolute;
     right: 15px;
     top: 10px;
-    color:white;
+    color: white;
     font-size: 25px;
     cursor: pointer;
 }
@@ -163,109 +162,109 @@ main{
 /* Responsive Design */
 
 @media (max-width: 768px) {
-    header{
+    header {
         padding: 20px;
         text-align: center;
     }
 
-    .login-container{
+    .login-container {
         width: 90%;
         padding: 30px;
     }
 }
 
-#message{
-    margin-top:15px;
-    color:white;
-    text-align:center;
+#message {
+    margin-top: 15px;
+    color: white;
+    text-align: center;
 }
 
-.dashboard{
-    min-height:100vh;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    color:white;
-    background:#141414;
+.dashboard {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    background: #141414;
 }
 
-.dashboard h1{
-    margin-bottom:15px;
+.dashboard h1 {
+    margin-bottom: 15px;
 }
 
-.dashboard h2{
-    color:#E50914;
-    margin-bottom:20px;
+.dashboard h2 {
+    color: #E50914;
+    margin-bottom: 20px;
 }
 
-.dashboard button{
-    margin-top:20px;
-    padding:12px 30px;
-    border:none;
-    border-radius:5px;
-    background:#E50914;
-    color:white;
-    cursor:pointer;
+.dashboard button {
+    margin-top: 20px;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 5px;
+    background: #E50914;
+    color: white;
+    cursor: pointer;
 }
 
-body{
-    background:#141414;
-    color:white;
+body {
+    background: #141414;
+    color: white;
 }
 
-header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:20px 40px;
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
 }
 
-.logo{
-    color:#E50914;
+.logo {
+    color: #E50914;
 }
 
-.hero{
-    text-align:center;
-    padding:120px 20px;
+.hero {
+    text-align: center;
+    padding: 120px 20px;
 }
 
-.hero h2{
-    font-size:3rem;
+.hero h2 {
+    font-size: 3rem;
 }
 
 .btn-login,
-.btn-start{
+.btn-start {
 
-    background:#E50914;
-    color:white;
+    background: #E50914;
+    color: white;
 
-    text-decoration:none;
+    text-decoration: none;
 
-    padding:12px 20px;
+    padding: 12px 20px;
 
-    border-radius:5px;
+    border-radius: 5px;
 }
 
-.movies{
-    padding:50px;
+.movies {
+    padding: 50px;
 }
 
-.movies-row{
-    display:flex;
-    gap:15px;
+.movies-row {
+    display: flex;
+    gap: 15px;
 }
 
-.movie-card{
+.movie-card {
 
-    width:250px;
-    height:150px;
+    width: 250px;
+    height: 150px;
 
-    background:#333;
+    background: #333;
 
-    display:flex;
-    align-items:center;
-    justify-content:center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    border-radius:8px;
+    border-radius: 8px;
 }

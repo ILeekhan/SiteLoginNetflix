@@ -3,177 +3,140 @@
 
 <head>
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Netflix Login</title>
+    <title>Netflix Login</title>
 
-<link rel="stylesheet" href="CSS/login.css">
+    <link rel="stylesheet" href="CSS/login.css">
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
 
 </head>
 
 <body>
 
-<div class="background"></div>
+    <div class="background"></div>
 
-<header>
+    <header>
 
-    <h1 class="logo">
-        NETFLIX
-    </h1>
+        <h1 class="logo">
+            NETFLIX
+        </h1>
 
-</header>
+    </header>
 
-<main>
+    <main>
 
-<div class="login-container">
+        <div class="login-container">
 
-    <h2>Entrar</h2>
+            <h2>Entrar</h2>
 
-    <form id="loginForm">
+            <form id="loginForm">
 
-        <input
-        type="email"
-        id="email"
-        placeholder="E-mail"
-        required>
+                <input type="email" id="email" placeholder="E-mail" required>
 
-        <div class="password-box">
+                <div class="password-box">
 
-            <input
-            type="password"
-            id="password"
-            placeholder="Senha"
-            required>
+                    <input type="password" id="password" placeholder="Senha" required>
 
-            <button
-            type="button"
-            id="togglePassword">
-            👁
-            </button>
+                    <button type="button" id="togglePassword">
+                        👁
+                    </button>
+
+                </div>
+
+                <button type="submit" class="btn-red">
+
+                    Entrar
+
+                </button>
+
+            </form>
+
+            <div id="message"></div>
+
+            <div class="links">
+
+                <button id="openRegister">
+                    Criar Conta
+                </button>
+
+                <button id="openRecovery">
+                    Esqueci Minha Senha
+                </button>
+
+            </div>
 
         </div>
 
-        <button
-        type="submit"
-        class="btn-red">
+    </main>
 
-            Entrar
+    <!-- CADASTRO -->
 
-        </button>
+    <div class="modal" id="registerModal">
 
-    </form>
+        <div class="modal-content">
 
-    <div id="message"></div>
+            <span class="close" id="closeRegister">
+                &times;
+            </span>
 
-    <div class="links">
+            <h2>Criar Conta</h2>
 
-        <button id="openRegister">
-            Criar Conta
-        </button>
+            <form id="registerForm">
 
-        <button id="openRecovery">
-            Esqueci Minha Senha
-        </button>
+                <input type="text" id="registerName" placeholder="Nome Completo" required>
+
+                <input type="email" id="registerEmail" placeholder="E-mail" required>
+
+                <input type="password" id="registerPassword" placeholder="Senha" required>
+
+                <input type="password" id="registerConfirmPassword" placeholder="Confirmar Senha" required>
+
+                <button type="submit" class="btn-red">
+
+                    Criar Conta
+
+                </button>
+
+            </form>
+
+        </div>
 
     </div>
 
-</div>
+    <!-- RECUPERAR -->
 
-</main>
+    <div class="modal" id="recoveryModal">
 
-<!-- CADASTRO -->
+        <div class="modal-content">
 
-<div class="modal" id="registerModal">
+            <span class="close" id="closeRecovery">
+                &times;
+            </span>
 
-<div class="modal-content">
+            <h2>Recuperação</h2>
 
-    <span
-    class="close"
-    id="closeRegister">
-    &times;
-    </span>
+            <form id="recoveryForm">
 
-    <h2>Criar Conta</h2>
+                <input type="email" placeholder="Digite seu e-mail" required>
 
-    <form id="registerForm">
+                <button type="submit" class="btn-red">
 
-        <input
-        type="text"
-        id="registerName"
-        placeholder="Nome Completo"
-        required>
+                    Enviar
 
-        <input
-        type="email"
-        id="registerEmail"
-        placeholder="E-mail"
-        required>
+                </button>
 
-        <input
-        type="password"
-        id="registerPassword"
-        placeholder="Senha"
-        required>
+            </form>
 
-        <input
-        type="password"
-        id="registerConfirmPassword"
-        placeholder="Confirmar Senha"
-        required>
+        </div>
 
-        <button
-        type="submit"
-        class="btn-red">
+    </div>
 
-            Criar Conta
-
-        </button>
-
-    </form>
-
-</div>
-
-</div>
-
-<!-- RECUPERAR -->
-
-<div class="modal" id="recoveryModal">
-
-<div class="modal-content">
-
-    <span
-    class="close"
-    id="closeRecovery">
-    &times;
-    </span>
-
-    <h2>Recuperação</h2>
-
-    <form id="recoveryForm">
-
-        <input
-        type="email"
-        placeholder="Digite seu e-mail"
-        required>
-
-        <button
-        type="submit"
-        class="btn-red">
-
-            Enviar
-
-        </button>
-
-    </form>
-
-</div>
-
-</div>
-
-<script src="Js/auth.js"></script>
+    <script src="Js/auth.js"></script>
 
 </body>
+
 </html>

@@ -1,12 +1,12 @@
 const user =
-JSON.parse(
-localStorage.getItem("currentUser")
-);
+    JSON.parse(
+        localStorage.getItem("currentUser")
+    );
 
-if(!user){
+if (!user) {
 
     window.location.href =
-    "login.html";
+        "login.html";
 
 }
 
@@ -15,25 +15,25 @@ if(!user){
 =================== */
 
 const notification =
-document.getElementById(
-"notification"
-);
+    document.getElementById(
+        "notification"
+    );
 
-function showNotification(text){
+function showNotification(text) {
 
-    if(!notification) return;
+    if (!notification) return;
 
     notification.textContent =
-    text;
+        text;
 
     notification.classList.add(
-    "show"
+        "show"
     );
 
     setTimeout(() => {
 
         notification.classList.remove(
-        "show"
+            "show"
         );
 
     }, 2500);
@@ -45,14 +45,14 @@ function showNotification(text){
 =================== */
 
 const userName =
-document.getElementById(
-"userName"
-);
+    document.getElementById(
+        "userName"
+    );
 
-if(userName){
+if (userName) {
 
     userName.textContent =
-    `Olá, ${user.name} 👋`;
+        `Olá, ${user.name} 👋`;
 
 }
 
@@ -61,20 +61,20 @@ if(userName){
 =================== */
 
 const avatar =
-document.querySelector(
-".avatar"
-);
+    document.querySelector(
+        ".avatar"
+    );
 
-if(
+if (
     avatar &&
     user &&
     user.name
-){
+) {
 
     avatar.textContent =
-    user.name
-    .charAt(0)
-    .toUpperCase();
+        user.name
+            .charAt(0)
+            .toUpperCase();
 
 }
 
@@ -83,24 +83,24 @@ if(
 =================== */
 
 const logoutBtn =
-document.getElementById(
-"logoutBtn"
-);
+    document.getElementById(
+        "logoutBtn"
+    );
 
-if(logoutBtn){
+if (logoutBtn) {
 
     logoutBtn.addEventListener(
-    "click",
-    () => {
+        "click",
+        () => {
 
-        localStorage.removeItem(
-        "currentUser"
-        );
+            localStorage.removeItem(
+                "currentUser"
+            );
 
-        window.location.href =
-        "login.html";
+            window.location.href =
+                "login.html";
 
-    });
+        });
 
 }
 
@@ -109,47 +109,47 @@ if(logoutBtn){
 =================== */
 
 const searchInput =
-document.getElementById(
-"searchInput"
-);
+    document.getElementById(
+        "searchInput"
+    );
 
-if(searchInput){
+if (searchInput) {
 
     searchInput.addEventListener(
-    "keyup",
-    function(){
+        "keyup",
+        function () {
 
-        const value =
-        this.value.toLowerCase();
+            const value =
+                this.value.toLowerCase();
 
-        const cards =
-        document.querySelectorAll(
-        ".movie-card"
-        );
+            const cards =
+                document.querySelectorAll(
+                    ".movie-card"
+                );
 
-        cards.forEach(card => {
+            cards.forEach(card => {
 
-            const title =
-            card.dataset.title
-            .toLowerCase();
+                const title =
+                    card.dataset.title
+                        .toLowerCase();
 
-            if(
-                title.includes(value)
-            ){
+                if (
+                    title.includes(value)
+                ) {
 
-                card.style.display =
-                "block";
+                    card.style.display =
+                        "block";
 
-            }else{
+                } else {
 
-                card.style.display =
-                "none";
+                    card.style.display =
+                        "none";
 
-            }
+                }
+
+            });
 
         });
-
-    });
 
 }
 
@@ -158,25 +158,25 @@ if(searchInput){
 =================== */
 
 const favoriteButtons =
-document.querySelectorAll(
-".favorite-btn"
-);
+    document.querySelectorAll(
+        ".favorite-btn"
+    );
 
 let favorites =
-JSON.parse(
-localStorage.getItem(
-"favorites"
-)
-) || [];
+    JSON.parse(
+        localStorage.getItem(
+            "favorites"
+        )
+    ) || [];
 
 favoriteButtons.forEach(btn => {
 
     const movie =
-    btn.parentElement.dataset.title;
+        btn.parentElement.dataset.title;
 
-    if(
+    if (
         favorites.includes(movie)
-    ){
+    ) {
 
         btn.innerHTML = "❤️";
 
@@ -187,66 +187,66 @@ favoriteButtons.forEach(btn => {
 favoriteButtons.forEach(btn => {
 
     btn.addEventListener(
-    "click",
-    function(e){
+        "click",
+        function (e) {
 
-        e.stopPropagation();
+            e.stopPropagation();
 
-        const movie =
-        this.parentElement.dataset.title;
+            const movie =
+                this.parentElement.dataset.title;
 
-        let favorites =
-        JSON.parse(
-        localStorage.getItem(
-        "favorites"
-        )
-        ) || [];
+            let favorites =
+                JSON.parse(
+                    localStorage.getItem(
+                        "favorites"
+                    )
+                ) || [];
 
-        if(
-            favorites.includes(movie)
-        ){
+            if (
+                favorites.includes(movie)
+            ) {
 
-            favorites =
-            favorites.filter(
-            item => item !== movie
+                favorites =
+                    favorites.filter(
+                        item => item !== movie
+                    );
+
+                this.innerHTML = "⭐";
+
+                showNotification(
+                    "❌ " +
+                    movie +
+                    " removido dos favoritos"
+                );
+
+            } else {
+
+                favorites.push(movie);
+
+                this.innerHTML = "❤️";
+
+                showNotification(
+                    "❤️ " +
+                    movie +
+                    " adicionado aos favoritos"
+                );
+
+            }
+
+            localStorage.setItem(
+                "favorites",
+                JSON.stringify(
+                    favorites
+                )
             );
 
-            this.innerHTML = "⭐";
+            setTimeout(() => {
 
-            showNotification(
-            "❌ " +
-            movie +
-            " removido dos favoritos"
-            );
+                location.reload();
 
-        }else{
+            }, 500);
 
-            favorites.push(movie);
-
-            this.innerHTML = "❤️";
-
-            showNotification(
-            "❤️ " +
-            movie +
-            " adicionado aos favoritos"
-            );
-
-        }
-
-        localStorage.setItem(
-        "favorites",
-        JSON.stringify(
-        favorites
-        )
-        );
-
-        setTimeout(() => {
-
-            location.reload();
-
-        }, 500);
-
-    });
+        });
 
 });
 
@@ -255,171 +255,171 @@ favoriteButtons.forEach(btn => {
 ================== */
 
 const movieModal =
-document.getElementById(
-"movieModal"
-);
+    document.getElementById(
+        "movieModal"
+    );
 
 const movieTitle =
-document.getElementById(
-"movieTitle"
-);
+    document.getElementById(
+        "movieTitle"
+    );
 
 const movieDescription =
-document.getElementById(
-"movieDescription"
-);
+    document.getElementById(
+        "movieDescription"
+    );
 
 const closeMovieModal =
-document.getElementById(
-"closeMovieModal"
-);
+    document.getElementById(
+        "closeMovieModal"
+    );
 
 const movieCards =
-document.querySelectorAll(
-".movie-card"
-);
+    document.querySelectorAll(
+        ".movie-card"
+    );
 
 movieCards.forEach(card => {
 
     card.addEventListener(
-    "click",
-    function(){
+        "click",
+        function () {
 
-        const title =
-        this.dataset.title;
+            const title =
+                this.dataset.title;
 
-        movieTitle.textContent =
-        title;
+            movieTitle.textContent =
+                title;
 
-        const descriptions = {
+            const descriptions = {
 
-            "Stranger Things":
-            "Uma cidade pequena enfrenta acontecimentos sobrenaturais e uma dimensão paralela chamada Mundo Invertido.",
+                "Stranger Things":
+                    "Uma cidade pequena enfrenta acontecimentos sobrenaturais e uma dimensão paralela chamada Mundo Invertido.",
 
-            "The Witcher":
-            "Geralt de Rívia luta contra monstros e enfrenta conflitos políticos em um mundo medieval fantástico.",
+                "The Witcher":
+                    "Geralt de Rívia luta contra monstros e enfrenta conflitos políticos em um mundo medieval fantástico.",
 
-            "Wandinha":
-            "A filha da Família Addams investiga mistérios sobrenaturais enquanto estuda na Escola Nunca Mais.",
+                "Wandinha":
+                    "A filha da Família Addams investiga mistérios sobrenaturais enquanto estuda na Escola Nunca Mais.",
 
-            "Dark":
-            "Uma série alemã sobre viagens no tempo, desaparecimentos e segredos familiares."
+                "Dark":
+                    "Uma série alemã sobre viagens no tempo, desaparecimentos e segredos familiares."
 
-        };
+            };
 
-        movieDescription.textContent =
-        descriptions[title] ||
-        "Descrição não disponível.";
+            movieDescription.textContent =
+                descriptions[title] ||
+                "Descrição não disponível.";
 
-        if(movieModal){
+            if (movieModal) {
 
-            movieModal.style.display =
-            "flex";
+                movieModal.style.display =
+                    "flex";
 
-        }
+            }
 
-    });
+        });
 
 });
 
-if(closeMovieModal){
+if (closeMovieModal) {
 
     closeMovieModal.addEventListener(
-    "click",
-    () => {
+        "click",
+        () => {
 
-        movieModal.style.display =
-        "none";
+            movieModal.style.display =
+                "none";
 
-    });
+        });
 
 }
 
 window.addEventListener(
-"click",
-function(e){
+    "click",
+    function (e) {
 
-    if(
-        e.target === movieModal
-    ){
+        if (
+            e.target === movieModal
+        ) {
 
-        movieModal.style.display =
-        "none";
+            movieModal.style.display =
+                "none";
 
-    }
+        }
 
-});
+    });
 
 /* ===================
    ASSISTIR
 =================== */
 
 const playButtons =
-document.querySelectorAll(
-".play-btn"
-);
+    document.querySelectorAll(
+        ".play-btn"
+    );
 
 playButtons.forEach(btn => {
 
     btn.addEventListener(
-    "click",
-    () => {
+        "click",
+        () => {
 
-        let movie = "";
+            let movie = "";
 
-        if(
-            movieModal &&
-            movieModal.style.display === "flex"
-        ){
+            if (
+                movieModal &&
+                movieModal.style.display === "flex"
+            ) {
 
-            movie =
-            movieTitle.textContent;
+                movie =
+                    movieTitle.textContent;
 
-        }else{
+            } else {
 
-            movie =
-            bannerTitle.textContent;
+                movie =
+                    bannerTitle.textContent;
 
-        }
+            }
 
-        if(!movie) return;
-
-        localStorage.setItem(
-            "selectedMovie",
-            movie
-        );
-
-        localStorage.setItem(
-            "lastWatched",
-            movie
-        );
-
-        let watched =
-        JSON.parse(
-            localStorage.getItem(
-                "watchedMovies"
-            )
-        ) || [];
-
-        if(
-            !watched.includes(movie)
-        ){
-
-            watched.push(movie);
+            if (!movie) return;
 
             localStorage.setItem(
-                "watchedMovies",
-                JSON.stringify(
-                    watched
-                )
+                "selectedMovie",
+                movie
             );
 
-        }
+            localStorage.setItem(
+                "lastWatched",
+                movie
+            );
 
-        window.location.href =
-        "player.html";
+            let watched =
+                JSON.parse(
+                    localStorage.getItem(
+                        "watchedMovies"
+                    )
+                ) || [];
 
-    });
+            if (
+                !watched.includes(movie)
+            ) {
+
+                watched.push(movie);
+
+                localStorage.setItem(
+                    "watchedMovies",
+                    JSON.stringify(
+                        watched
+                    )
+                );
+
+            }
+
+            window.location.href =
+                "player.html";
+
+        });
 
 });
 
@@ -428,32 +428,32 @@ playButtons.forEach(btn => {
 =================== */
 
 const favoritesList =
-document.getElementById(
-"favoritesList"
-);
+    document.getElementById(
+        "favoritesList"
+    );
 
-if(favoritesList){
+if (favoritesList) {
 
     const favorites =
-    JSON.parse(
-    localStorage.getItem(
-    "favorites"
-    )
-    ) || [];
+        JSON.parse(
+            localStorage.getItem(
+                "favorites"
+            )
+        ) || [];
 
     const images = {
 
         "Stranger Things":
-        "assets/images/StrangerThingsCapa.jpg",
+            "assets/images/StrangerThingsCapa.jpg",
 
         "The Witcher":
-        "assets/images/TheWitcherSerie.jpg",
+            "assets/images/TheWitcherSerie.jpg",
 
         "Wandinha":
-        "assets/images/WandinhaSerie.jpg",
+            "assets/images/WandinhaSerie.jpg",
 
         "Dark":
-        "assets/images/DarkSerie.jpg"
+            "assets/images/DarkSerie.jpg"
 
     };
 
@@ -461,7 +461,7 @@ if(favoritesList){
 
     favorites.forEach(movie => {
 
-        if(!images[movie]) return;
+        if (!images[movie]) return;
 
         favoritesList.innerHTML += `
 
@@ -488,59 +488,59 @@ if(favoritesList){
 =================== */
 
 const bannerImage =
-document.getElementById(
-"bannerImage"
-);
+    document.getElementById(
+        "bannerImage"
+    );
 
 const bannerTitle =
-document.getElementById(
-"bannerTitle"
-);
+    document.getElementById(
+        "bannerTitle"
+    );
 
 const bannerDescription =
-document.getElementById(
-"bannerDescription"
-);
+    document.getElementById(
+        "bannerDescription"
+    );
 
 const bannerData = {
 
     "Stranger Things": {
 
         image:
-        "assets/images/StrangerThingsCapa.jpg",
+            "assets/images/StrangerThingsCapa.jpg",
 
         description:
-        "Uma cidade pequena enfrenta acontecimentos sobrenaturais e uma dimensão paralela chamada Mundo Invertido."
+            "Uma cidade pequena enfrenta acontecimentos sobrenaturais e uma dimensão paralela chamada Mundo Invertido."
 
     },
 
     "The Witcher": {
 
         image:
-        "assets/images/TheWitcherSerie.jpg",
+            "assets/images/TheWitcherSerie.jpg",
 
         description:
-        "Geralt de Rívia luta contra monstros e enfrenta conflitos políticos em um mundo medieval fantástico."
+            "Geralt de Rívia luta contra monstros e enfrenta conflitos políticos em um mundo medieval fantástico."
 
     },
 
     "Wandinha": {
 
         image:
-        "assets/images/WandinhaSerie.jpg",
+            "assets/images/WandinhaSerie.jpg",
 
         description:
-        "A filha da Família Addams investiga mistérios sobrenaturais enquanto estuda na Escola Nunca Mais."
+            "A filha da Família Addams investiga mistérios sobrenaturais enquanto estuda na Escola Nunca Mais."
 
     },
 
     "Dark": {
 
         image:
-        "assets/images/DarkSerie.jpg",
+            "assets/images/DarkSerie.jpg",
 
         description:
-        "Uma série alemã sobre viagens no tempo, desaparecimentos e segredos familiares."
+            "Uma série alemã sobre viagens no tempo, desaparecimentos e segredos familiares."
 
     }
 
@@ -549,30 +549,30 @@ const bannerData = {
 movieCards.forEach(card => {
 
     card.addEventListener(
-    "click",
-    function(){
+        "click",
+        function () {
 
-        const title =
-        this.dataset.title;
+            const title =
+                this.dataset.title;
 
-        if(
-            bannerData[title]
-        ){
+            if (
+                bannerData[title]
+            ) {
 
-            bannerTitle.textContent =
-            title;
+                bannerTitle.textContent =
+                    title;
 
-            bannerDescription.textContent =
-            bannerData[title]
-            .description;
+                bannerDescription.textContent =
+                    bannerData[title]
+                        .description;
 
-            bannerImage.src =
-            bannerData[title]
-            .image;
+                bannerImage.src =
+                    bannerData[title]
+                        .image;
 
-        }
+            }
 
-    });
+        });
 
 });
 
@@ -581,32 +581,32 @@ movieCards.forEach(card => {
 =================== */
 
 const recentMovies =
-document.getElementById(
-"recentMovies"
-);
+    document.getElementById(
+        "recentMovies"
+    );
 
-if(recentMovies){
+if (recentMovies) {
 
     const watched =
-    JSON.parse(
-    localStorage.getItem(
-    "watchedMovies"
-    )
-    ) || [];
+        JSON.parse(
+            localStorage.getItem(
+                "watchedMovies"
+            )
+        ) || [];
 
     const images = {
 
         "Stranger Things":
-        "assets/images/StrangerThingsCapa.jpg",
+            "assets/images/StrangerThingsCapa.jpg",
 
         "The Witcher":
-        "assets/images/TheWitcherSerie.jpg",
+            "assets/images/TheWitcherSerie.jpg",
 
         "Wandinha":
-        "assets/images/WandinhaSerie.jpg",
+            "assets/images/WandinhaSerie.jpg",
 
         "Dark":
-        "assets/images/DarkSerie.jpg"
+            "assets/images/DarkSerie.jpg"
 
     };
 
@@ -614,7 +614,7 @@ if(recentMovies){
 
     watched.forEach(movie => {
 
-        if(!images[movie]) return;
+        if (!images[movie]) return;
 
         recentMovies.innerHTML += `
 
@@ -651,28 +651,28 @@ const moviesBanner = [
 
 let currentBanner = 0;
 
-function changeBanner(){
+function changeBanner() {
 
     const movie =
-    moviesBanner[currentBanner];
+        moviesBanner[currentBanner];
 
     bannerTitle.textContent =
-    movie;
+        movie;
 
     bannerDescription.textContent =
-    bannerData[movie]
-    .description;
+        bannerData[movie]
+            .description;
 
     bannerImage.src =
-    bannerData[movie]
-    .image;
+        bannerData[movie]
+            .image;
 
     currentBanner++;
 
-    if(
+    if (
         currentBanner >=
         moviesBanner.length
-    ){
+    ) {
 
         currentBanner = 0;
 
@@ -680,11 +680,11 @@ function changeBanner(){
 
 }
 
-if(
+if (
     bannerImage &&
     bannerTitle &&
     bannerDescription
-){
+) {
 
     setInterval(
         changeBanner,
