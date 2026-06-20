@@ -89,9 +89,9 @@ function trocarBanner() {
     const item = catalogo[indiceBanner];
     const bannerEl = document.querySelector('.banner');
 
-    // ✅ TODOS aparecem com imagem estendida bonita
-    bannerEl.style.background = `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.7)), url('${item.banner}') center / cover no-repeat`;
-    bannerEl.style.backgroundSize = "100% 100%"; // estica largura toda, mantém proporção
+    // ✅ TODAS as imagens: esticadas na largura toda, proporção mantida, resolução boa
+    bannerEl.style.background = `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.7)), url('${item.banner}') center center / cover no-repeat`;
+    bannerEl.style.backgroundSize = "100% auto"; // largura 100%, altura automática = sem distorcer
 
     document.getElementById('tituloBanner').textContent = item.titulo;
     document.getElementById('descricaoBanner').textContent = item.descricao;
