@@ -41,7 +41,6 @@ body:not(.modo-escuro) .card {
     padding: 15px 0;
     background: linear-gradient(to bottom, rgba(0, 0, 0, 0.9), transparent);
     z-index: 9999 !important;
-    /* ⚠️ Z-index alto para ficar por cima */
     transition: background 0.3s;
 }
 
@@ -118,7 +117,6 @@ body:not(.modo-escuro) .busca input {
     position: relative;
     cursor: pointer;
     z-index: 10000 !important;
-    /* ⚠️ Garante que o menu sair fique clicável */
 }
 
 .avatar-pequeno {
@@ -143,7 +141,6 @@ body:not(.modo-escuro) .busca input {
     width: 100px;
     display: none;
     z-index: 10001 !important;
-    /* ⚠️ Fica por cima de tudo */
     border: 1px solid #333;
 }
 
@@ -166,7 +163,6 @@ body:not(.modo-escuro) .menu-sair {
     padding: 8px 5px;
     font-size: 0.9rem;
     pointer-events: auto !important;
-    /* ⚠️ Garante clique */
     position: relative;
     z-index: 10002 !important;
 }
@@ -285,7 +281,6 @@ body:not(.modo-escuro) .banner-conteudo p {
     transition: transform 0.3s ease;
     flex-shrink: 0;
     background-color: #222;
-    /* Fundo caso imagem demore */
 }
 
 .card:hover {
@@ -298,7 +293,6 @@ body:not(.modo-escuro) .banner-conteudo p {
     height: 100%;
     object-fit: cover;
     display: block !important;
-    /* ⚠️ Força exibição */
     opacity: 1 !important;
     visibility: visible !important;
 }

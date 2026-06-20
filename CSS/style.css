@@ -15,6 +15,70 @@ body {
     background-color: #141414;
     color: #ffffff;
     line-height: 1.4;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* ✅ MODO ESCURO / CLARO - 100% CORRIGIDO */
+body.modo-escuro {
+    background-color: #141414 !important;
+    color: #ffffff !important;
+}
+
+body:not(.modo-escuro) {
+    background-color: #ffffff !important;
+    color: #141414 !important;
+}
+
+body:not(.modo-escuro) .login-card,
+body:not(.modo-escuro) .modal-conteudo {
+    background-color: #f5f5f5 !important;
+    color: #141414 !important;
+}
+
+body:not(.modo-escuro) input {
+    background-color: #e0e0e0 !important;
+    color: #141414 !important;
+}
+
+body:not(.modo-escuro) input::placeholder {
+    color: #666666 !important;
+}
+
+body:not(.modo-escuro) .faq-pergunta,
+body:not(.modo-escuro) .faq-resposta {
+    background-color: #e0e0e0 !important;
+    color: #141414 !important;
+}
+
+body:not(.modo-escuro) .aviso-demo,
+body:not(.modo-escuro) .rodape,
+body:not(.modo-escuro) .nome-perfil {
+    color: #555555 !important;
+}
+
+body:not(.modo-escuro) .btn-sair-conta,
+body:not(.modo-escuro) .btn-gerenciar {
+    color: #333333 !important;
+    border-color: #333333 !important;
+}
+
+body:not(.modo-escuro) .btn-sair-conta:hover,
+body:not(.modo-escuro) .btn-gerenciar:hover {
+    color: #000000 !important;
+    border-color: #000000 !important;
+}
+
+body:not(.modo-escuro) .links a:not(.btn-criar-conta) {
+    color: #555555 !important;
+}
+
+body:not(.modo-escuro) .card-filme {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Manter logo vermelha em ambos os modos */
+.logo {
+    color: #E50914 !important;
 }
 
 a {
@@ -120,74 +184,4 @@ html {
         padding: 8px 16px;
         font-size: 0.9rem;
     }
-}
-
-/* ==========================================
-   MODO ESCURO / CLARO - CORRIGIDO
-========================================== */
-
-/* Padrão: Modo Escuro */
-body {
-    background-color: #141414;
-    color: #ffffff;
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-/* Modo Claro (quando a classe NÃO estiver presente) */
-body:not(.modo-escuro) {
-    background-color: #ffffff;
-    color: #141414;
-}
-
-/* Ajustes gerais no modo claro */
-body:not(.modo-escuro) .login-card,
-body:not(.modo-escuro) .modal-conteudo {
-    background-color: #f5f5f5;
-    color: #141414;
-}
-
-body:not(.modo-escuro) input {
-    background-color: #e0e0e0;
-    color: #141414;
-}
-
-body:not(.modo-escuro) input::placeholder {
-    color: #666666;
-}
-
-body:not(.modo-escuro) .faq-pergunta,
-body:not(.modo-escuro) .faq-resposta {
-    background-color: #e0e0e0;
-    color: #141414;
-}
-
-body:not(.modo-escuro) .aviso-demo,
-body:not(.modo-escuro) .rodape,
-body:not(.modo-escuro) .nome-perfil {
-    color: #555555;
-}
-
-body:not(.modo-escuro) .btn-sair-conta,
-body:not(.modo-escuro) .btn-gerenciar {
-    color: #333333;
-    border-color: #333333;
-}
-
-body:not(.modo-escuro) .btn-sair-conta:hover,
-body:not(.modo-escuro) .btn-gerenciar:hover {
-    color: #000000;
-    border-color: #000000;
-}
-
-body:not(.modo-escuro) .links a:not(.btn-criar-conta) {
-    color: #555555;
-}
-
-body:not(.modo-escuro) .card-filme {
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-}
-
-/* Manter logo vermelha em ambos os modos */
-.logo {
-    color: #E50914 !important;
 }

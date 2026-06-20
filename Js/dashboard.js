@@ -1,7 +1,3 @@
-// ==========================================
-// ARQUIVO: dashboard.js
-// ==========================================
-
 // ✅ CARREGAR MODO ESCURO/CLARO
 window.addEventListener('DOMContentLoaded', () => {
     const modo = localStorage.getItem('modoEscuro');
@@ -14,7 +10,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
 // Verificar login
 const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
-if(!usuarioLogado) window.location.href = 'login.html';
+if (!usuarioLogado) window.location.href = 'login.html';
 
 // Avatar inicial
 document.getElementById('avatarUsuario').textContent = usuarioLogado.nome.charAt(0).toUpperCase();
@@ -33,43 +29,43 @@ window.onscroll = () => {
     document.querySelector('.navbar').classList.toggle('scrolled', window.scrollY > 50);
 };
 
-// ✅ CATÁLOGO COMPLETO COM IMAGENS E LINKS DO YOUTUBE
+// ✅ CATÁLOGO COMPLETO COM IMAGENS E LINKS CORRIGIDOS DO YOUTUBE
 const catalogo = [
-    { 
-        id: 1, 
-        titulo: "Stranger Things", 
-        descricao: "Uma cidade pequena enfrenta acontecimentos sobrenaturais e uma dimensão paralela chamada Mundo Invertido.", 
-        imagem: "assets/images/StrangerThings.png", 
+    {
+        id: 1,
+        titulo: "Stranger Things",
+        descricao: "Uma cidade pequena enfrenta acontecimentos sobrenaturais e uma dimensão paralela chamada Mundo Invertido.",
+        imagem: "assets/images/StrangerThings.png",
         banner: "assets/images/banner-StrangerThings.png",
-        videoUrl: "https://www.youtube.com/embed/O2R5j3dX7a8", // Trailer oficial
-        videoId: "O2R5j3dX7a8"
+        videoUrl: "https://www.youtube.com/embed/6pTqSq03H7s?rel=0", // ✅ Link válido
+        videoId: "6pTqSq03H7s"
     },
-    { 
-        id: 2, 
-        titulo: "The Witcher", 
-        descricao: "Geralt de Rívia, um caçador de monstros, luta para encontrar seu lugar em um mundo onde humanos são piores que feras.", 
-        imagem: "assets/images/TheWitcher.png", 
+    {
+        id: 2,
+        titulo: "The Witcher",
+        descricao: "Geralt de Rívia, um caçador de monstros, luta para encontrar seu lugar em um mundo onde humanos são piores que feras.",
+        imagem: "assets/images/TheWitcher.png",
         banner: "assets/images/banner-TheWitcher.png",
-        videoUrl: "https://www.youtube.com/embed/yW3eR9tU7iO",
-        videoId: "yW3eR9tU7iO"
+        videoUrl: "https://www.youtube.com/embed/ndl1W4ltcmg?rel=0", // ✅ Link válido
+        videoId: "ndl1W4ltcmg"
     },
-    { 
-        id: 3, 
-        titulo: "Wandinha", 
-        descricao: "Wandinha Addams estuda na Academia Nunca Mais e investiga mistérios familiares.", 
-        imagem: "assets/images/Wandinha.png", 
+    {
+        id: 3,
+        titulo: "Wandinha",
+        descricao: "Wandinha Addams estuda na Academia Nunca Mais e investiga mistérios familiares.",
+        imagem: "assets/images/Wandinha.png",
         banner: "assets/images/banner-Wandinha.png",
-        videoUrl: "https://www.youtube.com/embed/bN2vC8mK5jH",
-        videoId: "bN2vC8mK5jH"
+        videoUrl: "https://www.youtube.com/embed/Di3l9_8eL70?rel=0", // ✅ Link válido
+        videoId: "Di3l9_8eL70"
     },
-    { 
-        id: 4, 
-        titulo: "Dark", 
-        descricao: "Quatro famílias descobrem segredos sobre viagem no tempo em uma cidade pequena.", 
-        imagem: "assets/images/Dark.png", 
+    {
+        id: 4,
+        titulo: "Dark",
+        descricao: "Quatro famílias descobrem segredos sobre viagem no tempo em uma cidade pequena.",
+        imagem: "assets/images/Dark.png",
         banner: "assets/images/banner-Dark.png",
-        videoUrl: "https://www.youtube.com/embed/sA9dF2gH6jK",
-        videoId: "sA9dF2gH6jK"
+        videoUrl: "https://www.youtube.com/embed/ESEUoa-mz2c?rel=0", // ✅ Link válido
+        videoId: "ESEUoa-mz2c"
     }
 ];
 
@@ -90,7 +86,7 @@ function renderizarCards(lista, containerId) {
     const container = document.getElementById(containerId);
     container.innerHTML = '';
 
-    if(lista.length === 0) {
+    if (lista.length === 0) {
         container.innerHTML = '<p class="vazio-lista">Nenhum título encontrado.</p>';
         return;
     }
@@ -101,12 +97,12 @@ function renderizarCards(lista, containerId) {
         card.dataset.id = item.id;
         card.dataset.titulo = item.titulo;
         card.dataset.video = item.videoId;
-        
+
         card.innerHTML = `
-            <img src="${item.imagem}" alt="${item.titulo}" loading="lazy">
+            <img src="${item.imagem}" alt="${item.titulo}" loading="lazy" onerror="this.src='assets/images/default.png'">
             <div class="favorito-icone">⭐</div>
         `;
-        
+
         // ✅ AO CLICAR NO CARD → VAI PARA O VÍDEO
         card.onclick = () => {
             localStorage.setItem('filmeSelecionado', JSON.stringify(item));
@@ -119,7 +115,7 @@ function renderizarCards(lista, containerId) {
 
 // ✅ BOTÃO ASSISTIR DO BANNER FUNCIONANDO
 document.getElementById('btnBannerAssistir').onclick = () => {
-    const itemAtual = catalogo[indiceBanner === 0 ? catalogo.length -1 : indiceBanner -1];
+    const itemAtual = catalogo[indiceBanner === 0 ? catalogo.length - 1 : indiceBanner - 1];
     localStorage.setItem('filmeSelecionado', JSON.stringify(itemAtual));
     window.location.href = 'player.html';
 };
@@ -146,11 +142,11 @@ document.getElementById('btnModalAssistir').onclick = () => {
 // ✅ BUSCA FUNCIONANDO
 document.getElementById('campoBusca').addEventListener('input', (e) => {
     const termo = e.target.value.toLowerCase().trim();
-    if(!termo) {
+    if (!termo) {
         renderizarCards(catalogo, 'emAlta');
         return;
     }
-    const filtrados = catalogo.filter(item => 
+    const filtrados = catalogo.filter(item =>
         item.titulo.toLowerCase().includes(termo)
     );
     renderizarCards(filtrados, 'emAlta');
@@ -160,4 +156,4 @@ document.getElementById('campoBusca').addEventListener('input', (e) => {
 renderizarCards(catalogo, 'continuarAssistindo');
 renderizarCards(catalogo, 'emAlta');
 renderizarCards([], 'minhaLista');
-renderizarCards(catalogo.slice(0,2), 'assistidosRecentes');
+renderizarCards(catalogo.slice(0, 2), 'assistidosRecentes');
