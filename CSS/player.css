@@ -2,37 +2,46 @@
    ARQUIVO: player.css - ESTILOS DA PÁGINA DE REPRODUÇÃO
 ========================================== */
 
-/* =========================
-   RESET E BASE
-========================= */
+/* ========== RESET E BASE ========== */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
 }
 
 body {
+    font-family: 'Poppins', sans-serif;
     background-color: #141414;
     color: #ffffff;
     min-height: 100vh;
     line-height: 1.6;
 }
 
-/* =========================
-   CABEÇALHO
-========================= */
+/* ========== ESTRUTURA GERAL ========== */
+.player-wrapper {
+    width: 100%;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* ========== CABEÇALHO ========== */
 .player-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 40px;
     background-color: #000000;
     border-bottom: 1px solid #222222;
     position: sticky;
     top: 0;
     z-index: 100;
-    transition: opacity 0.3s ease;
+    padding: 20px 0;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .logo {
@@ -40,65 +49,68 @@ body {
     font-size: 2rem;
     font-weight: 700;
     letter-spacing: 1px;
-    text-decoration: none;
 }
 
-#backBtn {
+.btn {
+    border: none;
+    border-radius: 4px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+}
+
+.back-btn {
     background-color: #E50914;
     color: #ffffff;
-    border: none;
-    padding: 12px 22px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-weight: 600;
-    font-size: 0.95rem;
-    transition: all 0.3s ease;
+    padding: 10px 20px;
 }
 
-#backBtn:hover {
-    transform: scale(1.05);
+.back-btn:hover {
     background-color: #b20710;
+    transform: scale(1.05);
 }
 
-/* =========================
-   CONTEÚDO PRINCIPAL
-========================= */
+/* ========== CONTEÚDO PRINCIPAL ========== */
+.player-main {
+    padding: 40px 0;
+}
+
 .player-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 40px 25px;
+    width: 100%;
 }
 
-#movieTitle {
+/* Informações do filme/série */
+.movie-info {
+    margin-bottom: 30px;
+}
+
+.movie-title {
     font-size: 2.6rem;
-    margin-bottom: 15px;
     font-weight: 700;
+    margin-bottom: 15px;
     color: #ffffff;
 }
 
-#movieDescription {
+.movie-desc {
     color: #cfcfcf;
-    line-height: 1.8;
-    margin-bottom: 30px;
-    max-width: 900px;
     font-size: 1.05rem;
+    max-width: 900px;
 }
 
-/* =========================
-   SEÇÃO DE EPISÓDIOS
-========================= */
-.episodes-container {
+/* ========== SEÇÃO DE EPISÓDIOS ========== */
+.episodes-section {
     margin-bottom: 35px;
 }
 
-.episodes-container h3 {
+.section-subtitle {
     color: #E50914;
-    margin-bottom: 15px;
     font-size: 1.2rem;
     font-weight: 600;
+    margin-bottom: 15px;
 }
 
-.episodes-list {
+.episodes-container {
     display: flex;
     gap: 12px;
     flex-wrap: wrap;
@@ -107,129 +119,104 @@ body {
 .episode-btn {
     background-color: #222222;
     color: #ffffff;
-    border: none;
     padding: 12px 20px;
     border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.3s ease;
     font-weight: 500;
-    font-size: 0.95rem;
 }
 
 .episode-btn:hover {
     background-color: #E50914;
 }
 
-.episode-active {
+/* Classe ativa que vai ser adicionada via JS */
+.episode-btn.active {
     background-color: #E50914;
     font-weight: 700;
     box-shadow: 0 0 10px rgba(229, 9, 20, 0.3);
 }
 
-/* =========================
-   PLAYER DE VÍDEO
-========================= */
+/* ========== PLAYER DE VÍDEO ========== */
+.video-section {
+    width: 100%;
+}
+
 .video-wrapper {
     width: 100%;
     overflow: hidden;
     border-radius: 15px;
     box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
-    margin-bottom: 20px;
 }
 
 iframe {
     width: 100%;
-    height: 650px;
-    border: none;
     display: block;
+    border: none;
 }
 
-/* =========================
-   INFORMAÇÕES ADICIONAIS
-========================= */
-.movie-info {
-    margin-top: 20px;
-}
-
-/* =========================
-   BARRA DE ROLAGEM PERSONALIZADA
-========================= */
+/* ========== BARRA DE ROLAGEM PERSONALIZADA ========== */
 ::-webkit-scrollbar {
     width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-    background: #111111;
+    background-color: #111111;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #E50914;
+    background-color: #E50914;
     border-radius: 10px;
 }
 
-/* =========================
-   RESPONSIVO - TABLET (ATÉ 992px)
-========================= */
-@media(max-width:992px) {
-    iframe {
-        height: 500px;
-    }
+/* ========== RESPONSIVIDADE ========== */
 
-    #movieTitle {
+/* Tablet */
+@media (max-width: 992px) {
+    .movie-title {
         font-size: 2.1rem;
     }
 
-    .player-container {
-        padding: 30px 20px;
+    iframe {
+        height: 450px !important;
     }
 }
 
-/* =========================
-   RESPONSIVO - CELULAR (ATÉ 768px)
-========================= */
-@media(max-width:768px) {
+/* Celular */
+@media (max-width: 768px) {
     .player-header {
+        padding: 15px 0;
+    }
+
+    .header-content {
         flex-direction: column;
         gap: 15px;
         text-align: center;
-        padding: 20px;
-    }
-
-    .player-container {
-        padding: 25px 15px;
-    }
-
-    #movieTitle {
-        font-size: 1.8rem;
-    }
-
-    #movieDescription {
-        font-size: 0.95rem;
-    }
-
-    iframe {
-        height: 300px;
-    }
-
-    .episodes-list {
-        justify-content: center;
     }
 
     .logo {
         font-size: 1.8rem;
     }
-}
 
-/* =========================
-   RESPONSIVO - CELULAR PEQUENO (ATÉ 480px)
-========================= */
-@media(max-width:480px) {
-    #movieTitle {
-        font-size: 1.5rem;
+    .movie-title {
+        font-size: 1.8rem;
+    }
+
+    .movie-desc {
+        font-size: 0.95rem;
+    }
+
+    .episodes-container {
+        justify-content: center;
     }
 
     iframe {
-        height: 220px;
+        height: 300px !important;
+    }
+}
+
+/* Celular pequeno */
+@media (max-width: 480px) {
+    .movie-title {
+        font-size: 1.5rem;
     }
 
     .episode-btn {
@@ -237,8 +224,7 @@ iframe {
         text-align: center;
     }
 
-    #backBtn {
-        width: 100%;
-        max-width: 200px;
+    iframe {
+        height: 220px !important;
     }
 }
