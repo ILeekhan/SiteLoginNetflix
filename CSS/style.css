@@ -1,9 +1,8 @@
 /* ==========================================
-   ARQUIVO: style.css - PROJETO NETFLIX CLONE
-   ESTILOS DA PÁGINA INICIAL (index.html)
+   ESTILO - PÁGINA INICIAL NETFLIX CLONE
 ========================================== */
 
-/* ========== RESET E CONFIGURAÇÕES GERAIS ========== */
+/* ========== RESET E BASE ========== */
 * {
     margin: 0;
     padding: 0;
@@ -11,198 +10,180 @@
 }
 
 body {
-    font-family: 'Poppins', sans-serif;
-    background-color: #141414;
-    color: #ffffff;
+    font-family: 'Poppins', sans-serif !important;
+    background-color: #141414 !important;
+    color: #ffffff !important;
     line-height: 1.5;
     overflow-x: hidden;
-    /* Evita barra de rolagem horizontal da página toda */
 }
 
 a {
-    text-decoration: none;
+    text-decoration: none !important;
+    color: inherit !important;
 }
 
 /* ========== CABEÇALHO ========== */
 .landing-header {
-    position: absolute;
-    width: 100%;
-    padding: 20px 60px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    z-index: 10;
-    top: 0;
-    left: 0;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding: 20px 40px !important;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8) 0%, transparent 100%) !important;
+    position: absolute !important;
+    width: 100% !important;
+    top: 0 !important;
+    z-index: 10 !important;
 }
 
 .logo {
-    color: #E50914;
-    font-size: 2.5rem;
-    font-weight: 700;
+    color: #E50914 !important;
+    font-size: 2rem !important;
+    font-weight: 700 !important;
+    letter-spacing: 1px !important;
 }
 
 .btn-login {
-    background-color: #E50914;
-    color: #ffffff;
-    padding: 10px 20px;
-    border-radius: 4px;
-    font-weight: 500;
-    transition: background 0.3s ease;
+    background-color: #E50914 !important;
+    color: #ffffff !important;
+    padding: 8px 20px !important;
+    border-radius: 3px !important;
+    font-weight: 500 !important;
+    font-size: 1rem !important;
+    transition: background 0.2s !important;
 }
 
 .btn-login:hover {
-    background-color: #b20710;
+    background-color: #b20710 !important;
 }
 
-/* ========== SEÇÃO PRINCIPAL / DESTAQUE ========== */
+/* ========== SEÇÃO PRINCIPAL / HERO ========== */
 .hero {
-    height: 100vh;
-    background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)),
-        url("https://images.unsplash.com/photo-1489599849927-2ee91cede3ba");
-    background-size: cover;
-    background-position: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 0 20px;
+    width: 100% !important;
+    height: 100vh !important;
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+        url('../assets/images/Revisão Código Portfolio (3).png') center/cover no-repeat !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    padding: 0 20px !important;
+    position: relative !important;
+}
+
+.hero-content {
+    max-width: 650px !important;
+    z-index: 2 !important;
 }
 
 .hero-content h2 {
-    font-size: 3rem;
-    margin-bottom: 20px;
-    max-width: 800px;
+    font-size: 3rem !important;
+    margin-bottom: 15px !important;
+    font-weight: 700 !important;
+    line-height: 1.2 !important;
 }
 
 .hero-content p {
-    font-size: 1.2rem;
-    margin-bottom: 30px;
-    color: #e5e5e5;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
+    font-size: 1.2rem !important;
+    margin-bottom: 25px !important;
+    color: #e5e5e5 !important;
 }
 
 .btn-start {
-    background-color: #E50914;
-    color: #ffffff;
-    padding: 15px 30px;
-    border-radius: 4px;
-    font-weight: 600;
-    font-size: 1.1rem;
-    transition: background 0.3s ease;
-    display: inline-block;
+    background-color: #ffffff !important;
+    color: #000000 !important;
+    padding: 12px 30px !important;
+    font-size: 1.1rem !important;
+    font-weight: 600 !important;
+    border-radius: 3px !important;
+    transition: background 0.2s !important;
+    display: inline-block !important;
 }
 
 .btn-start:hover {
-    background-color: #b20710;
+    background-color: #e6e6e6 !important;
 }
 
-/* ========== SEÇÃO DE FILMES (AQUI ESTAVA O PROBLEMA) ========== */
+/* ========== SEÇÃO DE FILMES - EM ALTA ========== */
 .movies {
-    padding: 50px 60px;
-    background-color: #141414;
+    padding: 40px 40px 60px !important;
+    background-color: #141414 !important;
 }
 
 .movies h2 {
-    font-size: 1.5rem;
-    margin-bottom: 20px;
-    font-weight: 600;
+    font-size: 1.3rem !important;
+    margin-bottom: 20px !important;
+    font-weight: 600 !important;
+    color: #ffffff !important;
 }
 
-/* ESSA PARTE GARANTE QUE FIQUEM LADO A LADO */
 .movies-row {
-    display: flex;
-    /* COLOCA OS ITENS EM LINHA */
-    flex-direction: row;
-    /* GARANTE QUE SEJA HORIZONTAL */
-    gap: 15px;
-    /* ESPAÇAMENTO ENTRE ELES */
-    overflow-x: auto;
-    /* PERMITE ROLAR PARA O LADO */
-    scrollbar-width: none;
-    /* ESCONDE BARRA NO FIREFOX */
-    flex-wrap: nowrap;
-    /* NÃO DEIXA QUEBRAR LINHA */
+    display: flex !important;
+    gap: 15px !important;
+    overflow-x: auto !important;
+    padding-bottom: 10px !important;
+    scrollbar-width: none !important;
 }
 
-/* ESCONDE BARRA DE ROLAGEM NO CHROME/SAFARI */
 .movies-row::-webkit-scrollbar {
-    display: none;
+    display: none !important;
 }
 
-/* CARD DE FILME */
 .movie-card {
-    min-width: 220px;
-    /* LARGURA MÍNIMA DO CARD */
-    height: 330px;
-    /* ALTURA DO CARD */
-    background-color: #333;
-    border-radius: 4px;
-    overflow: hidden;
-    transition: transform 0.3s ease;
-    cursor: pointer;
-    flex-shrink: 0;
-    /* NÃO DEIXA O CARD ENCOLHER */
+    min-width: 180px !important;
+    max-width: 180px !important;
+    height: 250px !important;
+    border-radius: 4px !important;
+    overflow: hidden !important;
+    transition: transform 0.2s ease !important;
+    cursor: pointer !important;
+    flex-shrink: 0 !important;
+    background-color: #222 !important;
 }
 
 .movie-card:hover {
-    transform: scale(1.05);
-    /* EFEITO DE ZOOM AO PASSAR O MOUSE */
+    transform: scale(1.05) !important;
 }
 
 .movie-card img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    /* IMAGEM COBRE TODO O CARD SEM DISTORCER */
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    display: block !important;
+    image-rendering: -webkit-optimize-contrast !important;
+    image-rendering: crisp-edges !important;
 }
 
 /* ========== RODAPÉ ========== */
 footer {
-    text-align: center;
-    padding: 30px;
-    color: #808080;
-    font-size: 0.9rem;
-    border-top: 1px solid #222;
+    background-color: #000000 !important;
+    color: #777 !important;
+    text-align: center !important;
+    padding: 25px !important;
+    font-size: 0.9rem !important;
+    border-top: 1px solid #222 !important;
 }
 
-/* ========== RESPONSIVIDADE (CELULAR E TABLET) ========== */
+/* ========== RESPONSIVO ========== */
 @media (max-width: 768px) {
     .landing-header {
-        padding: 20px;
+        padding: 15px 20px !important;
     }
 
     .logo {
-        font-size: 2rem;
+        font-size: 1.5rem !important;
     }
 
     .hero-content h2 {
-        font-size: 2rem;
-    }
-
-    .hero-content p {
-        font-size: 1rem;
+        font-size: 2rem !important;
     }
 
     .movies {
-        padding: 30px 20px;
+        padding: 30px 20px !important;
     }
 
     .movie-card {
-        min-width: 160px;
-        height: 240px;
-    }
-}
-
-@media (max-width: 480px) {
-    .hero-content h2 {
-        font-size: 1.6rem;
-    }
-
-    .btn-start {
-        padding: 12px 25px;
-        font-size: 1rem;
+        min-width: 140px !important;
+        max-width: 140px !important;
+        height: 200px !important;
     }
 }
