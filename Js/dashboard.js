@@ -1,6 +1,7 @@
 /* ==========================================
-   ARQUIVO: dashboard.js
-   Versão separada e funcional
+   ARQUIVO: dashboard.js - VERSÃO CORRIGIDA
+   ✅ Banner automático funcionando
+   ✅ Clique nas séries abre opção de assistir
 ========================================== */
 
 /* ===================
@@ -65,7 +66,7 @@ if (searchInput) {
 }
 
 /* ===================
-   DADOS GERAIS
+   DADOS DO CATÁLOGO (MESMO EM TODAS AS PÁGINAS)
 =================== */
 const catalogo = {
     "Stranger Things": {
@@ -98,7 +99,7 @@ let favoritos = JSON.parse(localStorage.getItem("favorites")) || [];
 const favoritosListaEl = document.getElementById("favoritesList");
 const favoritosContadorEl = document.getElementById("favoritesCount");
 
-// Inicia ícones corretos
+// Ícones corretos
 favoriteButtons.forEach(btn => {
     btn.textContent = favoritos.includes(btn.parentElement.dataset.title) ? "❤️" : "⭐";
 });
@@ -135,14 +136,49 @@ function atualizarListaFavoritos() {
         const card = document.createElement("div");
         card.className = "movie-card";
         card.dataset.title = titulo;
+        card.dataset.description = catalogo[titulo].descricao;
         card.innerHTML = `<img src="${catalogo[titulo].imagem}" alt="${titulo}">`;
         favoritosListaEl.appendChild(card);
     });
+    // ✅ Reaplica evento de clique nos cards novos
+    ativarCliqueCards();
 }
 atualizarListaFavoritos();
 
 /* ===================
-   MODAL DE DETALHES
+   ✅ BANNER TROCANDO AUTOMATICAMENTE (CORRIGIDO)
+=================== */
+const bannerImg = document.getElementById("bannerImage");
+const bannerTitulo = document.getElementById("bannerTitle");
+const bannerDesc = document.getElementById("bannerDescription");
+const bannerPlayBtn = document.getElementById("bannerPlayBtn");
+
+const listaBanner = Object.keys(catalogo);
+let indiceBanner = 0;
+
+function trocarBanner() {
+    const atual = listaBanner[indiceBanner];
+    if (catalogo[atual] && bannerImg && bannerTitulo && bannerDesc) {
+        bannerImg.style.opacity = "0";
+        setTimeout(() => {
+            bannerTitulo.textContent = atual;
+            bannerDesc.textContent = catalogo[atual].descricao;
+            bannerImg.src = catalogo[atual].imagem;
+            bannerImg.style.opacity = "1";
+        }, 400);
+    }
+    indiceBanner = (indiceBanner + 1) % listaBanner.length;
+}
+// Inicia a troca automaticamente a cada 5 segundos
+setInterval(trocarBanner, 5000);
+
+// Botão Assistir do banner
+bannerPlayBtn?.addEventListener("click", () => {
+    irParaPlayer(bannerTitulo.textContent);
+});
+
+/* ===================
+   ✅ MODAL + CLIQUE NOS CARDS (CORRIGIDO)
 =================== */
 const modal = document.getElementById('movieModal');
 const modalTitle = document.getElementById('modalTitle');
@@ -151,63 +187,45 @@ const closeBtn = document.querySelector('.close-btn');
 const modalPlayBtn = document.getElementById('modalPlayBtn');
 let tituloAtualModal = "";
 
-// Abrir modal ao clicar no card
-document.querySelectorAll('.movie-card').forEach(card => {
-    card.addEventListener('click', function () {
-        tituloAtualModal = this.dataset.title;
-        modalTitle.textContent = tituloAtualModal;
-        modalDescription.textContent = this.dataset.description;
-        modal.style.display = 'block';
-        document.body.style.overflow = 'hidden';
+// Função que ativa o clique em TODOS os cards (novos e antigos)
+function ativarCliqueCards() {
+    document.querySelectorAll('.movie-card').forEach(card => {
+        // Remove evento antigo para não duplicar
+        card.removeEventListener('click', abrirModal);
+        // Adiciona evento novo
+        card.addEventListener('click', abrirModal);
     });
-});
+}
+
+// Função para abrir o modal
+function abrirModal() {
+    tituloAtualModal = this.dataset.title;
+    modalTitle.textContent = tituloAtualModal;
+    modalDescription.textContent = this.dataset.description || catalogo[tituloAtualModal].descricao;
+    modal.style.display = "flex";
+    document.body.style.overflow = "hidden";
+}
 
 // Fechar modal
-closeBtn.addEventListener('click', () => {
-    modal.style.display = 'none';
-    document.body.style.overflow = 'auto';
+closeBtn?.addEventListener("click", () => {
+    modal.style.display = "none";
+    document.body.style.overflow = "auto";
 });
 window.addEventListener('click', e => {
     if (e.target === modal) {
-        modal.style.display = 'none';
-        document.body.style.overflow = 'auto';
+        modal.style.display = "none";
+        document.body.style.overflow = "auto";
     }
 });
 
 // Botão Assistir do modal
-modalPlayBtn.addEventListener('click', () => {
+modalPlayBtn?.addEventListener("click", () => {
     irParaPlayer(tituloAtualModal);
-    modal.style.display = 'none';
+    modal.style.display = "none";
 });
 
-/* ===================
-   BANNER TROCANDO AUTOMATICAMENTE
-=================== */
-const bannerImg = document.getElementById("bannerImage");
-const bannerTitulo = document.getElementById("bannerTitle");
-const bannerDesc = document.getElementById("bannerDescription");
-const listaBanner = Object.keys(catalogo);
-let indiceBanner = 0;
-
-function trocarBanner() {
-    const atual = listaBanner[indiceBanner];
-    if (catalogo[atual]) {
-        bannerImg.style.opacity = 0;
-        setTimeout(() => {
-            bannerTitulo.textContent = atual;
-            bannerDesc.textContent = catalogo[atual].descricao;
-            bannerImg.src = catalogo[atual].imagem;
-            bannerImg.style.opacity = 1;
-        }, 400);
-    }
-    indiceBanner = (indiceBanner + 1) % listaBanner.length;
-}
-setInterval(trocarBanner, 5000);
-
-// Botão Assistir do banner
-document.querySelector('.featured-banner .play-btn').addEventListener('click', () => {
-    irParaPlayer(bannerTitulo.textContent);
-});
+// ✅ Ativa clique nos cards logo no início
+ativarCliqueCards();
 
 /* ===================
    IR PARA PÁGINA DE VÍDEOS
@@ -242,9 +260,12 @@ function atualizarHistorico() {
         const card = document.createElement("div");
         card.className = "movie-card";
         card.dataset.title = titulo;
+        card.dataset.description = catalogo[titulo].descricao;
         card.innerHTML = `<img src="${catalogo[titulo].imagem}" alt="${titulo}">`;
         historicoEl.appendChild(card);
     });
+    // ✅ Reaplica clique nos cards do histórico
+    ativarCliqueCards();
 }
 atualizarHistorico();
 
