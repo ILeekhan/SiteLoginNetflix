@@ -4,10 +4,10 @@ if(!usuarioLogado) window.location.href = 'login.html';
 
 // Dados das Séries
 const catalogo = [
-    { id: 1, titulo: "Stranger Things", descricao: "Um grupo de amigos investiga o desaparecimento de um colega e descobre um mundo paralelo.", imagem: "assets/images/strangerthings.jpg", banner: "assets/images/banner-stranger.jpg" },
-    { id: 2, titulo: "The Witcher", descricao: "Geralt de Rívia, um caçador de monstros, luta para encontrar seu lugar em um mundo onde humanos são piores que feras.", imagem: "assets/images/thewitcher.jpg", banner: "assets/images/banner-witcher.jpg" },
-    { id: 3, titulo: "Wandinha", descricao: "Wandinha Addams estuda na Academia Nunca Mais e investiga mistérios familiares.", imagem: "assets/images/wandinha.jpg", banner: "assets/images/banner-wandinha.jpg" },
-    { id: 4, titulo: "Dark", descricao: "Quatro famílias de uma cidade pequena descobrem segredos sobre viagem no tempo.", imagem: "assets/images/dark.jpg", banner: "assets/images/banner-dark.jpg" }
+    { id: 1, titulo: "Stranger Things", descricao: "Um grupo de amigos investiga o desaparecimento de um colega e descobre um mundo paralelo.", imagem: "assets/images/Stranger Things.png", banner: "assets/images/banner-Stranger Things.png" },
+    { id: 2, titulo: "The Witcher", descricao: "Geralt de Rívia, um caçador de monstros, luta para encontrar seu lugar em um mundo onde humanos são piores que feras.", imagem: "assets/images/The Witcher.png", banner: "assets/images/banner-The Witcher.png" },
+    { id: 3, titulo: "Wandinha", descricao: "Wandinha Addams estuda na Academia Nunca Mais e investiga mistérios familiares.", imagem: "assets/images/Wandinha.png", banner: "assets/images/banner-Wandinha.png" },
+    { id: 4, titulo: "Dark", descricao: "Quatro famílias de uma cidade pequena descobrem segredos sobre viagem no tempo.", imagem: "assets/images/Dark.png", banner: "assets/images/banner-Dark.png" }
 ];
 
 // Avatar inicial
