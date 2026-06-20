@@ -2,196 +2,135 @@
 <html lang="pt-BR">
 
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Área de usuário - Netflix Clone: assista aos seus filmes e séries favoritos.">
+    <title>Dashboard | Netflix Clone</title>
 
-    <title>Netflix Dashboard</title>
-
-    <link rel="stylesheet" href="CSS/dashboard.css">
-
+    <!-- Fonte otimizada, igual ao landing.html -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
 
+    <link rel="stylesheet" href="CSS/dashboard.css">
 </head>
 
 <body>
-
     <div class="dashboard">
-
+        <!-- Cabeçalho -->
         <header class="dashboard-header">
+            <div class="container nav-wrapper">
+                <div class="nav-left">
+                    <h1 class="logo">NETFLIX</h1>
+                    <nav class="main-nav">
+                        <a href="#" class="nav-link">Início</a>
+                        <a href="#" class="nav-link">Séries</a>
+                        <a href="#" class="nav-link">Filmes</a>
+                        <a href="#" class="nav-link">Minha Lista</a>
+                    </nav>
+                </div>
 
-            <div class="nav-left">
-
-                <h1 class="logo">
-                    NETFLIX
-                </h1>
-
-                <nav>
-
-                    <a href="#">Início</a>
-                    <a href="#">Séries</a>
-                    <a href="#">Filmes</a>
-                    <a href="#">Minha Lista</a>
-
-                </nav>
-
+                <div class="nav-right">
+                    <div class="search-box">
+                        <input type="text" id="searchInput" placeholder="Buscar filme ou série...">
+                    </div>
+                    <div class="avatar" title="Perfil do usuário"></div>
+                </div>
             </div>
-
-            <div class="nav-right">
-
-                <input type="text" id="searchInput" placeholder="Buscar filme...">
-
-                <div class="avatar"></div>
-
-            </div>
-
         </header>
 
-        <h2 id="userName"></h2>
-
-        <!-- BANNER DINÂMICO -->
-
-        <section class="featured-banner">
-
-            <img id="bannerImage" src="assets/images/StrangerThingsCapa.jpg" alt="Banner">
-
-            <div class="banner-content">
-
-                <h1 id="bannerTitle">
-                    Stranger Things
-                </h1>
-
-                <p id="bannerDescription">
-
-                    Uma cidade pequena enfrenta acontecimentos sobrenaturais e uma dimensão paralela chamada Mundo
-                    Invertido.
-
-                </p>
-
-                <div class="banner-buttons">
-
-                    <button class="play-btn">
-                        ▶ Assistir
-                    </button>
-
-                    <button class="list-btn">
-                        + Minha Lista
-                    </button>
-
-                </div>
-
+        <main class="dashboard-main">
+            <!-- Saudação ao usuário -->
+            <div class="container">
+                <h2 id="userName" class="user-greeting"></h2>
             </div>
 
-        </section>
-
-        <!-- CONTINUAR ASSISTINDO -->
-
-        <section class="dashboard-section">
-
-            <h3>🔥 Continuar Assistindo</h3>
-
-            <div class="movies-row">
-
-                <div class="movie-card" data-title="Stranger Things">
-
-                    <button class="favorite-btn">⭐</button>
-
-                    <img src="assets/images/StrangerThingsCapa.jpg" alt="Stranger Things">
-
+            <!-- BANNER DINÂMICO -->
+            <section class="featured-banner">
+                <img id="bannerImage" src="assets/images/StrangerThingsCapa.jpg" alt="Destaque: Stranger Things"
+                    loading="lazy">
+                <div class="banner-content">
+                    <div class="container">
+                        <h1 id="bannerTitle">Stranger Things</h1>
+                        <p id="bannerDescription">
+                            Uma cidade pequena enfrenta acontecimentos sobrenaturais e uma dimensão paralela chamada
+                            Mundo Invertido.
+                        </p>
+                        <div class="banner-buttons">
+                            <button class="btn play-btn">▶ Assistir</button>
+                            <button class="btn list-btn">+ Minha Lista</button>
+                        </div>
+                    </div>
                 </div>
+            </section>
 
-                <div class="movie-card" data-title="The Witcher">
+            <!-- SEÇÕES DE CONTEÚDO -->
+            <div class="container">
+                <!-- Continuar Assistindo -->
+                <section class="dashboard-section">
+                    <h3 class="section-title">🔥 Continuar Assistindo</h3>
+                    <div class="movies-row">
+                        <div class="movie-card" data-title="Stranger Things" data-type="series">
+                            <button class="favorite-btn" aria-label="Adicionar à lista">⭐</button>
+                            <img src="assets/images/StrangerThingsCapa.jpg" alt="Stranger Things" loading="lazy">
+                        </div>
 
-                    <button class="favorite-btn">⭐</button>
+                        <div class="movie-card" data-title="The Witcher" data-type="series">
+                            <button class="favorite-btn" aria-label="Adicionar à lista">⭐</button>
+                            <img src="assets/images/TheWitcherSerie.jpg" alt="The Witcher" loading="lazy">
+                        </div>
 
-                    <img src="assets/images/TheWitcherSerie.jpg" alt="The Witcher">
+                        <div class="movie-card" data-title="Wandinha" data-type="series">
+                            <button class="favorite-btn" aria-label="Adicionar à lista">⭐</button>
+                            <img src="assets/images/WandinhaSerie.jpg" alt="Wandinha" loading="lazy">
+                        </div>
 
+                        <div class="movie-card" data-title="Dark" data-type="series">
+                            <button class="favorite-btn" aria-label="Adicionar à lista">⭐</button>
+                            <img src="assets/images/DarkSerie.jpg" alt="Dark" loading="lazy">
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Minha Lista / Favoritos -->
+                <section class="dashboard-section">
+                    <h3 class="section-title">⭐ Minha Lista (<span id="favoritesCount">0</span>)</h3>
+                    <div class="movies-row" id="favoritesList">
+                        <!-- Itens serão inseridos via JS -->
+                    </div>
+                </section>
+
+                <!-- Assistidos Recentemente -->
+                <section class="dashboard-section">
+                    <h3 class="section-title">🎬 Assistidos Recentemente</h3>
+                    <div class="movies-row" id="recentMovies">
+                        <!-- Itens serão inseridos via JS -->
+                    </div>
+                </section>
+
+                <!-- Botão Sair -->
+                <div class="logout-wrapper">
+                    <button id="logoutBtn" class="btn logout-btn">Sair</button>
                 </div>
-
-                <div class="movie-card" data-title="Wandinha">
-
-                    <button class="favorite-btn">⭐</button>
-
-                    <img src="assets/images/WandinhaSerie.jpg" alt="Wandinha">
-
-                </div>
-
-                <div class="movie-card" data-title="Dark">
-
-                    <button class="favorite-btn">⭐</button>
-
-                    <img src="assets/images/DarkSerie.jpg" alt="Dark">
-
-                </div>
-
             </div>
+        </main>
 
-        </section>
-
-        <!-- FAVORITOS -->
-
-        <section class="dashboard-section">
-
-            <h3>
-                ⭐ Minha Lista
-                (<span id="favoritesCount">0</span>)
-            </h3>
-
-            <div class="movies-row" id="favoritesList">
-
+        <!-- MODAL DE DETALHES -->
+        <div id="movieModal" class="movie-modal">
+            <div class="movie-modal-content">
+                <span id="closeMovieModal" class="close-btn" aria-label="Fechar modal">&times;</span>
+                <h2 id="movieTitle">Título do conteúdo</h2>
+                <p id="movieDescription">Descrição detalhada aparecerá aqui.</p>
+                <button class="btn play-btn">▶ Assistir</button>
             </div>
-
-        </section>
-
-        <section class="dashboard-section">
-
-            <h3>🎬 Assistidos Recentemente</h3>
-
-            <div class="movies-row" id="recentMovies">
-
-            </div>
-
-        </section>
-
-        <button id="logoutBtn">
-            Sair
-        </button>
-
-    </div>
-
-    <!-- MODAL -->
-
-    <div id="movieModal" class="movie-modal">
-
-        <div class="movie-modal-content">
-
-            <span id="closeMovieModal">
-                &times;
-            </span>
-
-            <h2 id="movieTitle">
-                Filme
-            </h2>
-
-            <p id="movieDescription">
-                Descrição
-            </p>
-
-            <button class="play-btn">
-                ▶ Assistir
-            </button>
-
         </div>
 
+        <!-- NOTIFICAÇÕES -->
+        <div id="notification" class="notification"></div>
     </div>
 
-    <!-- NOTIFICAÇÃO -->
-
-    <div id="notification"></div>
-
-    <script src="Js/dashboard.js"></script>
-
+    <script src="Js/dashboard.js" defer></script>
 </body>
 
 </html>

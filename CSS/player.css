@@ -1,7 +1,10 @@
-/* =========================
-   RESET
-========================= */
+/* ==========================================
+   ARQUIVO: player.css - ESTILOS DA PÁGINA DE REPRODUÇÃO
+========================================== */
 
+/* =========================
+   RESET E BASE
+========================= */
 * {
     margin: 0;
     padding: 0;
@@ -9,27 +12,27 @@
     font-family: 'Poppins', sans-serif;
 }
 
-/* =========================
-   BODY
-========================= */
-
 body {
-    background: #141414;
+    background-color: #141414;
     color: #ffffff;
     min-height: 100vh;
+    line-height: 1.6;
 }
 
 /* =========================
-   HEADER
+   CABEÇALHO
 ========================= */
-
-header {
+.player-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 20px 40px;
-    background: #000;
-    border-bottom: 1px solid #222;
+    background-color: #000000;
+    border-bottom: 1px solid #222222;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    transition: opacity 0.3s ease;
 }
 
 .logo {
@@ -37,30 +40,32 @@ header {
     font-size: 2rem;
     font-weight: 700;
     letter-spacing: 1px;
+    text-decoration: none;
 }
 
 #backBtn {
-    background: #E50914;
-    color: #fff;
+    background-color: #E50914;
+    color: #ffffff;
     border: none;
     padding: 12px 22px;
     border-radius: 6px;
     cursor: pointer;
     font-weight: 600;
-    transition: 0.3s;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
 }
 
 #backBtn:hover {
     transform: scale(1.05);
+    background-color: #b20710;
 }
 
 /* =========================
-   PLAYER
+   CONTEÚDO PRINCIPAL
 ========================= */
-
 .player-container {
     max-width: 1200px;
-    margin: auto;
+    margin: 0 auto;
     padding: 40px 25px;
 }
 
@@ -68,6 +73,7 @@ header {
     font-size: 2.6rem;
     margin-bottom: 15px;
     font-weight: 700;
+    color: #ffffff;
 }
 
 #movieDescription {
@@ -75,12 +81,12 @@ header {
     line-height: 1.8;
     margin-bottom: 30px;
     max-width: 900px;
+    font-size: 1.05rem;
 }
 
 /* =========================
-   EPISÓDIOS
+   SEÇÃO DE EPISÓDIOS
 ========================= */
-
 .episodes-container {
     margin-bottom: 35px;
 }
@@ -89,6 +95,7 @@ header {
     color: #E50914;
     margin-bottom: 15px;
     font-size: 1.2rem;
+    font-weight: 600;
 }
 
 .episodes-list {
@@ -98,35 +105,36 @@ header {
 }
 
 .episode-btn {
-    background: #222;
-    color: #fff;
+    background-color: #222222;
+    color: #ffffff;
     border: none;
     padding: 12px 20px;
     border-radius: 8px;
     cursor: pointer;
-    transition: 0.3s;
+    transition: all 0.3s ease;
     font-weight: 500;
+    font-size: 0.95rem;
 }
 
 .episode-btn:hover {
-    background: #E50914;
+    background-color: #E50914;
 }
 
 .episode-active {
-    background: #E50914;
+    background-color: #E50914;
     font-weight: 700;
+    box-shadow: 0 0 10px rgba(229, 9, 20, 0.3);
 }
 
 /* =========================
-   VÍDEO
+   PLAYER DE VÍDEO
 ========================= */
-
 .video-wrapper {
     width: 100%;
     overflow: hidden;
     border-radius: 15px;
-    box-shadow:
-        0 0 25px rgba(0, 0, 0, .5);
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
+    margin-bottom: 20px;
 }
 
 iframe {
@@ -137,23 +145,21 @@ iframe {
 }
 
 /* =========================
-   INFORMAÇÕES
+   INFORMAÇÕES ADICIONAIS
 ========================= */
-
 .movie-info {
     margin-top: 20px;
 }
 
 /* =========================
-   SCROLLBAR
+   BARRA DE ROLAGEM PERSONALIZADA
 ========================= */
-
 ::-webkit-scrollbar {
     width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-    background: #111;
+    background: #111111;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -162,11 +168,9 @@ iframe {
 }
 
 /* =========================
-   RESPONSIVO TABLET
+   RESPONSIVO - TABLET (ATÉ 992px)
 ========================= */
-
 @media(max-width:992px) {
-
     iframe {
         height: 500px;
     }
@@ -175,18 +179,20 @@ iframe {
         font-size: 2.1rem;
     }
 
+    .player-container {
+        padding: 30px 20px;
+    }
 }
 
 /* =========================
-   RESPONSIVO MOBILE
+   RESPONSIVO - CELULAR (ATÉ 768px)
 ========================= */
-
 @media(max-width:768px) {
-
-    header {
+    .player-header {
         flex-direction: column;
         gap: 15px;
         text-align: center;
+        padding: 20px;
     }
 
     .player-container {
@@ -209,14 +215,15 @@ iframe {
         justify-content: center;
     }
 
+    .logo {
+        font-size: 1.8rem;
+    }
 }
 
 /* =========================
-   RESPONSIVO MOBILE PEQUENO
+   RESPONSIVO - CELULAR PEQUENO (ATÉ 480px)
 ========================= */
-
 @media(max-width:480px) {
-
     #movieTitle {
         font-size: 1.5rem;
     }
@@ -227,6 +234,11 @@ iframe {
 
     .episode-btn {
         width: 100%;
+        text-align: center;
     }
 
+    #backBtn {
+        width: 100%;
+        max-width: 200px;
+    }
 }

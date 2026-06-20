@@ -1,3 +1,8 @@
+/* ==========================================
+   ARQUIVO: login.css - ESTILOS DA PÁGINA DE LOGIN
+========================================== */
+
+/* ========== RESET E BASE ========== */
 * {
     margin: 0;
     padding: 0;
@@ -6,209 +11,183 @@
 }
 
 body {
-    background: black;
-    color: white;
+    background-color: #000000;
+    color: #ffffff;
+    line-height: 1.5;
 }
 
+/* ========== PLANO DE FUNDO ========== */
 .background {
-
     position: fixed;
-
     inset: 0;
-
-    background:
-        linear-gradient(rgba(0, 0, 0, .75),
-            rgba(0, 0, 0, .75)),
+    background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)),
         url("https://images.unsplash.com/photo-1489599849927-2ee91cede3ba");
-
     background-size: cover;
     background-position: center;
+    z-index: -2;
+}
 
+.overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.4);
     z-index: -1;
 }
 
-header {
+/* ========== CABEÇALHO ========== */
+.login-header {
     padding: 20px 50px;
+    position: relative;
+    z-index: 10;
 }
 
 .logo {
     color: #E50914;
     font-size: 2.5rem;
+    font-weight: 700;
 }
 
-main {
+@media (max-width: 768px) {
+    .login-header {
+        padding: 20px;
+    }
 
+    .logo {
+        font-size: 2rem;
+    }
+}
+
+/* ========== ÁREA PRINCIPAL ========== */
+.login-main {
     min-height: 85vh;
-
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 20px;
 }
 
 .login-container {
-
     width: 100%;
     max-width: 420px;
-
-    background:
-        rgba(0, 0, 0, .85);
-
+    background-color: rgba(0, 0, 0, 0.85);
     padding: 40px;
-
-    border-radius: 10px;
+    border-radius: 6px;
 }
 
 .login-container h2 {
+    font-size: 2rem;
     margin-bottom: 25px;
+    color: #ffffff;
+}
+
+/* ========== FORMULÁRIO ========== */
+.input-group {
+    margin-bottom: 15px;
 }
 
 .login-container input {
-
     width: 100%;
-
-    padding: 14px;
-
-    margin-bottom: 15px;
-
+    padding: 14px 16px;
     border: none;
-
-    border-radius: 5px;
-
-    background: #333;
-    color: white;
+    border-radius: 4px;
+    background-color: #333333;
+    color: #ffffff;
+    font-size: 1rem;
+    outline: none;
+    transition: background 0.2s ease;
 }
 
+.login-container input::placeholder {
+    color: #b3b3b3;
+}
+
+.login-container input:focus {
+    background-color: #454545;
+}
+
+/* Campo de senha com botão de visualização */
 .password-box {
     position: relative;
 }
 
-#togglePassword {
-
+.toggle-btn {
     position: absolute;
-
-    right: 10px;
-    top: 12px;
-
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
     border: none;
-    background: none;
-
-    color: white;
-
+    background: transparent;
+    color: #b3b3b3;
+    font-size: 1.1rem;
     cursor: pointer;
+    transition: color 0.2s;
+}
+
+.toggle-btn:hover {
+    color: #ffffff;
+}
+
+/* ========== BOTÕES ========== */
+.btn {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.3s ease;
 }
 
 .btn-red {
-
-    width: 100%;
-
-    padding: 14px;
-
-    border: none;
-
-    background: #E50914;
-
-    color: white;
-
-    border-radius: 5px;
-
-    cursor: pointer;
+    background-color: #E50914;
+    color: #ffffff;
+    margin-top: 10px;
 }
 
+.btn-red:hover {
+    background-color: #b20710;
+}
+
+/* Links abaixo do formulário */
 .links {
-
     margin-top: 20px;
-
     display: flex;
-
     justify-content: space-between;
-}
-
-.links button {
-
-    background: none;
-    border: none;
-
-    color: #ccc;
-
-    cursor: pointer;
-}
-
-.modal {
-
-    display: none;
-
-    position: fixed;
-
-    inset: 0;
-
-    background:
-        rgba(0, 0, 0, .8);
-
-    justify-content: center;
     align-items: center;
 }
 
-.modal-content {
-
-    width: 90%;
-    max-width: 400px;
-
-    background: #141414;
-
-    padding: 30px;
-
-    border-radius: 10px;
-
-    position: relative;
-}
-
-.modal-content input {
-
-    width: 100%;
-
-    padding: 12px;
-
-    margin-bottom: 10px;
-
+.link-btn {
+    background: transparent;
     border: none;
-
-    border-radius: 5px;
-
-    background: #333;
-    color: white;
-}
-
-.close {
-
-    position: absolute;
-
-    right: 15px;
-    top: 10px;
-
+    color: #cccccc;
+    font-size: 0.9rem;
     cursor: pointer;
-
-    font-size: 25px;
+    transition: color 0.2s;
 }
 
-#message {
+.link-btn:hover {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+/* ========== MENSAGENS ========== */
+.message-box {
     margin-top: 15px;
+    padding: 10px;
     text-align: center;
+    font-weight: 500;
+    border-radius: 4px;
+    font-size: 0.95rem;
 }
 
-@media(max-width:768px) {
+.message-box.error {
+    background-color: rgba(229, 9, 20, 0.1);
+    color: #E50914;
+    border: 1px solid #E50914;
+}
 
-    header {
-        padding: 20px;
-    }
-
-    .login-container {
-        width: 90%;
-        padding: 30px;
-    }
-
-    .links {
-        flex-direction: column;
-        gap: 10px;
-    }
-
+.message-box.success {
+    background-color: rgba(0, 200, 83, 0.1);
+    color: #00c853;
 }

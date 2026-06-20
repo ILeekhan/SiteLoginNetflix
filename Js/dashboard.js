@@ -1,702 +1,307 @@
-const user =
-    JSON.parse(
-        localStorage.getItem("currentUser")
-    );
+/* ==========================================
+   ARQUIVO: dashboard.js - ÁREA PRINCIPAL
+   Funções: Usuário, Favoritos, Busca, Banner, Modal, Histórico
+========================================== */
 
+/* ===================
+   VERIFICAÇÃO DE ACESSO
+=================== */
+const user = JSON.parse(localStorage.getItem("currentUser"));
+
+// Se não estiver logado, volta para login
 if (!user) {
-
-    window.location.href =
-        "login.html";
-
+    window.location.href = "login.html";
 }
 
 /* ===================
-   NOTIFICAÇÕES
+   SISTEMA DE NOTIFICAÇÕES
 =================== */
-
-const notification =
-    document.getElementById(
-        "notification"
-    );
+const notification = document.getElementById("notification");
 
 function showNotification(text) {
-
     if (!notification) return;
 
-    notification.textContent =
-        text;
-
-    notification.classList.add(
-        "show"
-    );
+    notification.textContent = text;
+    notification.classList.add("show");
 
     setTimeout(() => {
-
-        notification.classList.remove(
-            "show"
-        );
-
+        notification.classList.remove("show");
     }, 2500);
-
 }
 
 /* ===================
-   NOME DO USUÁRIO
+   EXIBIR NOME DO USUÁRIO
 =================== */
-
-const userName =
-    document.getElementById(
-        "userName"
-    );
-
-const selectedProfile =
-    localStorage.getItem(
-        "selectedProfile"
-    );
+const userName = document.getElementById("userName");
+const selectedProfile = localStorage.getItem("selectedProfile");
 
 if (userName) {
-
-    userName.textContent =
-        `Olá, ${selectedProfile || user.name} 👋`;
-
+    const nomeExibido = selectedProfile || user.name;
+    userName.textContent = `Olá, ${nomeExibido} 👋`;
 }
 
 /* ===================
-   AVATAR
+   AVATAR DO USUÁRIO
 =================== */
+const avatar = document.querySelector(".avatar");
 
-const avatar =
-    document.querySelector(
-        ".avatar"
-    );
-
-const avatarName =
-    selectedProfile ||
-    user.name;
-
-if (
-    avatar &&
-    avatarName
-) {
-
-    avatar.textContent =
-        avatarName
-            .charAt(0)
-            .toUpperCase();
-
+if (avatar) {
+    const nomeAvatar = selectedProfile || user.name;
+    avatar.textContent = nomeAvatar.charAt(0).toUpperCase();
 }
 
 /* ===================
    LOGOUT
 =================== */
-
-const logoutBtn =
-    document.getElementById(
-        "logoutBtn"
-    );
+const logoutBtn = document.getElementById("logoutBtn");
 
 if (logoutBtn) {
-
-    logoutBtn.addEventListener(
-        "click",
-        () => {
-
-            localStorage.removeItem(
-                "currentUser"
-            );
-
-            window.location.href =
-                "login.html";
-
-        });
-
+    logoutBtn.addEventListener("click", () => {
+        localStorage.removeItem("currentUser");
+        localStorage.removeItem("selectedProfile");
+        window.location.href = "login.html";
+    });
 }
 
 /* ===================
-   BUSCA
+   BUSCA DE FILMES
 =================== */
-
-const searchInput =
-    document.getElementById(
-        "searchInput"
-    );
+const searchInput = document.getElementById("searchInput");
 
 if (searchInput) {
+    searchInput.addEventListener("input", function () {
+        const termo = this.value.trim().toLowerCase();
+        const todosCards = document.querySelectorAll(".movie-card");
 
-    searchInput.addEventListener(
-        "keyup",
-        function () {
-
-            const value =
-                this.value.toLowerCase();
-
-            const cards =
-                document.querySelectorAll(
-                    ".movie-card"
-                );
-
-            cards.forEach(card => {
-
-                const title =
-                    card.dataset.title
-                        .toLowerCase();
-
-                if (
-                    title.includes(value)
-                ) {
-
-                    card.style.display =
-                        "block";
-
-                } else {
-
-                    card.style.display =
-                        "none";
-
-                }
-
-            });
-
+        todosCards.forEach(card => {
+            const titulo = card.dataset.title.toLowerCase();
+            card.style.display = titulo.includes(termo) ? "block" : "none";
         });
-
-}
-
-/* ===================
-   FAVORITOS
-=================== */
-
-const favoriteButtons =
-    document.querySelectorAll(
-        ".favorite-btn"
-    );
-
-let favorites =
-    JSON.parse(
-        localStorage.getItem(
-            "favorites"
-        )
-    ) || [];
-
-favoriteButtons.forEach(btn => {
-
-    const movie =
-        btn.parentElement.dataset.title;
-
-    if (
-        favorites.includes(movie)
-    ) {
-
-        btn.innerHTML = "❤️";
-
-    }
-
-});
-
-favoriteButtons.forEach(btn => {
-
-    btn.addEventListener(
-        "click",
-        function (e) {
-
-            e.stopPropagation();
-
-            const movie =
-                this.parentElement.dataset.title;
-
-            let favorites =
-                JSON.parse(
-                    localStorage.getItem(
-                        "favorites"
-                    )
-                ) || [];
-
-            if (
-                favorites.includes(movie)
-            ) {
-
-                favorites =
-                    favorites.filter(
-                        item => item !== movie
-                    );
-
-                this.innerHTML = "⭐";
-
-                showNotification(
-                    "❌ " +
-                    movie +
-                    " removido dos favoritos"
-                );
-
-            } else {
-
-                favorites.push(movie);
-
-                this.innerHTML = "❤️";
-
-                showNotification(
-                    "❤️ " +
-                    movie +
-                    " adicionado aos favoritos"
-                );
-
-            }
-
-            localStorage.setItem(
-                "favorites",
-                JSON.stringify(
-                    favorites
-                )
-            );
-
-            setTimeout(() => {
-
-                location.reload();
-
-            }, 500);
-
-        });
-
-});
-
-/* ==================
-   MODAL DOS FILMES
-================== */
-
-const movieModal =
-    document.getElementById(
-        "movieModal"
-    );
-
-const movieTitle =
-    document.getElementById(
-        "movieTitle"
-    );
-
-const movieDescription =
-    document.getElementById(
-        "movieDescription"
-    );
-
-const closeMovieModal =
-    document.getElementById(
-        "closeMovieModal"
-    );
-
-const movieCards =
-    document.querySelectorAll(
-        ".movie-card"
-    );
-
-movieCards.forEach(card => {
-
-    card.addEventListener(
-        "click",
-        function () {
-
-            const title =
-                this.dataset.title;
-
-            movieTitle.textContent =
-                title;
-
-            const descriptions = {
-
-                "Stranger Things":
-                    "Uma cidade pequena enfrenta acontecimentos sobrenaturais e uma dimensão paralela chamada Mundo Invertido.",
-
-                "The Witcher":
-                    "Geralt de Rívia luta contra monstros e enfrenta conflitos políticos em um mundo medieval fantástico.",
-
-                "Wandinha":
-                    "A filha da Família Addams investiga mistérios sobrenaturais enquanto estuda na Escola Nunca Mais.",
-
-                "Dark":
-                    "Uma série alemã sobre viagens no tempo, desaparecimentos e segredos familiares."
-
-            };
-
-            movieDescription.textContent =
-                descriptions[title] ||
-                "Descrição não disponível.";
-
-            if (movieModal) {
-
-                movieModal.style.display =
-                    "flex";
-
-            }
-
-        });
-
-});
-
-if (closeMovieModal) {
-
-    closeMovieModal.addEventListener(
-        "click",
-        () => {
-
-            movieModal.style.display =
-                "none";
-
-        });
-
-}
-
-window.addEventListener(
-    "click",
-    function (e) {
-
-        if (
-            e.target === movieModal
-        ) {
-
-            movieModal.style.display =
-                "none";
-
-        }
-
     });
-
-/* ===================
-   ASSISTIR
-=================== */
-
-const playButtons =
-    document.querySelectorAll(
-        ".play-btn"
-    );
-
-playButtons.forEach(btn => {
-
-    btn.addEventListener(
-        "click",
-        () => {
-
-            let movie = "";
-
-            if (
-                movieModal &&
-                movieModal.style.display === "flex"
-            ) {
-
-                movie =
-                    movieTitle.textContent;
-
-            } else {
-
-                movie =
-                    bannerTitle.textContent;
-
-            }
-
-            if (!movie) return;
-
-            localStorage.setItem(
-                "selectedMovie",
-                movie
-            );
-
-            localStorage.setItem(
-                "lastWatched",
-                movie
-            );
-
-            let watched =
-                JSON.parse(
-                    localStorage.getItem(
-                        "watchedMovies"
-                    )
-                ) || [];
-
-            if (
-                !watched.includes(movie)
-            ) {
-
-                watched.push(movie);
-
-                localStorage.setItem(
-                    "watchedMovies",
-                    JSON.stringify(
-                        watched
-                    )
-                );
-
-            }
-
-            window.location.href =
-                "player.html";
-
-        });
-
-});
-
-/* ===================
-   MINHA LISTA REAL
-=================== */
-
-const favoritesList =
-    document.getElementById(
-        "favoritesList"
-    );
-
-if (favoritesList) {
-
-    const favorites =
-        JSON.parse(
-            localStorage.getItem(
-                "favorites"
-            )
-        ) || [];
-
-    const images = {
-
-        "Stranger Things":
-            "assets/images/StrangerThingsCapa.jpg",
-
-        "The Witcher":
-            "assets/images/TheWitcherSerie.jpg",
-
-        "Wandinha":
-            "assets/images/WandinhaSerie.jpg",
-
-        "Dark":
-            "assets/images/DarkSerie.jpg"
-
-    };
-
-    favoritesList.innerHTML = "";
-
-    favorites.forEach(movie => {
-
-        if (!images[movie]) return;
-
-        favoritesList.innerHTML += `
-
-        <div
-        class="movie-card"
-        data-title="${movie}"
-        >
-
-            <img
-            src="${images[movie]}"
-            alt="${movie}"
-            >
-
-        </div>
-
-        `;
-
-    });
-
 }
 
 /* ===================
-   BANNER DINÂMICO
+   DADOS GERAIS (CENTRALIZADO)
 =================== */
-
-const bannerImage =
-    document.getElementById(
-        "bannerImage"
-    );
-
-const bannerTitle =
-    document.getElementById(
-        "bannerTitle"
-    );
-
-const bannerDescription =
-    document.getElementById(
-        "bannerDescription"
-    );
-
-const bannerData = {
-
+const catalogo = {
     "Stranger Things": {
-
-        image:
-            "assets/images/StrangerThingsCapa.jpg",
-
-        description:
-            "Uma cidade pequena enfrenta acontecimentos sobrenaturais e uma dimensão paralela chamada Mundo Invertido."
-
+        imagem: "assets/images/StrangerThingsCapa.jpg",
+        descricao: "Uma cidade pequena enfrenta acontecimentos sobrenaturais e uma dimensão paralela chamada Mundo Invertido."
     },
-
     "The Witcher": {
-
-        image:
-            "assets/images/TheWitcherSerie.jpg",
-
-        description:
-            "Geralt de Rívia luta contra monstros e enfrenta conflitos políticos em um mundo medieval fantástico."
-
+        imagem: "assets/images/TheWitcherSerie.jpg",
+        descricao: "Geralt de Rívia luta contra monstros e enfrenta conflitos políticos em um mundo medieval fantástico."
     },
-
     "Wandinha": {
-
-        image:
-            "assets/images/WandinhaSerie.jpg",
-
-        description:
-            "A filha da Família Addams investiga mistérios sobrenaturais enquanto estuda na Escola Nunca Mais."
-
+        imagem: "assets/images/WandinhaSerie.jpg",
+        descricao: "A filha da Família Addams investiga mistérios sobrenaturais enquanto estuda na Escola Nunca Mais."
     },
-
     "Dark": {
-
-        image:
-            "assets/images/DarkSerie.jpg",
-
-        description:
-            "Uma série alemã sobre viagens no tempo, desaparecimentos e segredos familiares."
-
+        imagem: "assets/images/DarkSerie.jpg",
+        descricao: "Uma série alemã sobre viagens no tempo, desaparecimentos e segredos familiares."
     }
-
 };
 
-movieCards.forEach(card => {
+/* ===================
+   GERENCIAR FAVORITOS
+=================== */
+const favoriteButtons = document.querySelectorAll(".favorite-btn");
+let favoritos = JSON.parse(localStorage.getItem("favorites")) || [];
+const favoritosListaEl = document.getElementById("favoritesList");
+const favoritosContadorEl = document.getElementById("favoritesCount");
 
-    card.addEventListener(
-        "click",
-        function () {
+// Atualiza ícones dos botões conforme salvos
+favoriteButtons.forEach(btn => {
+    const titulo = btn.parentElement.dataset.title;
+    btn.textContent = favoritos.includes(titulo) ? "❤️" : "⭐";
+});
 
-            const title =
-                this.dataset.title;
+// Ação de adicionar/remover
+favoriteButtons.forEach(btn => {
+    btn.addEventListener("click", function (e) {
+        e.stopPropagation(); // Evita abrir modal ao clicar na estrela
+        const titulo = this.parentElement.dataset.title;
 
-            if (
-                bannerData[title]
-            ) {
+        if (favoritos.includes(titulo)) {
+            // REMOVER
+            favoritos = favoritos.filter(item => item !== titulo);
+            this.textContent = "⭐";
+            showNotification(`❌ ${titulo} removido da Minha Lista`);
+        } else {
+            // ADICIONAR
+            favoritos.push(titulo);
+            this.textContent = "❤️";
+            showNotification(`❤️ ${titulo} adicionado à Minha Lista`);
+        }
 
-                bannerTitle.textContent =
-                    title;
+        // Salva e atualiza interface
+        localStorage.setItem("favorites", JSON.stringify(favoritos));
+        atualizarListaFavoritos();
+    });
+});
 
-                bannerDescription.textContent =
-                    bannerData[title]
-                        .description;
+// Renderiza lista de favoritos na seção
+function atualizarListaFavoritos() {
+    if (!favoritosListaEl || !favoritosContadorEl) return;
 
-                bannerImage.src =
-                    bannerData[title]
-                        .image;
+    favoritosContadorEl.textContent = favoritos.length;
+    favoritosListaEl.innerHTML = "";
 
-            }
+    if (favoritos.length === 0) {
+        favoritosListaEl.innerHTML = "<p style='color:#aaa; padding:10px;'>Sua lista está vazia.</p>";
+        return;
+    }
 
-        });
+    favoritos.forEach(titulo => {
+        if (!catalogo[titulo]) return;
 
+        const cardEl = document.createElement("div");
+        cardEl.className = "movie-card";
+        cardEl.dataset.title = titulo;
+        cardEl.innerHTML = `<img src="${catalogo[titulo].imagem}" alt="${titulo}" loading="lazy">`;
+        favoritosListaEl.appendChild(cardEl);
+    });
+}
+
+// Inicializa a lista ao carregar página
+atualizarListaFavoritos();
+
+/* ===================
+   MODAL DE DETALHES
+=================== */
+const movieModal = document.getElementById("movieModal");
+const modalTitulo = document.getElementById("movieTitle");
+const modalDescricao = document.getElementById("movieDescription");
+const modalFechar = document.getElementById("closeMovieModal");
+const todosCards = document.querySelectorAll(".movie-card");
+
+// Abrir modal ao clicar no card
+todosCards.forEach(card => {
+    card.addEventListener("click", function () {
+        const titulo = this.dataset.title;
+        const dados = catalogo[titulo];
+
+        if (dados) {
+            modalTitulo.textContent = titulo;
+            modalDescricao.textContent = dados.descricao;
+            movieModal.style.display = "flex";
+            document.body.style.overflow = "hidden";
+        }
+    });
+});
+
+// Fechar modal
+if (modalFechar) {
+    modalFechar.addEventListener("click", fecharModal);
+}
+window.addEventListener("click", (e) => {
+    if (e.target === movieModal) fecharModal();
+});
+window.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") fecharModal();
+});
+
+function fecharModal() {
+    movieModal.style.display = "none";
+    document.body.style.overflow = "auto";
+}
+
+/* ===================
+   BANNER DESTAQUE DINÂMICO
+=================== */
+const bannerImg = document.getElementById("bannerImage");
+const bannerTitulo = document.getElementById("bannerTitle");
+const bannerDesc = document.getElementById("bannerDescription");
+
+const listaBanner = Object.keys(catalogo);
+let indiceBanner = 0;
+
+function trocarBanner() {
+    const atual = listaBanner[indiceBanner];
+    if (catalogo[atual] && bannerImg && bannerTitulo && bannerDesc) {
+        bannerTitulo.textContent = atual;
+        bannerDesc.textContent = catalogo[atual].descricao;
+        bannerImg.src = catalogo[atual].imagem;
+        bannerImg.alt = `Destaque: ${atual}`;
+    }
+    indiceBanner = (indiceBanner + 1) % listaBanner.length;
+}
+
+// Troca a cada 5 segundos
+if (bannerImg) setInterval(trocarBanner, 5000);
+
+/* ===================
+   BOTÕES DE ASSISTIR
+=================== */
+const botoesAssistir = document.querySelectorAll(".play-btn");
+const historicoEl = document.getElementById("recentMovies");
+
+botoesAssistir.forEach(btn => {
+    btn.addEventListener("click", () => {
+        let tituloFilme = "";
+
+        // Pega do modal ou do banner
+        if (movieModal.style.display === "flex") {
+            tituloFilme = modalTitulo.textContent;
+            fecharModal();
+        } else {
+            tituloFilme = bannerTitulo.textContent;
+        }
+
+        if (!tituloFilme || !catalogo[tituloFilme]) return;
+
+        // Salva para o player
+        localStorage.setItem("selectedMovie", tituloFilme);
+
+        // Salva no histórico de assistidos
+        let historico = JSON.parse(localStorage.getItem("watchedMovies")) || [];
+        if (!historico.includes(tituloFilme)) {
+            historico.unshift(tituloFilme); // Adiciona no início
+            localStorage.setItem("watchedMovies", JSON.stringify(historico));
+            atualizarHistorico();
+        }
+
+        // Vai para página de reprodução
+        window.location.href = "player.html";
+    });
 });
 
 /* ===================
-   ASSISTIDOS RECENTES
+   HISTÓRICO - ASSISTIDOS RECENTEMENTE
 =================== */
+function atualizarHistorico() {
+    if (!historicoEl) return;
+    const historico = JSON.parse(localStorage.getItem("watchedMovies")) || [];
+    historicoEl.innerHTML = "";
 
-const recentMovies =
-    document.getElementById(
-        "recentMovies"
-    );
-
-if (recentMovies) {
-
-    const watched =
-        JSON.parse(
-            localStorage.getItem(
-                "watchedMovies"
-            )
-        ) || [];
-
-    const images = {
-
-        "Stranger Things":
-            "assets/images/StrangerThingsCapa.jpg",
-
-        "The Witcher":
-            "assets/images/TheWitcherSerie.jpg",
-
-        "Wandinha":
-            "assets/images/WandinhaSerie.jpg",
-
-        "Dark":
-            "assets/images/DarkSerie.jpg"
-
-    };
-
-    recentMovies.innerHTML = "";
-
-    watched.forEach(movie => {
-
-        if (!images[movie]) return;
-
-        recentMovies.innerHTML += `
-
-        <div
-        class="movie-card"
-        data-title="${movie}"
-        >
-
-            <img
-            src="${images[movie]}"
-            alt="${movie}"
-            >
-
-        </div>
-
-        `;
-
-    });
-
-}
-
-/* ===================
-   CARROSSEL AUTOMÁTICO
-=================== */
-
-const moviesBanner = [
-
-    "Stranger Things",
-    "The Witcher",
-    "Wandinha",
-    "Dark"
-
-];
-
-let currentBanner = 0;
-
-function changeBanner() {
-
-    const movie =
-        moviesBanner[currentBanner];
-
-    bannerTitle.textContent =
-        movie;
-
-    bannerDescription.textContent =
-        bannerData[movie]
-            .description;
-
-    bannerImage.src =
-        bannerData[movie]
-            .image;
-
-    currentBanner++;
-
-    if (
-        currentBanner >=
-        moviesBanner.length
-    ) {
-
-        currentBanner = 0;
-
+    if (historico.length === 0) {
+        historicoEl.innerHTML = "<p style='color:#aaa; padding:10px;'>Nenhum título assistido ainda.</p>";
+        return;
     }
 
+    historico.forEach(titulo => {
+        if (!catalogo[titulo]) return;
+        const cardEl = document.createElement("div");
+        cardEl.className = "movie-card";
+        cardEl.dataset.title = titulo;
+        cardEl.innerHTML = `<img src="${catalogo[titulo].imagem}" alt="${titulo}" loading="lazy">`;
+        historicoEl.appendChild(cardEl);
+    });
 }
 
-if (
-    bannerImage &&
-    bannerTitle &&
-    bannerDescription
-) {
+// Inicializa histórico
+atualizarHistorico();
 
-    setInterval(
-        changeBanner,
-        5000
-    );
+/* ===================
+   EFEITOS VISUAIS NO CABEÇALHO
+=================== */
+const headerDashboard = document.querySelector(".dashboard-header");
 
-}
+window.addEventListener("scroll", () => {
+    if (!headerDashboard) return;
+    if (window.scrollY > 50) {
+        headerDashboard.classList.add("scrolled");
+    } else {
+        headerDashboard.classList.remove("scrolled");
+    }
+});

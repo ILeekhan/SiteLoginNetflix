@@ -1,90 +1,78 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Clone da Netflix - Projeto de portfólio com filmes, séries e muito mais.">
+    <title>Netflix Clone - Filmes e Séries</title>
 
-    <title>Netflix Clone</title>
+    <!-- Carregamento da fonte de forma otimizada -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="CSS/landing.css">
-
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
-
 </head>
-
 <body>
-
-    <header>
-
-        <h1 class="logo">
-            NETFLIX
-        </h1>
-
-        <a href="login.html" class="btn-login">
-            Entrar
-        </a>
-
+    <header class="header">
+        <div class="container">
+            <h1 class="logo">NETFLIX</h1>
+            <a href="login.html" class="btn btn-login">Entrar</a>
+        </div>
     </header>
 
-    <section class="hero">
+    <main>
+        <section class="hero">
+            <div class="container hero-content">
+                <h2>Filmes, séries e muito mais.</h2>
+                <p>Assista onde quiser. Cancele quando quiser.</p>
+                <a href="login.html" class="btn btn-start">Começar Agora</a>
+            </div>
+        </section>
 
-        <div class="hero-content">
+        <section class="movies-section">
+            <div class="container">
+                <h2 class="section-title">Populares</h2>
+                <div class="movies-row">
+                    <div class="movie-card">
+                        <img 
+                            src="assets/images/StrangerThingsCapa.jpg" 
+                            alt="Capa da série Stranger Things" 
+                            loading="lazy"
+                        >
+                    </div>
+                    <div class="movie-card">
+                        <img 
+                            src="assets/images/TheWitcherSerie.jpg" 
+                            alt="Capa da série The Witcher" 
+                            loading="lazy"
+                        >
+                    </div>
+                    <div class="movie-card">
+                        <img 
+                            src="assets/images/WandinhaSerie.jpg" 
+                            alt="Capa da série Wandinha" 
+                            loading="lazy"
+                        >
+                    </div>
+                    <div class="movie-card">
+                        <img 
+                            src="assets/images/DarkSerie.jpg" 
+                            alt="Capa da série Dark" 
+                            loading="lazy"
+                        >
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 
-            <h2>
-                Filmes, séries e muito mais.
-            </h2>
-
-            <p>
-                Assista onde quiser. Cancele quando quiser.
-            </p>
-
-            <a href="login.html" class="btn-start">
-                Começar Agora
-            </a>
-
+    <footer class="footer">
+        <div class="container">
+            <p>Projeto desenvolvido para portfólio | Clone da Netflix</p>
         </div>
-
-    </section>
-
-    <section class="movies">
-
-        <h2>Populares</h2>
-
-        <div class="movies-row">
-
-            <div class="movie-card">
-                <img src="assets/images/StrangerThingsCapa.jpg" alt="Stranger Things">
-            </div>
-
-            <div class="movie-card">
-                <img src="assets/images/TheWitcherSerie.jpg" alt="The Witcher">
-            </div>
-
-            <div class="movie-card">
-                <img src="assets/images/WandinhaSerie.jpg" alt="Wandinha">
-            </div>
-
-            <div class="movie-card">
-                <img src="assets/images/DarkSerie.jpg" alt="Dark">
-            </div>
-
-        </div>
-
-    </section>
-
-    <footer>
-
-        <p>
-            Projeto desenvolvido para Portfólio.
-        </p>
-
     </footer>
 
-    <script src="Js/landing.js"></script>
-
+    <script src="Js/landing.js" defer></script>
 </body>
-
 </html>

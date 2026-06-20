@@ -1,424 +1,211 @@
-const movie =
-    localStorage.getItem(
-        "selectedMovie"
-    );
-
-const movieTitle =
-    document.getElementById(
-        "movieTitle"
-    );
-
-const movieDescription =
-    document.getElementById(
-        "movieDescription"
-    );
-
-const movieTrailer =
-    document.getElementById(
-        "movieTrailer"
-    );
-
-const backBtn =
-    document.getElementById(
-        "backBtn"
-    );
+/* ==========================================
+   ARQUIVO: player.js - PÁGINA DE REPRODUÇÃO
+   Funções: Carregar vídeo, episódios, histórico, navegação
+========================================== */
 
 /* ===================
-   SÉRIES
+   VERIFICAÇÃO DE ACESSO E DADOS
 =================== */
+const user = JSON.parse(localStorage.getItem("currentUser"));
+if (!user) window.location.href = "login.html";
 
-const movies = {
+const filmeSelecionado = localStorage.getItem("selectedMovie");
 
+// Elementos da página
+const movieTitle = document.getElementById("movieTitle");
+const movieDescription = document.getElementById("movieDescription");
+const movieTrailer = document.getElementById("movieTrailer");
+const backBtn = document.getElementById("backBtn");
+
+/* ===================
+   CATÁLOGO DE CONTEÚDO (CENTRALIZADO)
+=================== */
+const catalogo = {
     "Stranger Things": {
-
-        description:
-            "Uma cidade pequena enfrenta acontecimentos sobrenaturais e uma dimensão paralela chamada Mundo Invertido.",
-
-        trailer:
-            "https://www.youtube.com/embed/b9EkMc79ZSU"
-
+        descricao: "Uma cidade pequena enfrenta acontecimentos sobrenaturais e uma dimensão paralela chamada Mundo Invertido.",
+        trailer: "https://www.youtube.com/embed/b9EkMc79ZSU",
+        episodios: {
+            1: {
+                titulo: "Episódio 1",
+                descricao: "O desaparecimento de Will inicia acontecimentos estranhos na cidade.",
+                video: "https://www.youtube.com/embed/b9EkMc79ZSU"
+            },
+            2: {
+                titulo: "Episódio 2",
+                descricao: "Eleven demonstra seus poderes enquanto os mistérios aumentam.",
+                video: "https://www.youtube.com/embed/R1ZXOOLMJ8s"
+            },
+            3: {
+                titulo: "Episódio 3",
+                descricao: "Os amigos iniciam uma perigosa busca por respostas.",
+                video: "https://www.youtube.com/embed/mnd7sFt5c3A"
+            }
+        }
     },
 
     "The Witcher": {
-
-        description:
-            "Geralt de Rívia luta contra monstros e enfrenta conflitos políticos em um mundo medieval fantástico.",
-
-        trailer:
-            "https://www.youtube.com/embed/ndl1W4ltcmg"
-
+        descricao: "Geralt de Rívia luta contra monstros e enfrenta conflitos políticos em um mundo medieval fantástico.",
+        trailer: "https://www.youtube.com/embed/ndl1W4ltcmg",
+        episodios: {
+            1: {
+                titulo: "Episódio 1",
+                descricao: "Geralt enfrenta uma criatura mortal.",
+                video: "https://www.youtube.com/embed/ndl1W4ltcmg"
+            },
+            2: {
+                titulo: "Episódio 2",
+                descricao: "Conflitos políticos começam a surgir.",
+                video: "https://www.youtube.com/embed/WX6e6ZLNmtA"
+            },
+            3: {
+                titulo: "Episódio 3",
+                descricao: "Geralt encontra aliados inesperados.",
+                video: "https://www.youtube.com/embed/1-l29HlKkXU"
+            }
+        }
     },
 
     "Wandinha": {
-
-        description:
-            "A filha da Família Addams investiga mistérios sobrenaturais enquanto estuda na Escola Nunca Mais.",
-
-        trailer:
-            "https://www.youtube.com/embed/Di310WS8zLk"
-
+        descricao: "A filha da Família Addams investiga mistérios sobrenaturais enquanto estuda na Escola Nunca Mais.",
+        trailer: "https://www.youtube.com/embed/Di310WS8zLk",
+        episodios: {
+            1: {
+                titulo: "Episódio 1",
+                descricao: "Wandinha chega à Escola Nunca Mais.",
+                video: "https://www.youtube.com/embed/Di310WS8zLk"
+            },
+            2: {
+                titulo: "Episódio 2",
+                descricao: "Mistérios sobrenaturais começam a surgir.",
+                video: "https://www.youtube.com/embed/f6wgSkW7giQ"
+            },
+            3: {
+                titulo: "Episódio 3",
+                descricao: "Wandinha investiga acontecimentos estranhos.",
+                video: "https://www.youtube.com/embed/NakTu_VZxJ0"
+            }
+        }
     },
 
     "Dark": {
-
-        description:
-            "Uma série alemã sobre viagens no tempo, desaparecimentos e segredos familiares.",
-
-        trailer:
-            "https://www.youtube.com/embed/ESEUoa-mz2c"
-
+        descricao: "Uma série alemã sobre viagens no tempo, desaparecimentos e segredos familiares.",
+        trailer: "https://www.youtube.com/embed/ESEUoa-mz2c",
+        episodios: {
+            1: {
+                titulo: "Episódio 1",
+                descricao: "Uma criança desaparece misteriosamente.",
+                video: "https://www.youtube.com/embed/ESEUoa-mz2c"
+            },
+            2: {
+                titulo: "Episódio 2",
+                descricao: "Segredos envolvendo o tempo aparecem.",
+                video: "https://www.youtube.com/embed/HEx0pNQ1fbM"
+            },
+            3: {
+                titulo: "Episódio 3",
+                descricao: "Os laços familiares começam a ser revelados.",
+                video: "https://www.youtube.com/embed/Vxduc1dSi8M"
+            }
+        }
     }
-
 };
 
 /* ===================
-   CARREGAR FILME
+   CARREGAR DADOS INICIAIS
 =================== */
+if (filmeSelecionado && catalogo[filmeSelecionado]) {
+    const dados = catalogo[filmeSelecionado];
 
-if (
-    movie &&
-    movies[movie]
-) {
+    // Tela inicial da série/filme
+    movieTitle.textContent = filmeSelecionado;
+    movieDescription.textContent = dados.descricao;
+    movieTrailer.src = dados.trailer;
 
-    movieTitle.textContent =
-        movie;
+    // Marca como último assistido
+    localStorage.setItem("lastWatched", filmeSelecionado);
 
-    movieDescription.textContent =
-        movies[movie]
-            .description;
+    // Adiciona ao histórico (sem duplicar)
+    let historico = JSON.parse(localStorage.getItem("watchedMovies")) || [];
+    if (!historico.includes(filmeSelecionado)) {
+        historico.unshift(filmeSelecionado);
+        localStorage.setItem("watchedMovies", JSON.stringify(historico));
+    }
 
-    movieTrailer.src =
-        movies[movie]
-            .trailer;
+} else {
+    // Se não tiver filme selecionado, volta para dashboard
+    window.location.href = "dashboard.html";
+}
 
+/* ===================
+   CONTROLE DE EPISÓDIOS
+=================== */
+const dadosSerie = catalogo[filmeSelecionado]?.episodios;
+const botoesEpisodio = document.querySelectorAll(".episode-btn");
+
+if (dadosSerie && botoesEpisodio.length > 0) {
+
+    // Clica no episódio
+    botoesEpisodio.forEach(botao => {
+        botao.addEventListener("click", function () {
+            const numero = this.dataset.episode;
+
+            if (dadosSerie[numero]) {
+                const ep = dadosSerie[numero];
+
+                // Atualiza tela
+                movieTitle.textContent = `${filmeSelecionado} - ${ep.titulo}`;
+                movieDescription.textContent = ep.descricao;
+                movieTrailer.src = ep.video;
+
+                // Marca episódio atual
+                localStorage.setItem(`${filmeSelecionado}_epAtual`, numero);
+
+                // Estilo ativo
+                botoesEpisodio.forEach(btn => btn.classList.remove("episode-active"));
+                this.classList.add("episode-active");
+
+                // Salva progresso
+                localStorage.setItem("ultimoEpisodio", JSON.stringify({
+                    serie: filmeSelecionado,
+                    episodio: numero
+                }));
+            }
+        });
+    });
+
+    // Carrega último episódio assistido
+    const ultimoEpSalvo = localStorage.getItem(`${filmeSelecionado}_epAtual`);
+    if (ultimoEpSalvo && dadosSerie[ultimoEpSalvo]) {
+        const ep = dadosSerie[ultimoEpSalvo];
+
+        movieTitle.textContent = `${filmeSelecionado} - ${ep.titulo}`;
+        movieDescription.textContent = ep.descricao;
+        movieTrailer.src = ep.video;
+
+        // Marca botão
+        const botaoAtivo = document.querySelector(`[data-episode="${ultimoEpSalvo}"]`);
+        if (botaoAtivo) botaoAtivo.classList.add("episode-active");
+    }
 }
 
 /* ===================
    BOTÃO VOLTAR
 =================== */
-
 if (backBtn) {
-
-    backBtn.addEventListener(
-        "click",
-        () => {
-
-            window.location.href =
-                "dashboard.html";
-
-        });
-
-}
-
-/* ===================
-   CONTINUAR ASSISTINDO
-=================== */
-
-if (movie) {
-
-    localStorage.setItem(
-        "lastWatched",
-        movie
-    );
-
-}
-
-/* ===================
-   HISTÓRICO
-=================== */
-
-let watched =
-
-    JSON.parse(
-        localStorage.getItem(
-            "watchedMovies"
-        )
-    ) || [];
-
-if (
-    movie &&
-    !watched.includes(movie)
-) {
-
-    watched.push(movie);
-
-    localStorage.setItem(
-        "watchedMovies",
-        JSON.stringify(
-            watched
-        )
-    );
-
-}
-
-/* ===================
-   EPISÓDIOS
-=================== */
-
-const episodesBySeries = {
-
-    "Stranger Things": {
-
-        1: {
-
-            title: "Episódio 1",
-
-            description:
-                "O desaparecimento de Will inicia acontecimentos estranhos na cidade.",
-
-            trailer:
-                "https://www.youtube.com/embed/b9EkMc79ZSU"
-
-        },
-
-        2: {
-
-            title: "Episódio 2",
-
-            description:
-                "Eleven demonstra seus poderes enquanto os mistérios aumentam.",
-
-            trailer:
-                "https://www.youtube.com/embed/R1ZXOOLMJ8s"
-
-        },
-
-        3: {
-
-            title: "Episódio 3",
-
-            description:
-                "Os amigos iniciam uma perigosa busca por respostas.",
-
-            trailer:
-                "https://www.youtube.com/embed/mnd7sFt5c3A"
-
-        }
-
-    },
-
-    "The Witcher": {
-
-        1: {
-
-            title: "Episódio 1",
-
-            description:
-                "Geralt enfrenta uma criatura mortal.",
-
-            trailer:
-                "https://www.youtube.com/embed/ndl1W4ltcmg"
-
-        },
-
-        2: {
-
-            title: "Episódio 2",
-
-            description:
-                "Conflitos políticos começam a surgir.",
-
-            trailer:
-                "https://www.youtube.com/embed/WX6e6ZLNmtA"
-
-        },
-
-        3: {
-
-            title: "Episódio 3",
-
-            description:
-                "Geralt encontra aliados inesperados.",
-
-            trailer:
-                "https://www.youtube.com/embed/1-l29HlKkXU"
-
-        }
-
-    },
-
-    "Wandinha": {
-
-        1: {
-
-            title: "Episódio 1",
-
-            description:
-                "Wandinha chega à Escola Nunca Mais.",
-
-            trailer:
-                "https://www.youtube.com/embed/Di310WS8zLk"
-
-        },
-
-        2: {
-
-            title: "Episódio 2",
-
-            description:
-                "Mistérios sobrenaturais começam a surgir.",
-
-            trailer:
-                "https://www.youtube.com/embed/f6wgSkW7giQ"
-
-        },
-
-        3: {
-
-            title: "Episódio 3",
-
-            description:
-                "Wandinha investiga acontecimentos estranhos.",
-
-            trailer:
-                "https://www.youtube.com/embed/NakTu_VZxJ0"
-
-        }
-
-    },
-
-    "Dark": {
-
-        1: {
-
-            title: "Episódio 1",
-
-            description:
-                "Uma criança desaparece misteriosamente.",
-
-            trailer:
-                "https://www.youtube.com/embed/ESEUoa-mz2c"
-
-        },
-
-        2: {
-
-            title: "Episódio 2",
-
-            description:
-                "Segredos envolvendo o tempo aparecem.",
-
-            trailer:
-                "https://www.youtube.com/embed/HEx0pNQ1fbM"
-
-        },
-
-        3: {
-
-            title: "Episódio 3",
-
-            description:
-                "Os laços familiares começam a ser revelados.",
-
-            trailer:
-                "https://www.youtube.com/embed/Vxduc1dSi8M"
-
-        }
-
-    }
-
-};
-
-const episodes =
-    episodesBySeries[movie];
-
-const episodeButtons =
-    document.querySelectorAll(
-        ".episode-btn"
-    );
-
-if (episodes) {
-
-    episodeButtons.forEach(btn => {
-
-        btn.addEventListener(
-            "click",
-            function () {
-
-                const episode =
-                    this.dataset.episode;
-
-                movieTitle.textContent =
-                    movie +
-                    " - " +
-                    episodes[episode].title;
-
-                movieDescription.textContent =
-                    episodes[episode]
-                        .description;
-
-                movieTrailer.src =
-                    episodes[episode]
-                        .trailer;
-
-                localStorage.setItem(
-
-                    movie +
-                    "_episode",
-
-                    episode
-
-                );
-
-                episodeButtons.forEach(
-                    item => {
-
-                        item.classList.remove(
-                            "episode-active"
-                        );
-
-                    });
-
-                this.classList.add(
-                    "episode-active"
-                );
-
-            });
-
+    backBtn.addEventListener("click", () => {
+        window.location.href = "dashboard.html";
     });
-
 }
 
 /* ===================
-   ÚLTIMO EPISÓDIO
+   EFEITOS E VISUAL
 =================== */
+// Esconde cabeçalho ao rolar para melhor experiência
+const headerPlayer = document.querySelector(".player-header");
+window.addEventListener("scroll", () => {
+    if (!headerPlayer) return;
+    headerPlayer.style.opacity = window.scrollY > 100 ? "0" : "1";
+    headerPlayer.style.pointerEvents = window.scrollY > 100 ? "none" : "auto";
+});
 
-const savedEpisode =
-
-    localStorage.getItem(
-        movie + "_episode"
-    );
-
-if (
-    episodes &&
-    savedEpisode &&
-    episodes[savedEpisode]
-) {
-
-    movieTitle.textContent =
-        movie +
-        " - " +
-        episodes[savedEpisode]
-            .title;
-
-    movieDescription.textContent =
-        episodes[savedEpisode]
-            .description;
-
-    movieTrailer.src =
-        episodes[savedEpisode]
-            .trailer;
-
-    document
-        .querySelector(
-            `[data-episode="${savedEpisode}"]`
-        )
-        ?.classList.add(
-            "episode-active"
-        );
-
-}
-
-console.log(
-    "Player carregado com sucesso!"
-);
+console.log("✅ Player carregado e funcional!");

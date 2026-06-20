@@ -1,3 +1,8 @@
+/* ==========================================
+   ARQUIVO: profiles.css - ESTILOS DA SELEÇÃO DE PERFIS
+========================================== */
+
+/* ========== RESET E BASE ========== */
 * {
     margin: 0;
     padding: 0;
@@ -5,68 +10,129 @@
 }
 
 body {
-    background: #141414;
-    color: white;
-    font-family: Poppins, sans-serif;
-
+    background-color: #141414;
+    color: #ffffff;
+    font-family: 'Poppins', sans-serif;
     min-height: 100vh;
-
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 20px;
 }
 
+/* ========== CONTAINER PRINCIPAL ========== */
 .profiles-container {
-
     text-align: center;
+    width: 100%;
+    max-width: 1000px;
 }
 
 .profiles-container h1 {
-
     font-size: 3rem;
     margin-bottom: 50px;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: 1px;
 }
 
+/* ========== GRID DE PERFIS ========== */
 .profiles-grid {
-
     display: flex;
     gap: 40px;
     flex-wrap: wrap;
     justify-content: center;
+    margin-bottom: 60px;
 }
 
+/* ========== CARD DE PERFIL ========== */
 .profile-card {
-
     cursor: pointer;
-
-    transition: .3s;
+    transition: all 0.3s ease;
+    text-align: center;
 }
 
 .profile-card:hover {
-
     transform: scale(1.08);
 }
 
-.profile-avatar {
+.profile-card:hover .profile-avatar {
+    border: 4px solid #ffffff;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+}
 
+.profile-avatar {
     width: 150px;
     height: 150px;
-
-    background: #E50914;
-
+    background-color: #E50914;
     border-radius: 10px;
-
     display: flex;
     justify-content: center;
     align-items: center;
-
     font-size: 60px;
     font-weight: bold;
-
     margin-bottom: 15px;
+    transition: all 0.3s ease;
+    overflow: hidden;
 }
 
 .profile-card p {
-
     font-size: 1.2rem;
+    color: #b3b3b3;
+    transition: color 0.3s ease;
+}
+
+.profile-card:hover p {
+    color: #ffffff;
+}
+
+/* ========== BOTÃO GERENCIAR ========== */
+.manage-profiles-btn {
+    background: transparent;
+    border: 2px solid #b3b3b3;
+    color: #b3b3b3;
+    padding: 12px 30px;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.manage-profiles-btn:hover {
+    border-color: #ffffff;
+    color: #ffffff;
+}
+
+/* ========== RESPONSIVO ========== */
+@media (max-width: 768px) {
+    .profiles-container h1 {
+        font-size: 2rem;
+        margin-bottom: 40px;
+    }
+
+    .profile-avatar {
+        width: 120px;
+        height: 120px;
+        font-size: 45px;
+    }
+
+    .profile-card p {
+        font-size: 1rem;
+    }
+
+    .profiles-grid {
+        gap: 25px;
+    }
+}
+
+@media (max-width: 480px) {
+    .profiles-container h1 {
+        font-size: 1.6rem;
+    }
+
+    .profile-avatar {
+        width: 100px;
+        height: 100px;
+        font-size: 35px;
+    }
 }

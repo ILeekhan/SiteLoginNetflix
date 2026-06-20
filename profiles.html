@@ -2,62 +2,48 @@
 <html lang="pt-BR">
 
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <meta name="description" content="Selecione um perfil para assistir filmes e séries | Netflix Clone">
     <title>Quem está assistindo?</title>
 
-    <link rel="stylesheet" href="CSS/profiles.css">
+    <!-- Fonte otimizada, igual em todo o projeto -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
 
+    <link rel="stylesheet" href="CSS/profiles.css">
 </head>
 
 <body>
+    <div class="profiles-wrapper">
+        <div class="container profiles-container">
+            <h1 class="profiles-title">Quem está assistindo?</h1>
 
-    <div class="profiles-container">
-
-        <h1>
-            Quem está assistindo?
-        </h1>
-
-        <div class="profiles-grid">
-
-            <div class="profile-card" data-profile="Leekhan">
-
-                <div class="profile-avatar">
-                    L
+            <div class="profiles-grid">
+                <div class="profile-card" data-profile="Leekhan">
+                    <div class="profile-avatar">L</div>
+                    <p class="profile-name">Leekhan</p>
                 </div>
 
-                <p>Leekhan</p>
-
-            </div>
-
-            <div class="profile-card" data-profile="Visitante">
-
-                <div class="profile-avatar">
-                    V
+                <div class="profile-card" data-profile="Visitante">
+                    <div class="profile-avatar">V</div>
+                    <p class="profile-name">Visitante</p>
                 </div>
 
-                <p>Visitante</p>
-
-            </div>
-
-            <div class="profile-card" data-profile="Kids">
-
-                <div class="profile-avatar">
-                    K
+                <div class="profile-card" data-profile="Kids">
+                    <div class="profile-avatar">K</div>
+                    <p class="profile-name">Kids</p>
                 </div>
-
-                <p>Kids</p>
-
             </div>
 
+            <!-- Botão de gerenciar perfis, igual ao original -->
+            <button class="btn manage-profiles-btn">Gerenciar Perfis</button>
         </div>
-
     </div>
 
-    <script src="Js/profiles.js"></script>
-
+    <script src="Js/profiles.js" defer></script>
 </body>
 
 </html>

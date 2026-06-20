@@ -2,141 +2,103 @@
 <html lang="pt-BR">
 
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Faça login na sua conta Netflix ou crie uma nova para assistir filmes e séries.">
+    <title>Entrar | Netflix Clone</title>
 
-    <title>Netflix Login</title>
-
-    <link rel="stylesheet" href="CSS/login.css">
-
+    <!-- Fonte otimizada, igual nas outras páginas -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
 
+    <link rel="stylesheet" href="CSS/login.css">
 </head>
 
 <body>
-
+    <!-- Plano de fundo igual ao site oficial -->
     <div class="background"></div>
+    <div class="overlay"></div>
 
-    <header>
-
-        <h1 class="logo">
-            NETFLIX
-        </h1>
-
+    <header class="login-header">
+        <div class="container">
+            <h1 class="logo">NETFLIX</h1>
+        </div>
     </header>
 
-    <main>
+    <main class="login-main">
+        <div class="container">
+            <div class="login-container">
+                <h2>Entrar</h2>
 
-        <div class="login-container">
+                <form id="loginForm" class="login-form">
+                    <div class="input-group">
+                        <input type="email" id="email" placeholder="E-mail ou número de telefone" required>
+                    </div>
 
-            <h2>Entrar</h2>
+                    <div class="input-group password-box">
+                        <input type="password" id="password" placeholder="Senha" required>
+                        <button type="button" id="togglePassword" class="toggle-btn" aria-label="Mostrar senha">
+                            👁
+                        </button>
+                    </div>
 
-            <form id="loginForm">
+                    <button type="submit" class="btn btn-red">Entrar</button>
+                </form>
 
-                <input type="email" id="email" placeholder="E-mail" required>
+                <div id="message" class="message-box"></div>
 
-                <div class="password-box">
-
-                    <input type="password" id="password" placeholder="Senha" required>
-
-                    <button type="button" id="togglePassword">
-                        👁
-                    </button>
-
+                <div class="links">
+                    <button type="button" id="openRegister" class="link-btn">Criar Conta</button>
+                    <button type="button" id="openRecovery" class="link-btn">Esqueci Minha Senha</button>
                 </div>
-
-                <button type="submit" class="btn-red">
-
-                    Entrar
-
-                </button>
-
-            </form>
-
-            <div id="message"></div>
-
-            <div class="links">
-
-                <button id="openRegister">
-                    Criar Conta
-                </button>
-
-                <button id="openRecovery">
-                    Esqueci Minha Senha
-                </button>
-
             </div>
-
         </div>
-
     </main>
 
-    <!-- CADASTRO -->
-
+    <!-- MODAL DE CADASTRO -->
     <div class="modal" id="registerModal">
-
         <div class="modal-content">
-
-            <span class="close" id="closeRegister">
-                &times;
-            </span>
-
+            <span class="close-btn" id="closeRegister" aria-label="Fechar modal">&times;</span>
             <h2>Criar Conta</h2>
 
-            <form id="registerForm">
+            <form id="registerForm" class="modal-form">
+                <div class="input-group">
+                    <input type="text" id="registerName" placeholder="Nome Completo" required>
+                </div>
+                <div class="input-group">
+                    <input type="email" id="registerEmail" placeholder="E-mail" required>
+                </div>
+                <div class="input-group">
+                    <input type="password" id="registerPassword" placeholder="Senha" required>
+                </div>
+                <div class="input-group">
+                    <input type="password" id="registerConfirmPassword" placeholder="Confirmar Senha" required>
+                </div>
 
-                <input type="text" id="registerName" placeholder="Nome Completo" required>
-
-                <input type="email" id="registerEmail" placeholder="E-mail" required>
-
-                <input type="password" id="registerPassword" placeholder="Senha" required>
-
-                <input type="password" id="registerConfirmPassword" placeholder="Confirmar Senha" required>
-
-                <button type="submit" class="btn-red">
-
-                    Criar Conta
-
-                </button>
-
+                <button type="submit" class="btn btn-red">Criar Conta</button>
             </form>
-
         </div>
-
     </div>
 
-    <!-- RECUPERAR -->
-
+    <!-- MODAL DE RECUPERAÇÃO DE SENHA -->
     <div class="modal" id="recoveryModal">
-
         <div class="modal-content">
+            <span class="close-btn" id="closeRecovery" aria-label="Fechar modal">&times;</span>
+            <h2>Recuperar Senha</h2>
 
-            <span class="close" id="closeRecovery">
-                &times;
-            </span>
+            <form id="recoveryForm" class="modal-form">
+                <div class="input-group">
+                    <input type="email" placeholder="Digite seu e-mail cadastrado" required>
+                </div>
 
-            <h2>Recuperação</h2>
-
-            <form id="recoveryForm">
-
-                <input type="email" placeholder="Digite seu e-mail" required>
-
-                <button type="submit" class="btn-red">
-
-                    Enviar
-
-                </button>
-
+                <button type="submit" class="btn btn-red">Enviar instruções</button>
             </form>
-
         </div>
-
     </div>
 
-    <script src="Js/auth.js"></script>
-
+    <script src="Js/auth.js" defer></script>
 </body>
 
 </html>
