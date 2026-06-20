@@ -89,15 +89,15 @@ const catalogo = {
         descricao: "Uma cidade pequena enfrenta acontecimentos sobrenaturais e uma dimensão paralela chamada Mundo Invertido."
     },
     "The Witcher": {
-        imagem: "assets/images/TheWitcherSerie.jpg",
+        imagem: "assets/images/Revisão Código Portfolio (2).png",
         descricao: "Geralt de Rívia luta contra monstros e enfrenta conflitos políticos em um mundo medieval fantástico."
     },
     "Wandinha": {
-        imagem: "assets/images/WandinhaSerie.jpg",
+        imagem: "assets/images/Revisão Código Portfolio (1).png",
         descricao: "A filha da Família Addams investiga mistérios sobrenaturais enquanto estuda na Escola Nunca Mais."
     },
     "Dark": {
-        imagem: "assets/images/DarkSerie.jpg",
+        imagem: "assets/images/Revisão Código Portfolio.png",
         descricao: "Uma série alemã sobre viagens no tempo, desaparecimentos e segredos familiares."
     }
 };
