@@ -85,7 +85,7 @@ if (searchInput) {
 =================== */
 const catalogo = {
     "Stranger Things": {
-        imagem: "assets/images/StrangerThingsCapa.jpg",
+        imagem: "assets/images/Revisão Código Portfolio (3).png",
         descricao: "Uma cidade pequena enfrenta acontecimentos sobrenaturais e uma dimensão paralela chamada Mundo Invertido."
     },
     "The Witcher": {
