@@ -1,15 +1,32 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Assistir - Netflix</title>
+    <title>Assistir - Netflix Clone</title>
+    <link rel="stylesheet" href="CSS/style.css">
     <link rel="stylesheet" href="CSS/player.css">
 </head>
+
 <body>
     <div class="player-container">
-        <a href="dashboard.html" class="btn-voltar">← Voltar</a>
-        
+        <a href="dashboard.html" class="btn btn-voltar">← Voltar para o início</a>
+
+        <h1 id="tituloVideo"></h1>
+
         <div class="video-principal">
-            <iframe id="videoPlayer" src="https://www.youtube.com/embed/O2R5j3dX7a8" frameborder="0" allowfullscreen></iframe>
+            <iframe id="iframeVideo" src="" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
         </div>
+
+        <div class="descricao-video">
+            <p id="descricaoVideo"></p>
+        </div>
+    </div>
+
+    <script src="Js/player.js"></script>
+</body>
+
+</html>

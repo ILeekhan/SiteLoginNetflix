@@ -9,6 +9,7 @@ body {
     background-color: #141414;
     color: #ffffff;
     transition: background-color 0.3s ease, color 0.3s ease;
+    padding-top: 60px;
 }
 
 /* Modo Claro */
@@ -23,7 +24,7 @@ body:not(.modo-escuro) .secao {
 }
 
 body:not(.modo-escuro) .card {
-    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
 .container {
@@ -38,8 +39,9 @@ body:not(.modo-escuro) .card {
     width: 100%;
     top: 0;
     padding: 15px 0;
-    background: linear-gradient(to bottom, rgba(0,0,0,0.9), transparent);
-    z-index: 100;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.9), transparent);
+    z-index: 9999 !important;
+    /* ⚠️ Z-index alto para ficar por cima */
     transition: background 0.3s;
 }
 
@@ -56,6 +58,7 @@ body:not(.modo-escuro) .navbar.scrolled {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    position: relative;
 }
 
 .logo {
@@ -77,13 +80,15 @@ body:not(.modo-escuro) .navbar.scrolled {
     transition: color 0.3s;
 }
 
-.nav-links a:hover, .nav-links a.ativo {
+.nav-links a:hover,
+.nav-links a.ativo {
     color: white;
 }
 
 body:not(.modo-escuro) .nav-links a {
     color: #333;
 }
+
 body:not(.modo-escuro) .nav-links a:hover,
 body:not(.modo-escuro) .nav-links a.ativo {
     color: #E50914;
@@ -96,7 +101,7 @@ body:not(.modo-escuro) .nav-links a.ativo {
 }
 
 .busca input {
-    background-color: rgba(255,255,255,0.1);
+    background-color: rgba(255, 255, 255, 0.1);
     border: 1px solid #b3b3b3;
     color: white;
     padding: 6px 10px;
@@ -112,6 +117,8 @@ body:not(.modo-escuro) .busca input {
 .avatar-menu {
     position: relative;
     cursor: pointer;
+    z-index: 10000 !important;
+    /* ⚠️ Garante que o menu sair fique clicável */
 }
 
 .avatar-pequeno {
@@ -123,6 +130,7 @@ body:not(.modo-escuro) .busca input {
     align-items: center;
     justify-content: center;
     font-weight: 500;
+    color: white;
 }
 
 .menu-sair {
@@ -134,6 +142,9 @@ body:not(.modo-escuro) .busca input {
     border-radius: 4px;
     width: 100px;
     display: none;
+    z-index: 10001 !important;
+    /* ⚠️ Fica por cima de tudo */
+    border: 1px solid #333;
 }
 
 body:not(.modo-escuro) .menu-sair {
@@ -142,7 +153,7 @@ body:not(.modo-escuro) .menu-sair {
 }
 
 .avatar-menu:hover .menu-sair {
-    display: block;
+    display: block !important;
 }
 
 #btnSair {
@@ -152,7 +163,12 @@ body:not(.modo-escuro) .menu-sair {
     cursor: pointer;
     width: 100%;
     text-align: left;
-    padding: 5px;
+    padding: 8px 5px;
+    font-size: 0.9rem;
+    pointer-events: auto !important;
+    /* ⚠️ Garante clique */
+    position: relative;
+    z-index: 10002 !important;
 }
 
 body:not(.modo-escuro) #btnSair {
@@ -161,17 +177,24 @@ body:not(.modo-escuro) #btnSair {
 
 #btnSair:hover {
     text-decoration: underline;
+    background-color: #333;
+}
+
+body:not(.modo-escuro) #btnSair:hover {
+    background-color: #ddd;
 }
 
 /* Banner */
 .banner {
     height: 85vh;
-    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.8)), 
-                url('../assets/images/banner-StrangerThings.png') center/cover no-repeat;
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.8)),
+        url('../assets/images/banner-StrangerThings.png') center/cover no-repeat;
     display: flex;
     align-items: flex-end;
     padding: 0 5% 100px;
-    margin-top: 60px;
+    margin-top: 0;
+    position: relative;
+    z-index: 1;
 }
 
 .banner-conteudo h2 {
@@ -197,6 +220,8 @@ body:not(.modo-escuro) .banner-conteudo p {
     cursor: pointer;
     margin-right: 10px;
     transition: background 0.3s;
+    text-decoration: none;
+    display: inline-block;
 }
 
 .btn-assistir {
@@ -209,17 +234,19 @@ body:not(.modo-escuro) .banner-conteudo p {
 }
 
 .btn-info {
-    background-color: rgba(109,109,110,0.7);
+    background-color: rgba(109, 109, 110, 0.7);
     color: white;
 }
 
 .btn-info:hover {
-    background-color: rgba(109,109,110,0.5);
+    background-color: rgba(109, 109, 110, 0.5);
 }
 
 /* Seções */
 .secao {
     padding: 30px 0;
+    position: relative;
+    z-index: 2;
 }
 
 .titulo-secao {
@@ -227,13 +254,15 @@ body:not(.modo-escuro) .banner-conteudo p {
     margin-bottom: 15px;
 }
 
-/* CARROSSEL COM ROLAGEM - RESTAURADO */
+/* CARROSSEL COM ROLAGEM E IMAGENS VISÍVEIS */
 .carrossel {
     display: flex;
     gap: 12px;
     overflow-x: auto;
     scrollbar-width: thin;
     padding-bottom: 10px;
+    position: relative;
+    z-index: 3;
 }
 
 .carrossel::-webkit-scrollbar {
@@ -245,7 +274,7 @@ body:not(.modo-escuro) .banner-conteudo p {
     border-radius: 3px;
 }
 
-/* CARDS COM IMAGENS - RESTAURADO */
+/* CARDS COM IMAGENS - CORRIGIDO APARECER */
 .card {
     min-width: 180px;
     height: 250px;
@@ -255,6 +284,8 @@ body:not(.modo-escuro) .banner-conteudo p {
     cursor: pointer;
     transition: transform 0.3s ease;
     flex-shrink: 0;
+    background-color: #222;
+    /* Fundo caso imagem demore */
 }
 
 .card:hover {
@@ -266,13 +297,17 @@ body:not(.modo-escuro) .banner-conteudo p {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    display: block !important;
+    /* ⚠️ Força exibição */
+    opacity: 1 !important;
+    visibility: visible !important;
 }
 
 .favorito-icone {
     position: absolute;
     top: 8px;
     right: 8px;
-    background: rgba(0,0,0,0.7);
+    background: rgba(0, 0, 0, 0.7);
     border-radius: 50%;
     width: 28px;
     height: 28px;
@@ -295,12 +330,12 @@ body:not(.modo-escuro) .vazio-lista {
 .modal {
     display: none;
     position: fixed;
-    z-index: 999;
+    z-index: 99999 !important;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0,0,0,0.8);
+    background-color: rgba(0, 0, 0, 0.8);
     align-items: center;
     justify-content: center;
 }
@@ -350,7 +385,16 @@ body:not(.modo-escuro) .rodape {
 
 /* Responsivo */
 @media (max-width: 768px) {
-    .nav-links { display: none; }
-    .banner-conteudo h2 { font-size: 2rem; }
-    .card { min-width: 140px; height: 200px; }
+    .nav-links {
+        display: none;
+    }
+
+    .banner-conteudo h2 {
+        font-size: 2rem;
+    }
+
+    .card {
+        min-width: 140px;
+        height: 200px;
+    }
 }

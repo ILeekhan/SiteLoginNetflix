@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,12 +9,13 @@
     <link rel="stylesheet" href="CSS/dashboard.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
     <!-- Navbar -->
     <nav class="navbar">
         <div class="container navbar-container">
             <h1 class="logo">NETFLIX</h1>
-            
+
             <ul class="nav-links">
                 <li><a href="#" class="ativo">Início</a></li>
                 <li><a href="#">Séries</a></li>
@@ -27,7 +29,7 @@
                 </div>
                 <div class="avatar-menu">
                     <div class="avatar-pequeno" id="avatarUsuario">L</div>
-                    <div class="menu-sair">
+                    <div class="menu-sair" id="menuSair">
                         <button id="btnSair">Sair</button>
                     </div>
                 </div>
@@ -39,9 +41,10 @@
     <section class="banner">
         <div class="banner-conteudo">
             <h2 id="tituloBanner">Stranger Things</h2>
-            <p id="descricaoBanner">Uma cidade pequena enfrenta acontecimentos sobrenaturais e uma dimensão paralela chamada Mundo Invertido. Um grupo de amigos embarca em uma aventura incrível para encontrar um amigo desaparecido.</p>
+            <p id="descricaoBanner">Uma cidade pequena enfrenta acontecimentos sobrenaturais e uma dimensão paralela
+                chamada Mundo Invertido.</p>
             <div class="botoes-banner">
-                <button class="btn btn-assistir">▶ Assistir</button>
+                <button class="btn btn-assistir" id="btnBannerAssistir">▶ Assistir</button>
                 <button class="btn btn-info">ℹ Mais Informações</button>
             </div>
         </div>
@@ -88,7 +91,7 @@
             <h2 id="modalTitulo"></h2>
             <p id="modalDescricao"></p>
             <div class="modal-botoes">
-                <button class="btn btn-assistir">▶ Assistir</button>
+                <button class="btn btn-assistir" id="btnModalAssistir">▶ Assistir</button>
                 <button class="btn btn-favoritar">⭐ Favoritar</button>
             </div>
         </div>
@@ -98,10 +101,12 @@
     <footer class="rodape">
         <div class="container">
             <p>© 2026 Netflix Clone - Projeto para estudos</p>
-            <p class="aviso-demo">⚠️ Site apenas demonstrativo — Projeto de estudo de Análise e Desenvolvimento de Sistemas</p>
+            <p class="aviso-demo">⚠️ Site apenas demonstrativo — Projeto de estudo de Análise e Desenvolvimento de
+                Sistemas</p>
         </div>
     </footer>
 
     <script src="Js/dashboard.js"></script>
 </body>
+
 </html>
