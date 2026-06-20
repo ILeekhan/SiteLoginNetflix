@@ -91,7 +91,7 @@ function trocarBanner() {
     img.src = item.banner;
     img.onload = () => {
         document.querySelector('.banner').style.background = `linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.8)), url('${item.banner}') center / cover no-repeat`;
-        document.querySelector('.banner').style.backgroundSize = '100% auto';
+        document.querySelector('.banner').style.backgroundSize = '75% auto';
     };
     document.getElementById('tituloBanner').textContent = item.titulo;
     document.getElementById('descricaoBanner').textContent = item.descricao;

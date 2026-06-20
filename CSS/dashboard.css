@@ -133,7 +133,7 @@ body:not(.modo-escuro) #btnSair:hover { background-color: #ddd; }
 .banner {
     height: 85vh;
     background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.8)), url('../assets/images/banner-StrangerThings.png') center / cover no-repeat;
-    background-size: 100% auto;
+    background-size: 75% auto;
     display: flex;
     align-items: flex-end;
     padding: 0 5% 100px;
