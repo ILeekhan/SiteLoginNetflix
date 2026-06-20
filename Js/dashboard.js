@@ -1,14 +1,13 @@
 /* ==========================================
-   ARQUIVO: dashboard.js - VERSÃO FINAL
+   ARQUIVO: dashboard.js
+   Versão separada e funcional
 ========================================== */
 
 /* ===================
    VERIFICAÇÃO DE ACESSO
 =================== */
 const user = JSON.parse(localStorage.getItem("currentUser"));
-if (!user) {
-    window.location.href = "login.html";
-}
+if (!user) window.location.href = "login.html";
 
 /* ===================
    SISTEMA DE NOTIFICAÇÕES
@@ -59,10 +58,8 @@ const searchInput = document.getElementById("searchInput");
 if (searchInput) {
     searchInput.addEventListener("input", function () {
         const termo = this.value.trim().toLowerCase();
-        const todosCards = document.querySelectorAll(".movie-card");
-        todosCards.forEach(card => {
-            const titulo = card.dataset.title.toLowerCase();
-            card.style.display = titulo.includes(termo) ? "block" : "none";
+        document.querySelectorAll(".movie-card").forEach(card => {
+            card.style.display = card.dataset.title.toLowerCase().includes(termo) ? "block" : "none";
         });
     });
 }
@@ -101,11 +98,12 @@ let favoritos = JSON.parse(localStorage.getItem("favorites")) || [];
 const favoritosListaEl = document.getElementById("favoritesList");
 const favoritosContadorEl = document.getElementById("favoritesCount");
 
+// Inicia ícones corretos
 favoriteButtons.forEach(btn => {
-    const titulo = btn.parentElement.dataset.title;
-    btn.textContent = favoritos.includes(titulo) ? "❤️" : "⭐";
+    btn.textContent = favoritos.includes(btn.parentElement.dataset.title) ? "❤️" : "⭐";
 });
 
+// Clique para adicionar/remover
 favoriteButtons.forEach(btn => {
     btn.addEventListener("click", function (e) {
         e.stopPropagation();
@@ -113,11 +111,11 @@ favoriteButtons.forEach(btn => {
         if (favoritos.includes(titulo)) {
             favoritos = favoritos.filter(item => item !== titulo);
             this.textContent = "⭐";
-            showNotification(`❌ ${titulo} removido da Minha Lista`);
+            showNotification(`❌ ${titulo} removido`);
         } else {
             favoritos.push(titulo);
             this.textContent = "❤️";
-            showNotification(`❤️ ${titulo} adicionado à Minha Lista`);
+            showNotification(`❤️ ${titulo} adicionado`);
         }
         localStorage.setItem("favorites", JSON.stringify(favoritos));
         atualizarListaFavoritos();
@@ -134,11 +132,11 @@ function atualizarListaFavoritos() {
     }
     favoritos.forEach(titulo => {
         if (!catalogo[titulo]) return;
-        const cardEl = document.createElement("div");
-        cardEl.className = "movie-card";
-        cardEl.dataset.title = titulo;
-        cardEl.innerHTML = `<img src="${catalogo[titulo].imagem}" alt="${titulo}" loading="lazy">`;
-        favoritosListaEl.appendChild(cardEl);
+        const card = document.createElement("div");
+        card.className = "movie-card";
+        card.dataset.title = titulo;
+        card.innerHTML = `<img src="${catalogo[titulo].imagem}" alt="${titulo}">`;
+        favoritosListaEl.appendChild(card);
     });
 }
 atualizarListaFavoritos();
@@ -153,30 +151,30 @@ const closeBtn = document.querySelector('.close-btn');
 const modalPlayBtn = document.getElementById('modalPlayBtn');
 let tituloAtualModal = "";
 
-const movieCards = document.querySelectorAll('.movie-card');
-movieCards.forEach(card => {
+// Abrir modal ao clicar no card
+document.querySelectorAll('.movie-card').forEach(card => {
     card.addEventListener('click', function () {
         tituloAtualModal = this.dataset.title;
-        const descricao = this.dataset.description;
         modalTitle.textContent = tituloAtualModal;
-        modalDescription.textContent = descricao;
+        modalDescription.textContent = this.dataset.description;
         modal.style.display = 'block';
         document.body.style.overflow = 'hidden';
     });
 });
 
+// Fechar modal
 closeBtn.addEventListener('click', () => {
     modal.style.display = 'none';
     document.body.style.overflow = 'auto';
 });
-
-window.addEventListener('click', (e) => {
+window.addEventListener('click', e => {
     if (e.target === modal) {
         modal.style.display = 'none';
         document.body.style.overflow = 'auto';
     }
 });
 
+// Botão Assistir do modal
 modalPlayBtn.addEventListener('click', () => {
     irParaPlayer(tituloAtualModal);
     modal.style.display = 'none';
@@ -188,7 +186,6 @@ modalPlayBtn.addEventListener('click', () => {
 const bannerImg = document.getElementById("bannerImage");
 const bannerTitulo = document.getElementById("bannerTitle");
 const bannerDesc = document.getElementById("bannerDescription");
-
 const listaBanner = Object.keys(catalogo);
 let indiceBanner = 0;
 
@@ -207,11 +204,24 @@ function trocarBanner() {
 }
 setInterval(trocarBanner, 5000);
 
+// Botão Assistir do banner
+document.querySelector('.featured-banner .play-btn').addEventListener('click', () => {
+    irParaPlayer(bannerTitulo.textContent);
+});
+
 /* ===================
    IR PARA PÁGINA DE VÍDEOS
 =================== */
 function irParaPlayer(titulo) {
     localStorage.setItem("filmeSelecionado", titulo);
+    // Salva no histórico
+    let historico = JSON.parse(localStorage.getItem("watchedMovies")) || [];
+    if (!historico.includes(titulo)) {
+        historico.unshift(titulo);
+        if (historico.length > 10) historico.pop();
+        localStorage.setItem("watchedMovies", JSON.stringify(historico));
+        atualizarHistorico();
+    }
     window.location.href = "player.html";
 }
 
@@ -229,11 +239,11 @@ function atualizarHistorico() {
     }
     historico.forEach(titulo => {
         if (!catalogo[titulo]) return;
-        const cardEl = document.createElement("div");
-        cardEl.className = "movie-card";
-        cardEl.dataset.title = titulo;
-        cardEl.innerHTML = `<img src="${catalogo[titulo].imagem}" alt="${titulo}" loading="lazy">`;
-        historicoEl.appendChild(cardEl);
+        const card = document.createElement("div");
+        card.className = "movie-card";
+        card.dataset.title = titulo;
+        card.innerHTML = `<img src="${catalogo[titulo].imagem}" alt="${titulo}">`;
+        historicoEl.appendChild(card);
     });
 }
 atualizarHistorico();
@@ -243,6 +253,5 @@ atualizarHistorico();
 =================== */
 const headerDashboard = document.querySelector(".dashboard-header");
 window.addEventListener("scroll", () => {
-    if (!headerDashboard) return;
-    headerDashboard.classList.toggle("scrolled", window.scrollY > 50);
+    headerDashboard?.classList.toggle("scrolled", window.scrollY > 50);
 });
