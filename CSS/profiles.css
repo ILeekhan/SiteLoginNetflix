@@ -19,12 +19,36 @@ body {
     text-align: center;
     width: 100%;
     max-width: 800px;
+    position: relative;
+}
+
+.profiles-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 50px;
 }
 
 .logo {
     color: #E50914;
     font-size: 2.5rem;
-    margin-bottom: 50px;
+}
+
+/* BOTÃO SAIR DA CONTA */
+.btn-sair-conta {
+    background: transparent;
+    color: #b3b3b3;
+    border: 1px solid #b3b3b3;
+    padding: 8px 16px;
+    font-size: 0.9rem;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.btn-sair-conta:hover {
+    border-color: white;
+    color: white;
 }
 
 .titulo-perfil {
@@ -67,22 +91,34 @@ body {
     transition: border 0.3s ease;
 }
 
-.cor1 { background-color: #E50914; }
-.cor2 { background-color: #0071eb; }
-.cor3 { background-color: #008000; }
+.cor1 {
+    background-color: #E50914;
+}
+
+.cor2 {
+    background-color: #0071eb;
+}
+
+.cor3 {
+    background-color: #008000;
+}
 
 .nome-perfil {
     font-size: 1.1rem;
     color: #b3b3b3;
 }
 
+/* BOTÃO GERENCIAR PERFIS */
 .btn-gerenciar {
     color: #b3b3b3;
+    background: transparent;
     border: 1px solid #b3b3b3;
     padding: 10px 20px;
-    text-decoration: none;
     font-size: 0.9rem;
+    border-radius: 3px;
+    cursor: pointer;
     transition: all 0.3s;
+    margin-bottom: 40px;
 }
 
 .btn-gerenciar:hover {
@@ -90,10 +126,21 @@ body {
     color: white;
 }
 
+.rodape-perfil {
+    margin-top: 30px;
+    color: #757575;
+    font-size: 0.85rem;
+    font-style: italic;
+}
+
 @media (max-width: 480px) {
     .avatar-perfil {
         width: 90px;
         height: 90px;
+        font-size: 2rem;
+    }
+
+    .logo {
         font-size: 2rem;
     }
 }

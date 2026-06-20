@@ -1,15 +1,23 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quem está assistindo? - Netflix</title>
     <link rel="stylesheet" href="CSS/profiles.css">
+    <link rel="stylesheet" href="CSS/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
     <div class="profiles-container">
-        <h1 class="logo">NETFLIX</h1>
+        <header class="profiles-header">
+            <h1 class="logo">NETFLIX</h1>
+            <!-- BOTÃO SAIR DA CONTA NO CANTO SUPERIOR -->
+            <button id="btnSairConta" class="btn-sair-conta">Sair da conta</button>
+        </header>
+
         <h2 class="titulo-perfil">Quem está assistindo?</h2>
 
         <div class="grid-perfis">
@@ -29,9 +37,17 @@
             </div>
         </div>
 
-        <a href="login.html" class="btn-gerenciar">Gerenciar perfis</a>
+        <!-- BOTÃO GERENCIAR PERFIS CORRIGIDO -->
+        <button id="btnGerenciar" class="btn-gerenciar">Gerenciar perfis</button>
+
+        <!-- Rodapé com aviso -->
+        <footer class="rodape-perfil">
+            <p class="aviso-demo">⚠️ Site apenas demonstrativo — Projeto de estudo de Análise e Desenvolvimento de
+                Sistemas</p>
+        </footer>
     </div>
 
     <script src="Js/profiles.js"></script>
 </body>
+
 </html>

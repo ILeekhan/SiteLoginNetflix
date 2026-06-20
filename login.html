@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Entrar - Netflix</title>
     <link rel="stylesheet" href="CSS/login.css">
+    <link rel="stylesheet" href="CSS/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
     <div class="login-bg">
         <header class="login-header">
@@ -16,12 +19,12 @@
         <!-- Card de Login -->
         <div class="login-card">
             <h2>Entrar</h2>
-            
+
             <form id="loginForm" class="form">
                 <div class="input-group">
                     <input type="text" id="loginEmail" placeholder="E-mail ou usuário" required>
                 </div>
-                
+
                 <div class="input-group senha-group">
                     <input type="password" id="loginSenha" placeholder="Senha" minlength="8" required>
                     <button type="button" class="btn-mostrar-senha">👁️</button>
@@ -39,7 +42,8 @@
             </form>
 
             <div class="links">
-                <a href="#" id="abrirCadastro">Criar conta</a>
+                <!-- BOTÃO CRIAR CONTA MAIS BONITO -->
+                <a href="#" id="abrirCadastro" class="btn-criar-conta">✨ Criar nova conta</a>
                 <a href="#" id="abrirRecuperar">Esqueci minha senha</a>
             </div>
 
@@ -62,7 +66,8 @@
                 <input type="text" id="nomeCompleto" placeholder="Nome completo" required>
                 <input type="email" id="cadastroEmail" placeholder="E-mail" required>
                 <input type="text" id="cadastroUsuario" placeholder="Nome de usuário" required>
-                <input type="password" id="cadastroSenha" placeholder="Senha (mínimo 8 caracteres)" minlength="8" required>
+                <input type="password" id="cadastroSenha" placeholder="Senha (mínimo 8 caracteres)" minlength="8"
+                    required>
                 <input type="password" id="confirmaSenha" placeholder="Confirmar senha" required>
                 <button type="submit" class="btn btn-cadastrar">Criar Conta</button>
                 <div id="cadastroErro" class="mensagem-erro"></div>
@@ -87,4 +92,5 @@
 
     <script src="Js/auth.js"></script>
 </body>
+
 </html>

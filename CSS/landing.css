@@ -8,6 +8,7 @@
 body {
     background-color: #141414;
     color: #ffffff;
+    line-height: 1.5;
 }
 
 .container {
@@ -58,24 +59,31 @@ body {
     background-color: #b20710;
 }
 
-/* Seção Hero */
+/* Seção Hero - CENTRALIZADA */
 .hero {
     height: 100vh;
-    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
-                url('../assets/images/background.jpg') center/cover no-repeat;
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+        url('../assets/images/background.jpg') center/cover no-repeat;
     display: flex;
     align-items: center;
+    justify-content: center;
     text-align: center;
+    padding: 0 20px;
+}
+
+.hero-content {
+    max-width: 800px;
+    width: 100%;
 }
 
 .hero-content h2 {
-    font-size: 3rem;
+    font-size: clamp(1.8rem, 5vw, 3rem);
     margin-bottom: 20px;
     line-height: 1.2;
 }
 
 .hero-content p {
-    font-size: 1.2rem;
+    font-size: clamp(1rem, 2vw, 1.2rem);
     margin-bottom: 30px;
     color: #e5e5e5;
 }
@@ -84,7 +92,7 @@ body {
     background-color: #E50914;
     color: #ffffff;
     padding: 12px 30px;
-    font-size: 1.1rem;
+    font-size: clamp(1rem, 2vw, 1.1rem);
 }
 
 .btn-comecar:hover {
@@ -139,7 +147,7 @@ body {
     bottom: 0;
     left: 0;
     right: 0;
-    background: linear-gradient(transparent, rgba(0,0,0,0.9));
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
     padding: 20px 10px 10px;
     display: flex;
     flex-direction: column;
@@ -156,7 +164,7 @@ body {
     padding: 6px 10px;
     border: none;
     border-radius: 3px;
-    background: rgba(255,255,255,0.2);
+    background: rgba(255, 255, 255, 0.2);
     color: white;
     cursor: pointer;
     font-size: 0.8rem;
@@ -164,7 +172,7 @@ body {
 }
 
 .btn-card:hover {
-    background: rgba(255,255,255,0.3);
+    background: rgba(255, 255, 255, 0.3);
 }
 
 /* Recursos */
@@ -219,15 +227,29 @@ body {
     padding: 40px 0;
     color: #757575;
     border-top: 8px solid #222;
+    text-align: center;
 }
 
-/* Responsividade */
+.aviso-demo {
+    margin-top: 10px;
+    font-size: 0.85rem;
+    color: #999;
+    font-style: italic;
+}
+
+/* RESPONSIVIDADE COMPLETA */
 @media (max-width: 768px) {
     .hero-content h2 {
         font-size: 2rem;
     }
+
     .logo {
         font-size: 1.8rem;
+    }
+
+    .card-filme {
+        min-width: 140px;
+        height: 200px;
     }
 }
 
@@ -235,8 +257,14 @@ body {
     .hero-content h2 {
         font-size: 1.5rem;
     }
+
+    .btn {
+        padding: 7px 15px;
+        font-size: 0.9rem;
+    }
+
     .card-filme {
-        min-width: 140px;
-        height: 200px;
+        min-width: 120px;
+        height: 170px;
     }
 }
