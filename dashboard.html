@@ -3,14 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Início - Netflix</title>
+    <title>Dashboard - Netflix Clone</title>
+    <link rel="stylesheet" href="CSS/style.css">
     <link rel="stylesheet" href="CSS/dashboard.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- Navbar -->
     <nav class="navbar">
-        <div class="container">
+        <div class="container navbar-container">
             <h1 class="logo">NETFLIX</h1>
             
             <ul class="nav-links">
@@ -25,7 +26,7 @@
                     <input type="text" id="campoBusca" placeholder="Buscar filmes...">
                 </div>
                 <div class="avatar-menu">
-                    <div class="avatar-pequeno" id="avatarUsuario"></div>
+                    <div class="avatar-pequeno" id="avatarUsuario">L</div>
                     <div class="menu-sair">
                         <button id="btnSair">Sair</button>
                     </div>
@@ -34,11 +35,11 @@
         </div>
     </nav>
 
-    <!-- Banner Dinâmico -->
+    <!-- Banner Principal -->
     <section class="banner">
         <div class="banner-conteudo">
-            <h2 id="tituloBanner"></h2>
-            <p id="descricaoBanner"></p>
+            <h2 id="tituloBanner">Stranger Things</h2>
+            <p id="descricaoBanner">Uma cidade pequena enfrenta acontecimentos sobrenaturais e uma dimensão paralela chamada Mundo Invertido. Um grupo de amigos embarca em uma aventura incrível para encontrar um amigo desaparecido.</p>
             <div class="botoes-banner">
                 <button class="btn btn-assistir">▶ Assistir</button>
                 <button class="btn btn-info">ℹ Mais Informações</button>
@@ -54,19 +55,29 @@
         </div>
     </section>
 
-    <!-- Seção Minha Lista -->
+    <!-- Seção Em Alta -->
     <section class="secao">
         <div class="container">
-            <h3 class="titulo-secao">⭐ Minha Lista</h3>
-            <div id="minhaLista" class="carrossel"></div>
+            <h3 class="titulo-secao">📈 Em Alta</h3>
+            <div id="emAlta" class="carrossel"></div>
         </div>
     </section>
 
-    <!-- Seção Populares -->
+    <!-- Seção Minha Lista -->
     <section class="secao">
         <div class="container">
-            <h3 class="titulo-secao">Populares</h3>
-            <div id="populares" class="carrossel"></div>
+            <h3 class="titulo-secao">⭐ Minha Lista (<span id="contadorLista">0</span>)</h3>
+            <div id="minhaLista" class="carrossel">
+                <p class="vazio-lista">Sua lista está vazia.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção Assistidos Recentemente -->
+    <section class="secao">
+        <div class="container">
+            <h3 class="titulo-secao">📌 Assistidos Recentemente</h3>
+            <div id="assistidosRecentes" class="carrossel"></div>
         </div>
     </section>
 
@@ -82,6 +93,14 @@
             </div>
         </div>
     </div>
+
+    <!-- Rodapé -->
+    <footer class="rodape">
+        <div class="container">
+            <p>© 2026 Netflix Clone - Projeto para estudos</p>
+            <p class="aviso-demo">⚠️ Site apenas demonstrativo — Projeto de estudo de Análise e Desenvolvimento de Sistemas</p>
+        </div>
+    </footer>
 
     <script src="Js/dashboard.js"></script>
 </body>
