@@ -1,350 +1,109 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Netflix Clone - Página Inicial</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
-
-    <style>
-        /* RESET TOTAL */
-        * {
-            margin: 0 !important;
-            padding: 0 !important;
-            box-sizing: border-box !important;
-        }
-
-        body {
-            font-family: 'Poppins', sans-serif !important;
-            background-color: #141414 !important;
-            color: #ffffff !important;
-            overflow-x: hidden !important;
-        }
-
-        a {
-            text-decoration: none !important;
-            color: inherit !important;
-        }
-
-        /* CABEÇALHO */
-        .landing-header {
-            display: flex !important;
-            justify-content: space-between !important;
-            align-items: center !important;
-            padding: 20px 40px !important;
-            position: absolute !important;
-            width: 100% !important;
-            top: 0 !important;
-            z-index: 100 !important;
-            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.85), transparent) !important;
-        }
-
-        .logo {
-            color: #E50914 !important;
-            font-size: 2rem !important;
-            font-weight: 700 !important;
-            letter-spacing: 1px !important;
-        }
-
-        .btn-login {
-            background-color: #E50914 !important;
-            color: #fff !important;
-            padding: 8px 20px !important;
-            border-radius: 3px !important;
-            font-weight: 500 !important;
-            font-size: 1rem !important;
-            transition: background 0.2s !important;
-        }
-
-        .btn-login:hover {
-            background-color: #b20710 !important;
-        }
-
-        /* SEÇÃO PRINCIPAL - BANNER AJUSTADO + CARROSSEL */
-        .hero {
-            width: 100% !important;
-            height: 85vh !important;
-            max-height: 650px !important;
-            min-height: 500px !important;
-            position: relative !important;
-            overflow: hidden !important;
-        }
-
-        .hero-slides {
-            display: flex !important;
-            width: 400% !important;
-            height: 100% !important;
-            animation: slideBanner 16s infinite ease-in-out !important;
-        }
-
-        .slide {
-            width: 100% !important;
-            height: 100% !important;
-            background-size: cover !important;
-            background-position: center 15% !important;
-            background-repeat: no-repeat !important;
-            position: relative !important;
-        }
-
-        .slide::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to top, #141414 5%, rgba(0, 0, 0, 0.4) 40%, rgba(0, 0, 0, 0.2) 100%) !important;
-        }
-
-        /* APENAS AS 4 IMAGENS ÚNICAS */
-        .slide-1 {
-            background-image: url('assets/images/Revisão Código Portfolio (3).png') !important;
-        }
-
-        .slide-2 {
-            background-image: url('assets/images/Revisão Código Portfolio (2).png') !important;
-        }
-
-        .slide-3 {
-            background-image: url('assets/images/Revisão Código Portfolio (1).png') !important;
-        }
-
-        .slide-4 {
-            background-image: url('assets/images/Revisão Código Portfolio.png') !important;
-        }
-
-        @keyframes slideBanner {
-            0% {
-                transform: translateX(0);
-            }
-
-            20% {
-                transform: translateX(0);
-            }
-
-            25% {
-                transform: translateX(-25%);
-            }
-
-            45% {
-                transform: translateX(-25%);
-            }
-
-            50% {
-                transform: translateX(-50%);
-            }
-
-            70% {
-                transform: translateX(-50%);
-            }
-
-            75% {
-                transform: translateX(-75%);
-            }
-
-            95% {
-                transform: translateX(-75%);
-            }
-
-            100% {
-                transform: translateX(0);
-            }
-        }
-
-        /* TEXTO DO BANNER */
-        .hero-content {
-            position: absolute !important;
-            bottom: 12% !important;
-            left: 40px !important;
-            transform: none !important;
-            text-align: left !important;
-            z-index: 2 !important;
-            max-width: 580px !important;
-        }
-
-        .hero-content h2 {
-            font-size: 2.4rem !important;
-            margin-bottom: 12px !important;
-            font-weight: 700 !important;
-            line-height: 1.1 !important;
-            color: #ffffff !important;
-            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8) !important;
-        }
-
-        .hero-content p {
-            font-size: 1.05rem !important;
-            margin-bottom: 20px !important;
-            color: #e5e5e5 !important;
-            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8) !important;
-            line-height: 1.4 !important;
-        }
-
-        .btn-start {
-            background-color: #ffffff !important;
-            color: #000000 !important;
-            padding: 10px 26px !important;
-            font-size: 1rem !important;
-            font-weight: 600 !important;
-            border-radius: 3px !important;
-            transition: background 0.2s !important;
-            display: inline-block !important;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3) !important;
-        }
-
-        .btn-start:hover {
-            background-color: #e6e6e6 !important;
-        }
-
-        /* SEÇÃO EM ALTA - SEM REPETIÇÕES */
-        .movies {
-            background-color: #141414 !important;
-            padding: 30px 40px 60px !important;
-        }
-
-        .movies h2 {
-            font-size: 1.2rem !important;
-            margin-bottom: 15px !important;
-            font-weight: 600 !important;
-            color: #ffffff !important;
-        }
-
-        .movies-row {
-            display: flex !important;
-            gap: 14px !important;
-            overflow-x: auto !important;
-            padding-bottom: 10px !important;
-            scrollbar-width: none !important;
-            scroll-behavior: smooth !important;
-        }
-
-        .movies-row::-webkit-scrollbar {
-            display: none !important;
-        }
-
-        .movie-card {
-            min-width: 170px !important;
-            max-width: 170px !important;
-            height: 240px !important;
-            border-radius: 4px !important;
-            overflow: hidden !important;
-            transition: transform 0.2s ease !important;
-            cursor: pointer !important;
-            flex-shrink: 0 !important;
-            background-color: #222 !important;
-        }
-
-        .movie-card:hover {
-            transform: scale(1.05) !important;
-        }
-
-        .movie-card img {
-            width: 100% !important;
-            height: 100% !important;
-            object-fit: cover !important;
-            object-position: center !important;
-            display: block !important;
-            image-rendering: crisp-edges !important;
-        }
-
-        /* RODAPÉ */
-        footer {
-            background-color: #000000 !important;
-            color: #777 !important;
-            text-align: center !important;
-            padding: 25px !important;
-            font-size: 0.9rem !important;
-            border-top: 1px solid #222 !important;
-        }
-
-        /* RESPONSIVO - CELULAR */
-        @media (max-width: 768px) {
-            .landing-header {
-                padding: 15px 20px !important;
-            }
-
-            .logo {
-                font-size: 1.5rem !important;
-            }
-
-            .hero {
-                height: 70vh !important;
-                min-height: 400px !important;
-            }
-
-            .hero-content {
-                left: 20px !important;
-                bottom: 8% !important;
-                max-width: 85% !important;
-            }
-
-            .hero-content h2 {
-                font-size: 1.7rem !important;
-            }
-
-            .hero-content p {
-                font-size: 0.95rem !important;
-            }
-
-            .movies {
-                padding: 25px 20px !important;
-            }
-
-            .movie-card {
-                min-width: 130px !important;
-                max-width: 130px !important;
-                height: 190px !important;
-            }
-        }
-    </style>
+    <title>Netflix - Assistir séries online, assistir filmes online</title>
+    <link rel="stylesheet" href="CSS/landing.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
-
 <body>
-
+    <!-- Cabeçalho -->
     <header class="landing-header">
-        <div class="logo">NETFLIX</div>
-        <a href="login.html" class="btn-login">Entrar</a>
+        <div class="container">
+            <h1 class="logo">NETFLIX</h1>
+            <a href="login.html" class="btn btn-entrar">Entrar</a>
+        </div>
     </header>
 
+    <!-- Seção Principal -->
     <section class="hero">
-        <div class="hero-slides">
-            <div class="slide slide-1"></div>
-            <div class="slide slide-2"></div>
-            <div class="slide slide-3"></div>
-            <div class="slide slide-4"></div>
-        </div>
-
         <div class="hero-content">
-            <h2>Filmes, séries e muito mais</h2>
-            <p>Assista onde quiser. Cancele quando quiser. Tudo o que você gosta em um só lugar.</p>
-            <a href="login.html" class="btn-start">Vamos lá</a>
+            <h2>Filmes, séries e muito mais<br>sem limites</h2>
+            <p>Assista onde quiser. Cancele quando quiser.</p>
+            <a href="login.html" class="btn btn-comecar">Começar Agora</a>
         </div>
     </section>
 
-    <section class="movies">
-        <h2>Em Alta</h2>
-        <div class="movies-row">
-            <!-- APENAS AS 4 IMAGENS ÚNICAS, SEM REPETIR -->
-            <div class="movie-card">
-                <img src="assets/images/Revisão Código Portfolio (3).png" alt="Stranger Things">
-            </div>
-            <div class="movie-card">
-                <img src="assets/images/Revisão Código Portfolio (2).png" alt="The Witcher">
-            </div>
-            <div class="movie-card">
-                <img src="assets/images/Revisão Código Portfolio (1).png" alt="Wandinha">
-            </div>
-            <div class="movie-card">
-                <img src="assets/images/Revisão Código Portfolio.png" alt="Dark">
+    <!-- Seção Populares -->
+    <section class="secao-filmes">
+        <div class="container">
+            <h3 class="titulo-secao">Populares</h3>
+            <div class="carrossel-filmes">
+                <div class="card-filme">
+                    <img src="assets/images/strangerthings.jpg" alt="Stranger Things">
+                    <div class="card-hover">
+                        <button class="btn-card">▶ Assistir</button>
+                        <button class="btn-card">ℹ Detalhes</button>
+                        <button class="btn-card">⭐ Favoritar</button>
+                    </div>
+                </div>
+                <div class="card-filme">
+                    <img src="assets/images/thewitcher.jpg" alt="The Witcher">
+                    <div class="card-hover">
+                        <button class="btn-card">▶ Assistir</button>
+                        <button class="btn-card">ℹ Detalhes</button>
+                        <button class="btn-card">⭐ Favoritar</button>
+                    </div>
+                </div>
+                <div class="card-filme">
+                    <img src="assets/images/wandinha.jpg" alt="Wandinha">
+                    <div class="card-hover">
+                        <button class="btn-card">▶ Assistir</button>
+                        <button class="btn-card">ℹ Detalhes</button>
+                        <button class="btn-card">⭐ Favoritar</button>
+                    </div>
+                </div>
+                <div class="card-filme">
+                    <img src="assets/images/dark.jpg" alt="Dark">
+                    <div class="card-hover">
+                        <button class="btn-card">▶ Assistir</button>
+                        <button class="btn-card">ℹ Detalhes</button>
+                        <button class="btn-card">⭐ Favoritar</button>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <footer>
-        <p>© 2026 Netflix Clone - Projeto para estudos</p>
+    <!-- Seção Recursos -->
+    <section class="recursos">
+        <div class="container">
+            <div class="recurso-item">
+                <h4>✅ Assista onde quiser</h4>
+                <p>Assista em TV, celular, tablet e notebook.</p>
+            </div>
+            <div class="recurso-item">
+                <h4>✅ Crie perfis</h4>
+                <p>Separe o que é de cada pessoa da família.</p>
+            </div>
+            <div class="recurso-item">
+                <h4>✅ Baixe conteúdos</h4>
+                <p>Assista offline onde estiver.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq">
+        <div class="container">
+            <h3>Perguntas frequentes</h3>
+            <div class="faq-item">
+                <button class="faq-pergunta">O que é a Netflix? +</button>
+                <div class="faq-resposta">
+                    <p>A Netflix é um serviço de streaming que oferece uma ampla variedade de séries, filmes e documentários premiados em milhares de aparelhos conectados à internet.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rodapé -->
+    <footer class="rodape">
+        <div class="container">
+            <p>Netflix Brasil - Projeto para Portfólio</p>
+        </div>
     </footer>
 
+    <script src="Js/landing.js"></script>
 </body>
-
 </html>

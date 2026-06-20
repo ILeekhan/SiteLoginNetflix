@@ -1,211 +1,128 @@
 /* ==========================================
-   ARQUIVO: player.js - PÁGINA DE REPRODUÇÃO
-   Funções: Carregar vídeo, episódios, histórico, navegação
+   ARQUIVO: player.js
+   FUNCIONALIDADES DO PLAYER DE VÍDEO
 ========================================== */
 
-/* ===================
-   VERIFICAÇÃO DE ACESSO E DADOS
-=================== */
-const user = JSON.parse(localStorage.getItem("currentUser"));
-if (!user) window.location.href = "login.html";
-
-const filmeSelecionado = localStorage.getItem("selectedMovie");
+// Verificar se está logado
+const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
+if (!usuarioLogado) {
+    window.location.href = 'login.html';
+}
 
 // Elementos da página
-const movieTitle = document.getElementById("movieTitle");
-const movieDescription = document.getElementById("movieDescription");
-const movieTrailer = document.getElementById("movieTrailer");
-const backBtn = document.getElementById("backBtn");
+const videoPlayer = document.getElementById('videoPlayer');
+const tituloVideo = document.getElementById('tituloVideo');
+const descricaoVideo = document.getElementById('descricaoVideo');
+const listaVideosEl = document.getElementById('listaVideos');
 
-/* ===================
-   CATÁLOGO DE CONTEÚDO (CENTRALIZADO)
-=================== */
+// Recuperar série selecionada do localStorage
+const serieSelecionada = localStorage.getItem('filmeSelecionado') || "Stranger Things";
+
+// Catálogo completo (igual ao dashboard)
 const catalogo = {
     "Stranger Things": {
-        descricao: "Uma cidade pequena enfrenta acontecimentos sobrenaturais e uma dimensão paralela chamada Mundo Invertido.",
-        trailer: "https://www.youtube.com/embed/b9EkMc79ZSU",
-        episodios: {
-            1: {
-                titulo: "Episódio 1",
-                descricao: "O desaparecimento de Will inicia acontecimentos estranhos na cidade.",
-                video: "https://www.youtube.com/embed/b9EkMc79ZSU"
-            },
-            2: {
-                titulo: "Episódio 2",
-                descricao: "Eleven demonstra seus poderes enquanto os mistérios aumentam.",
-                video: "https://www.youtube.com/embed/R1ZXOOLMJ8s"
-            },
-            3: {
-                titulo: "Episódio 3",
-                descricao: "Os amigos iniciam uma perigosa busca por respostas.",
-                video: "https://www.youtube.com/embed/mnd7sFt5c3A"
-            }
-        }
+        descricao: "Uma cidade pequena enfrenta acontecimentos sobrenaturais e uma dimensão paralela chamada Mundo Invertido. Um grupo de amigos embarca em uma aventura incrível para encontrar um amigo desaparecido.",
+        videos: [
+            { titulo: "Episódio 1: O Desaparecimento", id: "bEkYtH8tG7s", duracao: "50min" },
+            { titulo: "Episódio 2: A Estranha", id: "c0i8j3yV8d0", duracao: "52min" },
+            { titulo: "Episódio 3: Capítulo Um: A Menina Desaparecida", id: "dQw4w9WgXcQ", duracao: "48min" },
+            { titulo: "Trailer Oficial", id: "O2R5j3dX7a8", duracao: "2min 30s" }
+        ]
     },
-
     "The Witcher": {
-        descricao: "Geralt de Rívia luta contra monstros e enfrenta conflitos políticos em um mundo medieval fantástico.",
-        trailer: "https://www.youtube.com/embed/ndl1W4ltcmg",
-        episodios: {
-            1: {
-                titulo: "Episódio 1",
-                descricao: "Geralt enfrenta uma criatura mortal.",
-                video: "https://www.youtube.com/embed/ndl1W4ltcmg"
-            },
-            2: {
-                titulo: "Episódio 2",
-                descricao: "Conflitos políticos começam a surgir.",
-                video: "https://www.youtube.com/embed/WX6e6ZLNmtA"
-            },
-            3: {
-                titulo: "Episódio 3",
-                descricao: "Geralt encontra aliados inesperados.",
-                video: "https://www.youtube.com/embed/1-l29HlKkXU"
-            }
-        }
+        descricao: "Geralt de Rívia, um caçador de monstros, luta para encontrar seu lugar em um mundo onde pessoas são muitas vezes mais perigosas que as feras.",
+        videos: [
+            { titulo: "Episódio 1: O Começo do Fim", id: "q1L9s5wE4r0", duracao: "55min" },
+            { titulo: "Episódio 2: Maravilhas e Monstros", id: "xZ7kL2mP9aQ", duracao: "53min" },
+            { titulo: "Trailer Oficial", id: "yW3eR9tU7iO", duracao: "2min 15s" }
+        ]
     },
-
     "Wandinha": {
-        descricao: "A filha da Família Addams investiga mistérios sobrenaturais enquanto estuda na Escola Nunca Mais.",
-        trailer: "https://www.youtube.com/embed/Di310WS8zLk",
-        episodios: {
-            1: {
-                titulo: "Episódio 1",
-                descricao: "Wandinha chega à Escola Nunca Mais.",
-                video: "https://www.youtube.com/embed/Di310WS8zLk"
-            },
-            2: {
-                titulo: "Episódio 2",
-                descricao: "Mistérios sobrenaturais começam a surgir.",
-                video: "https://www.youtube.com/embed/f6wgSkW7giQ"
-            },
-            3: {
-                titulo: "Episódio 3",
-                descricao: "Wandinha investiga acontecimentos estranhos.",
-                video: "https://www.youtube.com/embed/NakTu_VZxJ0"
-            }
-        }
+        descricao: "Wandinha Addams estuda na Academia Nunca Mais, onde tenta dominar sua habilidade psíquica, investiga uma onda de assassinatos e desvenda um mistério que envolveu seus pais no passado.",
+        videos: [
+            { titulo: "Episódio 1: Esperança", id: "pP5uY8iO3bV", duracao: "49min" },
+            { titulo: "Episódio 2: Luto", id: "nM9bV4xZ6cD", duracao: "51min" },
+            { titulo: "Trailer Oficial", id: "bN2vC8mK5jH", duracao: "1min 50s" }
+        ]
     },
-
     "Dark": {
-        descricao: "Uma série alemã sobre viagens no tempo, desaparecimentos e segredos familiares.",
-        trailer: "https://www.youtube.com/embed/ESEUoa-mz2c",
-        episodios: {
-            1: {
-                titulo: "Episódio 1",
-                descricao: "Uma criança desaparece misteriosamente.",
-                video: "https://www.youtube.com/embed/ESEUoa-mz2c"
-            },
-            2: {
-                titulo: "Episódio 2",
-                descricao: "Segredos envolvendo o tempo aparecem.",
-                video: "https://www.youtube.com/embed/HEx0pNQ1fbM"
-            },
-            3: {
-                titulo: "Episódio 3",
-                descricao: "Os laços familiares começam a ser revelados.",
-                video: "https://www.youtube.com/embed/Vxduc1dSi8M"
-            }
-        }
+        descricao: "Quatro famílias de uma cidade pequena vivem um mistério envolvendo o desaparecimento de crianças, viagens no tempo e segredos que atravessam gerações.",
+        videos: [
+            { titulo: "Episódio 1: Segredos", id: "kL8jH4dF9sA", duracao: "52min" },
+            { titulo: "Episódio 2: Mentiras", id: "dF3gH7jK5lZ", duracao: "50min" },
+            { titulo: "Trailer Oficial", id: "sA9dF2gH6jK", duracao: "2min 10s" }
+        ]
     }
 };
 
-/* ===================
-   CARREGAR DADOS INICIAIS
-=================== */
-if (filmeSelecionado && catalogo[filmeSelecionado]) {
-    const dados = catalogo[filmeSelecionado];
+// Carregar dados da série
+const dadosSerie = catalogo[serieSelecionada];
 
-    // Tela inicial da série/filme
-    movieTitle.textContent = filmeSelecionado;
-    movieDescription.textContent = dados.descricao;
-    movieTrailer.src = dados.trailer;
+// Atualizar informações na tela
+tituloVideo.textContent = serieSelecionada;
+descricaoVideo.textContent = dadosSerie.descricao;
 
-    // Marca como último assistido
-    localStorage.setItem("lastWatched", filmeSelecionado);
+// Carregar lista de vídeos
+function carregarListaVideos() {
+    listaVideosEl.innerHTML = "";
 
-    // Adiciona ao histórico (sem duplicar)
+    dadosSerie.videos.forEach((video, index) => {
+        const item = document.createElement("div");
+        item.className = `video-item ${index === 0 ? "ativo" : ""}`;
+        item.dataset.videoId = video.id;
+
+        item.innerHTML = `
+            <div>
+                <div class="video-titulo">${video.titulo}</div>
+            </div>
+            <div class="video-duracao">${video.duracao}</div>
+        `;
+
+        // Ao clicar no item
+        item.onclick = () => {
+            // Remover ativo de todos
+            document.querySelectorAll(".video-item").forEach(el => el.classList.remove("ativo"));
+            // Adicionar ativo no clicado
+            item.classList.add("ativo");
+            // Trocar vídeo
+            trocarVideo(video.id);
+            // Salvar último episódio assistido
+            salvarUltimoEpisodio(serieSelecionada, video);
+        };
+
+        listaVideosEl.appendChild(item);
+    });
+}
+
+// Trocar vídeo no iframe
+function trocarVideo(videoId) {
+    videoPlayer.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+}
+
+// Salvar último episódio assistido (para Continuar Assistindo)
+function salvarUltimoEpisodio(nomeSerie, video) {
     let historico = JSON.parse(localStorage.getItem("watchedMovies")) || [];
-    if (!historico.includes(filmeSelecionado)) {
-        historico.unshift(filmeSelecionado);
-        localStorage.setItem("watchedMovies", JSON.stringify(historico));
-    }
-
-} else {
-    // Se não tiver filme selecionado, volta para dashboard
-    window.location.href = "dashboard.html";
-}
-
-/* ===================
-   CONTROLE DE EPISÓDIOS
-=================== */
-const dadosSerie = catalogo[filmeSelecionado]?.episodios;
-const botoesEpisodio = document.querySelectorAll(".episode-btn");
-
-if (dadosSerie && botoesEpisodio.length > 0) {
-
-    // Clica no episódio
-    botoesEpisodio.forEach(botao => {
-        botao.addEventListener("click", function () {
-            const numero = this.dataset.episode;
-
-            if (dadosSerie[numero]) {
-                const ep = dadosSerie[numero];
-
-                // Atualiza tela
-                movieTitle.textContent = `${filmeSelecionado} - ${ep.titulo}`;
-                movieDescription.textContent = ep.descricao;
-                movieTrailer.src = ep.video;
-
-                // Marca episódio atual
-                localStorage.setItem(`${filmeSelecionado}_epAtual`, numero);
-
-                // Estilo ativo
-                botoesEpisodio.forEach(btn => btn.classList.remove("episode-active"));
-                this.classList.add("episode-active");
-
-                // Salva progresso
-                localStorage.setItem("ultimoEpisodio", JSON.stringify({
-                    serie: filmeSelecionado,
-                    episodio: numero
-                }));
-            }
-        });
+    
+    // Remover se já existir
+    historico = historico.filter(item => item.serie !== nomeSerie);
+    
+    // Adicionar no início
+    historico.unshift({
+        serie: nomeSerie,
+        ultimoVideo: video,
+        data: new Date().toISOString()
     });
 
-    // Carrega último episódio assistido
-    const ultimoEpSalvo = localStorage.getItem(`${filmeSelecionado}_epAtual`);
-    if (ultimoEpSalvo && dadosSerie[ultimoEpSalvo]) {
-        const ep = dadosSerie[ultimoEpSalvo];
+    // Manter apenas os últimos 10
+    if (historico.length > 10) historico.pop();
 
-        movieTitle.textContent = `${filmeSelecionado} - ${ep.titulo}`;
-        movieDescription.textContent = ep.descricao;
-        movieTrailer.src = ep.video;
-
-        // Marca botão
-        const botaoAtivo = document.querySelector(`[data-episode="${ultimoEpSalvo}"]`);
-        if (botaoAtivo) botaoAtivo.classList.add("episode-active");
-    }
+    localStorage.setItem("watchedMovies", JSON.stringify(historico));
 }
 
-/* ===================
-   BOTÃO VOLTAR
-=================== */
-if (backBtn) {
-    backBtn.addEventListener("click", () => {
-        window.location.href = "dashboard.html";
-    });
+// Inicializar com o primeiro vídeo
+if (dadosSerie.videos.length > 0) {
+    trocarVideo(dadosSerie.videos[0].id);
 }
 
-/* ===================
-   EFEITOS E VISUAL
-=================== */
-// Esconde cabeçalho ao rolar para melhor experiência
-const headerPlayer = document.querySelector(".player-header");
-window.addEventListener("scroll", () => {
-    if (!headerPlayer) return;
-    headerPlayer.style.opacity = window.scrollY > 100 ? "0" : "1";
-    headerPlayer.style.pointerEvents = window.scrollY > 100 ? "none" : "auto";
-});
-
-console.log("✅ Player carregado e funcional!");
+// Executar carregamento
+carregarListaVideos();

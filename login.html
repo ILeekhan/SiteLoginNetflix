@@ -1,104 +1,90 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Faça login na sua conta Netflix ou crie uma nova para assistir filmes e séries.">
-    <title>Entrar | Netflix Clone</title>
-
-    <!-- Fonte otimizada, igual nas outras páginas -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
-
+    <title>Entrar - Netflix</title>
     <link rel="stylesheet" href="CSS/login.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
-
 <body>
-    <!-- Plano de fundo igual ao site oficial -->
-    <div class="background"></div>
-    <div class="overlay"></div>
-
-    <header class="login-header">
-        <div class="container">
+    <div class="login-bg">
+        <header class="login-header">
             <h1 class="logo">NETFLIX</h1>
-        </div>
-    </header>
+        </header>
 
-    <main class="login-main">
-        <div class="container">
-            <div class="login-container">
-                <h2>Entrar</h2>
-
-                <form id="loginForm" class="login-form">
-                    <div class="input-group">
-                        <input type="email" id="email" placeholder="E-mail ou número de telefone" required>
-                    </div>
-
-                    <div class="input-group password-box">
-                        <input type="password" id="password" placeholder="Senha" required>
-                        <button type="button" id="togglePassword" class="toggle-btn" aria-label="Mostrar senha">
-                            👁
-                        </button>
-                    </div>
-
-                    <button type="submit" class="btn btn-red">Entrar</button>
-                </form>
-
-                <div id="message" class="message-box"></div>
-
-                <div class="links">
-                    <button type="button" id="openRegister" class="link-btn">Criar Conta</button>
-                    <button type="button" id="openRecovery" class="link-btn">Esqueci Minha Senha</button>
+        <!-- Card de Login -->
+        <div class="login-card">
+            <h2>Entrar</h2>
+            
+            <form id="loginForm" class="form">
+                <div class="input-group">
+                    <input type="text" id="loginEmail" placeholder="E-mail ou usuário" required>
                 </div>
+                
+                <div class="input-group senha-group">
+                    <input type="password" id="loginSenha" placeholder="Senha" minlength="8" required>
+                    <button type="button" class="btn-mostrar-senha">👁️</button>
+                </div>
+
+                <div class="lembrar">
+                    <input type="checkbox" id="lembrarUsuario">
+                    <label for="lembrarUsuario">Lembrar de mim</label>
+                </div>
+
+                <button type="submit" class="btn btn-entrar-grande">Entrar</button>
+
+                <div id="loginLoading" class="loading" style="display: none;">Carregando...</div>
+                <div id="loginErro" class="mensagem-erro" style="display: none;"></div>
+            </form>
+
+            <div class="links">
+                <a href="#" id="abrirCadastro">Criar conta</a>
+                <a href="#" id="abrirRecuperar">Esqueci minha senha</a>
+            </div>
+
+            <div class="dark-mode-toggle">
+                <label class="switch">
+                    <input type="checkbox" id="darkMode">
+                    <span class="slider"></span>
+                </label>
+                <span>Modo Escuro</span>
             </div>
         </div>
-    </main>
+    </div>
 
-    <!-- MODAL DE CADASTRO -->
-    <div class="modal" id="registerModal">
-        <div class="modal-content">
-            <span class="close-btn" id="closeRegister" aria-label="Fechar modal">&times;</span>
+    <!-- Modal Cadastro -->
+    <div id="modalCadastro" class="modal">
+        <div class="modal-conteudo">
+            <span class="fechar">&times;</span>
             <h2>Criar Conta</h2>
-
-            <form id="registerForm" class="modal-form">
-                <div class="input-group">
-                    <input type="text" id="registerName" placeholder="Nome Completo" required>
-                </div>
-                <div class="input-group">
-                    <input type="email" id="registerEmail" placeholder="E-mail" required>
-                </div>
-                <div class="input-group">
-                    <input type="password" id="registerPassword" placeholder="Senha" required>
-                </div>
-                <div class="input-group">
-                    <input type="password" id="registerConfirmPassword" placeholder="Confirmar Senha" required>
-                </div>
-
-                <button type="submit" class="btn btn-red">Criar Conta</button>
+            <form id="cadastroForm">
+                <input type="text" id="nomeCompleto" placeholder="Nome completo" required>
+                <input type="email" id="cadastroEmail" placeholder="E-mail" required>
+                <input type="text" id="cadastroUsuario" placeholder="Nome de usuário" required>
+                <input type="password" id="cadastroSenha" placeholder="Senha (mínimo 8 caracteres)" minlength="8" required>
+                <input type="password" id="confirmaSenha" placeholder="Confirmar senha" required>
+                <button type="submit" class="btn btn-cadastrar">Criar Conta</button>
+                <div id="cadastroErro" class="mensagem-erro"></div>
             </form>
         </div>
     </div>
 
-    <!-- MODAL DE RECUPERAÇÃO DE SENHA -->
-    <div class="modal" id="recoveryModal">
-        <div class="modal-content">
-            <span class="close-btn" id="closeRecovery" aria-label="Fechar modal">&times;</span>
+    <!-- Modal Recuperar Senha -->
+    <div id="modalRecuperar" class="modal">
+        <div class="modal-conteudo">
+            <span class="fechar">&times;</span>
             <h2>Recuperar Senha</h2>
-
-            <form id="recoveryForm" class="modal-form">
-                <div class="input-group">
-                    <input type="email" placeholder="Digite seu e-mail cadastrado" required>
-                </div>
-
-                <button type="submit" class="btn btn-red">Enviar instruções</button>
+            <form id="recuperarForm">
+                <input type="email" id="recuperarEmail" placeholder="Digite seu e-mail" required>
+                <button type="submit" class="btn btn-recuperar">Enviar</button>
             </form>
         </div>
     </div>
 
-    <script src="Js/auth.js" defer></script>
-</body>
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
 
+    <script src="Js/auth.js"></script>
+</body>
 </html>

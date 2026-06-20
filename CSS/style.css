@@ -1,130 +1,110 @@
 /* ==========================================
-   ARQUIVO: style.css - VERSÃO 100% FUNCIONAL
+   ARQUIVO: style.css
+   ESTILOS GERAIS PARA TODO O SITE
 ========================================== */
 
 /* Reset obrigatório */
 * {
-    margin: 0 !important;
-    padding: 0 !important;
-    box-sizing: border-box !important;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-    font-family: 'Poppins', sans-serif !important;
-    background-color: #141414 !important;
-    color: #ffffff !important;
+    font-family: 'Roboto', sans-serif;
+    background-color: #141414;
+    color: #ffffff;
+    line-height: 1.4;
 }
 
 a {
-    text-decoration: none !important;
-    color: inherit !important;
+    text-decoration: none;
+    color: inherit;
 }
 
-/* ========== CABEÇALHO ========== */
-.landing-header {
-    display: flex !important;
-    justify-content: space-between !important;
-    align-items: center !important;
-    padding: 20px 40px !important;
-    background: transparent !important;
-    position: absolute !important;
-    width: 100% !important;
-    top: 0 !important;
-    z-index: 999 !important;
+ul {
+    list-style: none;
 }
 
-.logo {
-    color: #E50914 !important;
-    font-size: 2rem !important;
-    font-weight: bold !important;
+img {
+    max-width: 100%;
+    display: block;
 }
 
-.btn-login {
-    background: #E50914 !important;
-    color: white !important;
-    padding: 8px 20px !important;
-    border-radius: 3px !important;
-    font-weight: 500 !important;
+/* Botões padrão */
+.btn {
+    border: none;
+    border-radius: 3px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
-.btn-login:hover {
-    background: #b20710 !important;
+.btn-primary {
+    background-color: #E50914;
+    color: #ffffff;
 }
 
-/* ========== SEÇÃO PRINCIPAL ========== */
-.hero {
-    width: 100% !important;
-    height: 100vh !important;
-    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-        url('../assets/images/Revisão Código Portfolio (3).png') center/cover no-repeat !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    text-align: center !important;
+.btn-primary:hover {
+    background-color: #b20710;
 }
 
-.hero-content h2 {
-    font-size: 3rem !important;
-    margin-bottom: 15px !important;
-    color: #fff !important;
+.btn-secondary {
+    background-color: rgba(109, 109, 110, 0.7);
+    color: #ffffff;
 }
 
-.hero-content p {
-    font-size: 1.2rem !important;
-    margin-bottom: 25px !important;
-    color: #e5e5e5 !important;
+.btn-secondary:hover {
+    background-color: rgba(109, 109, 110, 0.5);
 }
 
-.btn-start {
-    background: white !important;
-    color: black !important;
-    padding: 12px 30px !important;
-    font-size: 1.1rem !important;
-    font-weight: 600 !important;
-    border-radius: 3px !important;
+/* Utilitários */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-.btn-start:hover {
-    background: #e6e6e6 !important;
+.oculto {
+    display: none !important;
 }
 
-/* ========== EM ALTA ========== */
-.movies {
-    background: #141414 !important;
-    padding: 40px 40px 60px !important;
+/* Animações */
+.fade-in {
+    animation: fadeIn 0.5s ease-in;
 }
 
-.movies h2 {
-    font-size: 1.3rem !important;
-    margin-bottom: 20px !important;
-    color: white !important;
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
-.movies-row {
-    display: flex !important;
-    gap: 15px !important;
-    overflow-x: auto !important;
+/* Scroll suave */
+html {
+    scroll-behavior: smooth;
 }
 
-.movie-card {
-    min-width: 180px !important;
-    height: 250px !important;
-    border-radius: 4px !important;
-    overflow: hidden !important;
+/* Barra de rolagem personalizada */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
 }
 
-.movie-card img {
-    width: 100% !important;
-    height: 100% !important;
-    object-fit: cover !important;
-    display: block !important;
+::-webkit-scrollbar-track {
+    background: #141414;
 }
 
-/* ========== RODAPÉ ========== */
-footer {
-    background: #000 !important;
-    color: #777 !important;
-    text-align: center !important;
-    padding: 25px !important;
-    font-size: 0.9rem !important;
+::-webkit-scrollbar-thumb {
+    background: #E50914;
+    border-radius: 4px;
+}
+
+/* Responsividade geral */
+@media (max-width: 768px) {
+    .btn {
+        padding: 8px 16px;
+        font-size: 0.9rem;
+    }
 }

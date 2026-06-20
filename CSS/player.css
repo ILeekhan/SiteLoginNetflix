@@ -1,230 +1,154 @@
 /* ==========================================
-   ARQUIVO: player.css - ESTILOS DA PÁGINA DE REPRODUÇÃO
+   ARQUIVO: player.css
+   ESTILOS DA PÁGINA DE VÍDEO
 ========================================== */
 
-/* ========== RESET E BASE ========== */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
 }
 
 body {
-    font-family: 'Poppins', sans-serif;
-    background-color: #141414;
+    background-color: #000000;
     color: #ffffff;
-    min-height: 100vh;
-    line-height: 1.6;
+    padding-top: 20px;
 }
 
-/* ========== ESTRUTURA GERAL ========== */
-.player-wrapper {
-    width: 100%;
-}
-
-.container {
+.player-container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
 }
 
-/* ========== CABEÇALHO ========== */
-.player-header {
-    background-color: #000000;
-    border-bottom: 1px solid #222222;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    padding: 20px 0;
+/* Botão Voltar */
+.btn-voltar {
+    display: inline-block;
+    color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 8px 16px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+    transition: background 0.3s ease;
 }
 
-.header-content {
+.btn-voltar:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Vídeo Principal */
+.video-principal {
+    width: 100%;
+    height: 650px;
+    margin-bottom: 30px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.video-principal iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* Informações do Título */
+.info-video {
+    margin-bottom: 25px;
+}
+
+.info-video h2 {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+    color: #ffffff;
+}
+
+.info-video p {
+    color: #b3b3b3;
+    font-size: 1rem;
+    max-width: 800px;
+}
+
+/* Lista de Episódios / Vídeos */
+.video-lista {
+    background-color: #181818;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.video-lista h3 {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    color: #e5e5e5;
+    border-bottom: 1px solid #333;
+    padding-bottom: 10px;
+}
+
+.videos-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.video-item {
+    padding: 12px 15px;
+    background-color: #282828;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.logo {
-    color: #E50914;
-    font-size: 2rem;
-    font-weight: 700;
-    letter-spacing: 1px;
+.video-item:hover {
+    background-color: #383838;
+    transform: translateX(5px);
 }
 
-.btn {
-    border: none;
-    border-radius: 4px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-size: 1rem;
-}
-
-.back-btn {
+.video-item.ativo {
     background-color: #E50914;
-    color: #ffffff;
-    padding: 10px 20px;
 }
 
-.back-btn:hover {
-    background-color: #b20710;
-    transform: scale(1.05);
+.video-titulo {
+    font-size: 0.95rem;
 }
 
-/* ========== CONTEÚDO PRINCIPAL ========== */
-.player-main {
-    padding: 40px 0;
+.video-duracao {
+    font-size: 0.85rem;
+    color: #b3b3b3;
 }
 
-.player-container {
-    width: 100%;
-}
-
-/* Informações do filme/série */
-.movie-info {
-    margin-bottom: 30px;
-}
-
-.movie-title {
-    font-size: 2.6rem;
-    font-weight: 700;
-    margin-bottom: 15px;
+.video-item.ativo .video-duracao {
     color: #ffffff;
 }
 
-.movie-desc {
-    color: #cfcfcf;
-    font-size: 1.05rem;
-    max-width: 900px;
-}
-
-/* ========== SEÇÃO DE EPISÓDIOS ========== */
-.episodes-section {
-    margin-bottom: 35px;
-}
-
-.section-subtitle {
-    color: #E50914;
-    font-size: 1.2rem;
-    font-weight: 600;
-    margin-bottom: 15px;
-}
-
-.episodes-container {
-    display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
-}
-
-.episode-btn {
-    background-color: #222222;
-    color: #ffffff;
-    padding: 12px 20px;
-    border-radius: 8px;
-    font-weight: 500;
-}
-
-.episode-btn:hover {
-    background-color: #E50914;
-}
-
-/* Classe ativa que vai ser adicionada via JS */
-.episode-btn.active {
-    background-color: #E50914;
-    font-weight: 700;
-    box-shadow: 0 0 10px rgba(229, 9, 20, 0.3);
-}
-
-/* ========== PLAYER DE VÍDEO ========== */
-.video-section {
-    width: 100%;
-}
-
-.video-wrapper {
-    width: 100%;
-    overflow: hidden;
-    border-radius: 15px;
-    box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
-}
-
-iframe {
-    width: 100%;
-    display: block;
-    border: none;
-}
-
-/* ========== BARRA DE ROLAGEM PERSONALIZADA ========== */
-::-webkit-scrollbar {
-    width: 8px;
-}
-
-::-webkit-scrollbar-track {
-    background-color: #111111;
-}
-
-::-webkit-scrollbar-thumb {
-    background-color: #E50914;
-    border-radius: 10px;
-}
-
-/* ========== RESPONSIVIDADE ========== */
-
-/* Tablet */
+/* Responsividade */
 @media (max-width: 992px) {
-    .movie-title {
-        font-size: 2.1rem;
-    }
-
-    iframe {
-        height: 450px !important;
+    .video-principal {
+        height: 500px;
     }
 }
 
-/* Celular */
 @media (max-width: 768px) {
-    .player-header {
-        padding: 15px 0;
+    .video-principal {
+        height: 350px;
     }
 
-    .header-content {
-        flex-direction: column;
-        gap: 15px;
-        text-align: center;
+    .info-video h2 {
+        font-size: 1.4rem;
     }
 
-    .logo {
-        font-size: 1.8rem;
-    }
-
-    .movie-title {
-        font-size: 1.8rem;
-    }
-
-    .movie-desc {
-        font-size: 0.95rem;
-    }
-
-    .episodes-container {
-        justify-content: center;
-    }
-
-    iframe {
-        height: 300px !important;
+    .video-item {
+        padding: 10px 12px;
     }
 }
 
-/* Celular pequeno */
 @media (max-width: 480px) {
-    .movie-title {
-        font-size: 1.5rem;
-    }
-
-    .episode-btn {
-        width: 100%;
-        text-align: center;
-    }
-
-    iframe {
-        height: 220px !important;
+    .video-principal {
+        height: 220px;
     }
 }

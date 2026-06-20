@@ -1,173 +1,242 @@
-/* ==========================================
-   ARQUIVO: landing.css - ESTILOS DA PÁGINA INICIAL
-========================================== */
-
-/* ========== RESET E BASE ========== */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Roboto', sans-serif;
 }
 
 body {
     background-color: #141414;
     color: #ffffff;
-    line-height: 1.5;
-    overflow-x: hidden;
 }
 
-/* ========== CABEÇALHO ========== */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Cabeçalho */
 .landing-header {
     position: absolute;
     width: 100%;
-    padding: 20px 60px;
-    display: flex !important;
+    top: 0;
+    padding: 20px 0;
+    z-index: 100;
+}
+
+.landing-header .container {
+    display: flex;
     justify-content: space-between;
     align-items: center;
-    z-index: 10;
-    top: 0;
-    left: 0;
 }
 
 .logo {
     color: #E50914;
-    font-size: 2.5rem;
+    font-size: 2.2rem;
     font-weight: 700;
-    text-decoration: none;
+    letter-spacing: -1px;
 }
 
-.btn-login {
-    background-color: #E50914;
-    color: #ffffff;
-    text-decoration: none;
-    padding: 10px 20px;
-    border-radius: 4px;
+.btn {
+    padding: 8px 20px;
+    border-radius: 3px;
+    border: none;
+    font-size: 1rem;
     font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
     transition: background 0.3s ease;
 }
 
-.btn-login:hover {
+.btn-entrar {
+    background-color: #E50914;
+    color: #ffffff;
+}
+
+.btn-entrar:hover {
     background-color: #b20710;
 }
 
-/* ========== SEÇÃO HERO ========== */
+/* Seção Hero */
 .hero {
     height: 100vh;
-    background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)),
-                url("https://images.unsplash.com/photo-1489599849927-2ee91cede3ba");
-    background-size: cover;
-    background-position: center;
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                url('../assets/images/background.jpg') center/cover no-repeat;
     display: flex;
-    justify-content: center;
     align-items: center;
     text-align: center;
-    padding: 0 20px;
 }
 
 .hero-content h2 {
     font-size: 3rem;
     margin-bottom: 20px;
-    max-width: 800px;
+    line-height: 1.2;
 }
 
 .hero-content p {
     font-size: 1.2rem;
     margin-bottom: 30px;
     color: #e5e5e5;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
 }
 
-.btn-start {
+.btn-comecar {
     background-color: #E50914;
     color: #ffffff;
-    text-decoration: none;
-    padding: 15px 30px;
-    border-radius: 4px;
-    font-weight: 600;
+    padding: 12px 30px;
     font-size: 1.1rem;
-    transition: background 0.3s ease;
-    display: inline-block;
 }
 
-.btn-start:hover {
+.btn-comecar:hover {
     background-color: #b20710;
 }
 
-/* ========== SEÇÃO DE FILMES (AQUI ESTAVA O ERRO) ========== */
-.movies {
-    padding: 50px 60px;
-    background-color: #141414;
+/* Seção Filmes */
+.secao-filmes {
+    padding: 50px 0;
 }
 
-.movies h2 {
-    font-size: 1.5rem;
-    margin-bottom: 20px;
-    font-weight: 600;
+.titulo-secao {
+    font-size: 1.3rem;
+    margin-bottom: 15px;
 }
 
-/* ESSA PARTE É A MAIS IMPORTANTE: GARANTE QUE FIQUEM LADO A LADO */
-.movies-row {
-    display: flex !important; /* FORÇA O FLEX */
-    flex-direction: row !important; /* GARANTE LINHA HORIZONTAL */
+.carrossel-filmes {
+    display: flex;
     gap: 15px;
     overflow-x: auto;
+    padding-bottom: 10px;
     scrollbar-width: none;
-    flex-wrap: nowrap !important; /* NÃO DEIXA QUEBRAR LINHA */
 }
 
-.movies-row::-webkit-scrollbar {
+.carrossel-filmes::-webkit-scrollbar {
     display: none;
 }
 
-.movie-card {
-    min-width: 250px;
-    height: 350px;
-    background-color: #333333;
-    border-radius: 8px;
+.card-filme {
+    min-width: 180px;
+    height: 250px;
+    border-radius: 4px;
     overflow: hidden;
-    transition: transform 0.3s ease;
+    position: relative;
     cursor: pointer;
-    flex-shrink: 0; /* NÃO DEIXA O CARD ENCOLHER */
+    transition: transform 0.3s ease;
 }
 
-.movie-card:hover {
-    transform: scale(1.05);
+.card-filme:hover {
+    transform: scale(1.08);
+    z-index: 10;
 }
 
-.movie-card img {
+.card-filme img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
-/* ========== RODAPÉ ========== */
-footer {
-    text-align: center;
-    padding: 30px;
-    color: #808080;
-    font-size: 0.9rem;
-    border-top: 1px solid #222;
+.card-hover {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0,0,0,0.9));
+    padding: 20px 10px 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
-/* ========== RESPONSIVIDADE ========== */
+.card-filme:hover .card-hover {
+    opacity: 1;
+}
+
+.btn-card {
+    padding: 6px 10px;
+    border: none;
+    border-radius: 3px;
+    background: rgba(255,255,255,0.2);
+    color: white;
+    cursor: pointer;
+    font-size: 0.8rem;
+    backdrop-filter: blur(5px);
+}
+
+.btn-card:hover {
+    background: rgba(255,255,255,0.3);
+}
+
+/* Recursos */
+.recursos {
+    padding: 40px 0;
+    border-top: 8px solid #222;
+    border-bottom: 8px solid #222;
+}
+
+.recurso-item {
+    margin: 20px 0;
+}
+
+/* FAQ */
+.faq {
+    padding: 50px 0;
+}
+
+.faq-pergunta {
+    width: 100%;
+    background-color: #303030;
+    color: white;
+    border: none;
+    padding: 15px 20px;
+    text-align: left;
+    font-size: 1.1rem;
+    margin-bottom: 2px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.faq-pergunta:hover {
+    background-color: #404040;
+}
+
+.faq-resposta {
+    background-color: #303030;
+    padding: 0 20px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    margin-bottom: 2px;
+}
+
+.faq-item.active .faq-resposta {
+    max-height: 300px;
+    padding: 15px 20px;
+}
+
+/* Rodapé */
+.rodape {
+    padding: 40px 0;
+    color: #757575;
+    border-top: 8px solid #222;
+}
+
+/* Responsividade */
 @media (max-width: 768px) {
-    .landing-header {
-        padding: 20px;
+    .hero-content h2 {
+        font-size: 2rem;
     }
-    .logo { font-size: 2rem; }
-    .hero-content h2 { font-size: 2rem; }
-    .hero-content p { font-size: 1rem; }
-    .movies { padding: 30px 20px; }
-    .movie-card {
-        min-width: 180px;
-        height: 260px;
+    .logo {
+        font-size: 1.8rem;
     }
 }
 
 @media (max-width: 480px) {
-    .hero-content h2 { font-size: 1.6rem; }
-    .btn-start { padding: 12px 25px; font-size: 1rem; }
+    .hero-content h2 {
+        font-size: 1.5rem;
+    }
+    .card-filme {
+        min-width: 140px;
+        height: 200px;
+    }
 }

@@ -1,108 +1,15 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Assistir - Netflix Clone</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-        }
-
-        body {
-            background-color: #141414;
-            color: #fff;
-            padding: 30px 20px;
-        }
-
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        h1 {
-            margin-bottom: 30px;
-            color: #E50914;
-        }
-
-        .opcoes {
-            display: grid;
-            gap: 20px;
-        }
-
-        .opcao {
-            background: #222;
-            padding: 20px;
-            border-radius: 8px;
-        }
-
-        .opcao h3 {
-            margin-bottom: 15px;
-        }
-
-        iframe {
-            width: 100%;
-            height: 400px;
-            border: none;
-            border-radius: 4px;
-        }
-
-        .voltar {
-            background: #E50914;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 4px;
-            margin-bottom: 30px;
-            cursor: pointer;
-        }
-    </style>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
+    <title>Assistir - Netflix</title>
+    <link rel="stylesheet" href="CSS/player.css">
 </head>
-
 <body>
-    <div class="container">
-        <button class="voltar" onclick="window.location.href='dashboard.html'">← Voltar</button>
-        <h1 id="tituloFilme"></h1>
-
-        <div class="opcoes">
-            <div class="opcao">
-                <h3>Opção 1 - Qualidade Alta</h3>
-                <iframe id="video1" src="" allowfullscreen></iframe>
-            </div>
-            <div class="opcao">
-                <h3>Opção 2 - Qualidade Média</h3>
-                <iframe id="video2" src="" allowfullscreen></iframe>
-            </div>
-            <div class="opcao">
-                <h3>Opção 3 - Qualidade Baixa</h3>
-                <iframe id="video3" src="" allowfullscreen></iframe>
-            </div>
+    <div class="player-container">
+        <a href="dashboard.html" class="btn-voltar">← Voltar</a>
+        
+        <div class="video-principal">
+            <iframe id="videoPlayer" src="https://www.youtube.com/embed/O2R5j3dX7a8" frameborder="0" allowfullscreen></iframe>
         </div>
-    </div>
-
-    <script>
-        const catalogo = {
-            "Stranger Things": { v1: "https://www.youtube.com/embed/bEkYtH8tG7s", v2: "https://www.youtube.com/embed/bEkYtH8tG7s", v3: "https://www.youtube.com/embed/bEkYtH8tG7s" },
-            "The Witcher": { v1: "https://www.youtube.com/embed/c0i8j3yV8d0", v2: "https://www.youtube.com/embed/c0i8j3yV8d0", v3: "https://www.youtube.com/embed/c0i8j3yV8d0" },
-            "Wandinha": { v1: "https://www.youtube.com/embed/O2R5j3dX7a8", v2: "https://www.youtube.com/embed/O2R5j3dX7a8", v3: "https://www.youtube.com/embed/O2R5j3dX7a8" },
-            "Dark": { v1: "https://www.youtube.com/embed/q1L9s5wE4r0", v2: "https://www.youtube.com/embed/q1L9s5wE4r0", v3: "https://www.youtube.com/embed/q1L9s5wE4r0" }
-        };
-
-        const titulo = localStorage.getItem("filmeSelecionado");
-        document.getElementById("tituloFilme").textContent = titulo;
-
-        if (catalogo[titulo]) {
-            document.getElementById("video1").src = catalogo[titulo].v1;
-            document.getElementById("video2").src = catalogo[titulo].v2;
-            document.getElementById("video3").src = catalogo[titulo].v3;
-        }
-    </script>
-</body>
-
-</html>

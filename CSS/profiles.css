@@ -1,168 +1,99 @@
-/* ==========================================
-   ARQUIVO: profiles.css - ESTILOS DA SELEÇÃO DE PERFIS
-========================================== */
-
-/* ========== RESET E BASE ========== */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
 }
 
 body {
-    font-family: 'Poppins', sans-serif;
     background-color: #141414;
     color: #ffffff;
-    min-height: 100vh;
-}
-
-/* ========== ESTRUTURA PRINCIPAL ========== */
-.profiles-wrapper {
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     min-height: 100vh;
     padding: 20px;
 }
 
-.container {
-    max-width: 1000px;
-    width: 100%;
-    margin: 0 auto;
-}
-
 .profiles-container {
     text-align: center;
+    width: 100%;
+    max-width: 800px;
 }
 
-.profiles-title {
-    font-size: 3rem;
-    font-weight: 500;
+.logo {
+    color: #E50914;
+    font-size: 2.5rem;
     margin-bottom: 50px;
-    color: #ffffff;
-    letter-spacing: 1px;
 }
 
-/* ========== GRID DE PERFIS ========== */
-.profiles-grid {
+.titulo-perfil {
+    font-size: 1.8rem;
+    font-weight: 400;
+    margin-bottom: 40px;
+}
+
+.grid-perfis {
     display: flex;
-    gap: 40px;
-    flex-wrap: wrap;
+    gap: 30px;
     justify-content: center;
-    margin-bottom: 60px;
+    flex-wrap: wrap;
+    margin-bottom: 50px;
 }
 
-/* ========== CARD DE PERFIL ========== */
-.profile-card {
+.card-perfil {
     cursor: pointer;
-    transition: all 0.3s ease;
-    text-align: center;
+    transition: transform 0.3s ease;
 }
 
-.profile-card:hover {
+.card-perfil:hover {
     transform: scale(1.08);
 }
 
-/* Borda e destaque ao passar o mouse */
-.profile-card:hover .profile-avatar {
-    border: 4px solid #ffffff;
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.15);
+.card-perfil:hover .avatar-perfil {
+    border: 4px solid white;
 }
 
-.profile-card:hover .profile-name {
-    color: #ffffff;
-}
-
-/* Avatar */
-.profile-avatar {
-    width: 150px;
-    height: 150px;
-    border-radius: 10px;
+.avatar-perfil {
+    width: 120px;
+    height: 120px;
+    border-radius: 8px;
     display: flex;
-    justify-content: center;
     align-items: center;
-    font-size: 60px;
-    font-weight: 700;
-    margin-bottom: 15px;
-    transition: all 0.3s ease;
+    justify-content: center;
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    border: 4px solid transparent;
+    transition: border 0.3s ease;
 }
 
-/* Cores diferentes para cada perfil, igual ao original */
-.profile-card:nth-child(1) .profile-avatar {
-    background-color: #E50914;
-}
+.cor1 { background-color: #E50914; }
+.cor2 { background-color: #0071eb; }
+.cor3 { background-color: #008000; }
 
-.profile-card:nth-child(2) .profile-avatar {
-    background-color: #0071eb;
-}
-
-.profile-card:nth-child(3) .profile-avatar {
-    background-color: #008000;
-}
-
-/* Nome do perfil */
-.profile-name {
-    font-size: 1.2rem;
+.nome-perfil {
+    font-size: 1.1rem;
     color: #b3b3b3;
-    transition: color 0.3s ease;
 }
 
-/* ========== BOTÃO GERENCIAR PERFIS ========== */
-.btn {
-    border: none;
-    border-radius: 4px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-size: 1rem;
+.btn-gerenciar {
+    color: #b3b3b3;
+    border: 1px solid #b3b3b3;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: all 0.3s;
 }
 
-.manage-profiles-btn {
-    background-color: transparent;
-    border: 1px solid #808080;
-    color: #808080;
-    padding: 12px 30px;
-}
-
-.manage-profiles-btn:hover {
-    border-color: #ffffff;
-    color: #ffffff;
-}
-
-/* ========== RESPONSIVIDADE ========== */
-@media (max-width: 768px) {
-    .profiles-title {
-        font-size: 2rem;
-        margin-bottom: 40px;
-    }
-
-    .profile-avatar {
-        width: 120px;
-        height: 120px;
-        font-size: 45px;
-    }
-
-    .profile-name {
-        font-size: 1rem;
-    }
-
-    .profiles-grid {
-        gap: 25px;
-    }
+.btn-gerenciar:hover {
+    border-color: white;
+    color: white;
 }
 
 @media (max-width: 480px) {
-    .profiles-title {
-        font-size: 1.6rem;
-    }
-
-    .profile-avatar {
-        width: 100px;
-        height: 100px;
-        font-size: 35px;
-    }
-
-    .manage-profiles-btn {
-        padding: 10px 20px;
+    .avatar-perfil {
+        width: 90px;
+        height: 90px;
+        font-size: 2rem;
     }
 }
