@@ -7,13 +7,13 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
 }
 
 body {
-    background-color: #000000;
+    font-family: 'Poppins', sans-serif;
     color: #ffffff;
-    line-height: 1.5;
+    min-height: 100vh;
+    position: relative;
 }
 
 /* ========== PLANO DE FUNDO ========== */
@@ -41,6 +41,11 @@ body {
     z-index: 10;
 }
 
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
 .logo {
     color: #E50914;
     font-size: 2.5rem;
@@ -64,6 +69,8 @@ body {
     justify-content: center;
     align-items: center;
     padding: 20px;
+    position: relative;
+    z-index: 5;
 }
 
 .login-container {
@@ -190,4 +197,63 @@ body {
 .message-box.success {
     background-color: rgba(0, 200, 83, 0.1);
     color: #00c853;
+    border: 1px solid #00c853;
+}
+
+/* ========== MODAIS ========== */
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    padding: 20px;
+}
+
+.modal-content {
+    width: 100%;
+    max-width: 400px;
+    background-color: #141414;
+    padding: 30px;
+    border-radius: 8px;
+    position: relative;
+}
+
+.modal-content h2 {
+    margin-bottom: 20px;
+    color: #ffffff;
+    font-size: 1.5rem;
+}
+
+.modal-form .input-group {
+    margin-bottom: 12px;
+}
+
+.close-btn {
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    color: #cccccc;
+    font-size: 25px;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.close-btn:hover {
+    color: #ffffff;
+}
+
+/* ========== RESPONSIVO ========== */
+@media (max-width: 768px) {
+    .login-container {
+        padding: 30px 20px;
+    }
+
+    .links {
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-start;
+    }
 }
