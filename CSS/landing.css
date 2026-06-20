@@ -22,7 +22,7 @@ body {
     position: absolute;
     width: 100%;
     padding: 20px 60px;
-    display: flex;
+    display: flex !important;
     justify-content: space-between;
     align-items: center;
     z-index: 10;
@@ -51,11 +51,11 @@ body {
     background-color: #b20710;
 }
 
-/* ========== SEÇÃO HERO (DESTAQUE) ========== */
+/* ========== SEÇÃO HERO ========== */
 .hero {
     height: 100vh;
     background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)),
-        url("https://images.unsplash.com/photo-1489599849927-2ee91cede3ba");
+                url("https://images.unsplash.com/photo-1489599849927-2ee91cede3ba");
     background-size: cover;
     background-position: center;
     display: flex;
@@ -96,7 +96,7 @@ body {
     background-color: #b20710;
 }
 
-/* ========== SEÇÃO DE FILMES ========== */
+/* ========== SEÇÃO DE FILMES (AQUI ESTAVA O ERRO) ========== */
 .movies {
     padding: 50px 60px;
     background-color: #141414;
@@ -108,17 +108,18 @@ body {
     font-weight: 600;
 }
 
+/* ESSA PARTE É A MAIS IMPORTANTE: GARANTE QUE FIQUEM LADO A LADO */
 .movies-row {
-    display: flex;
+    display: flex !important; /* FORÇA O FLEX */
+    flex-direction: row !important; /* GARANTE LINHA HORIZONTAL */
     gap: 15px;
     overflow-x: auto;
     scrollbar-width: none;
-    /* Firefox */
+    flex-wrap: nowrap !important; /* NÃO DEIXA QUEBRAR LINHA */
 }
 
 .movies-row::-webkit-scrollbar {
     display: none;
-    /* Chrome/Safari */
 }
 
 .movie-card {
@@ -129,6 +130,7 @@ body {
     overflow: hidden;
     transition: transform 0.3s ease;
     cursor: pointer;
+    flex-shrink: 0; /* NÃO DEIXA O CARD ENCOLHER */
 }
 
 .movie-card:hover {
@@ -155,23 +157,10 @@ footer {
     .landing-header {
         padding: 20px;
     }
-
-    .logo {
-        font-size: 2rem;
-    }
-
-    .hero-content h2 {
-        font-size: 2rem;
-    }
-
-    .hero-content p {
-        font-size: 1rem;
-    }
-
-    .movies {
-        padding: 30px 20px;
-    }
-
+    .logo { font-size: 2rem; }
+    .hero-content h2 { font-size: 2rem; }
+    .hero-content p { font-size: 1rem; }
+    .movies { padding: 30px 20px; }
     .movie-card {
         min-width: 180px;
         height: 260px;
@@ -179,12 +168,6 @@ footer {
 }
 
 @media (max-width: 480px) {
-    .hero-content h2 {
-        font-size: 1.6rem;
-    }
-
-    .btn-start {
-        padding: 12px 25px;
-        font-size: 1rem;
-    }
+    .hero-content h2 { font-size: 1.6rem; }
+    .btn-start { padding: 12px 25px; font-size: 1rem; }
 }
