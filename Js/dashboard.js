@@ -50,7 +50,7 @@ const catalogo = [
         titulo: "Stranger Things", 
         descricao: "Uma cidade pequena enfrenta acontecimentos sobrenaturais e uma dimensão paralela chamada Mundo Invertido.", 
         imagem: "assets/images/StrangerThings.png", 
-        banner: "assets/images/banner-StrangerThings.png",
+        banner: "assets/images/StrangerThings.png", // antes era banner-StrangerThings.png
         videoUrl: "https://www.youtube.com/embed/6pTqSq03H7s?rel=0",
         videoId: "6pTqSq03H7s"
     },
@@ -59,7 +59,7 @@ const catalogo = [
         titulo: "The Witcher", 
         descricao: "Geralt de Rívia, um caçador de monstros, luta para encontrar seu lugar em um mundo onde humanos são piores que feras.", 
         imagem: "assets/images/TheWitcher.png", 
-        banner: "assets/images/banner-TheWitcher.png",
+        banner: "assets/images/TheWitcher.png", // antes era banner-TheWitcher.png
         videoUrl: "https://www.youtube.com/embed/ndl1W4ltcmg?rel=0",
         videoId: "ndl1W4ltcmg"
     },
@@ -68,7 +68,7 @@ const catalogo = [
         titulo: "Wandinha", 
         descricao: "Wandinha Addams estuda na Academia Nunca Mais e investiga mistérios familiares.", 
         imagem: "assets/images/Wandinha.png", 
-        banner: "assets/images/banner-Wandinha.png",
+        banner: "assets/images/Wandinha.png", // antes era banner-Wandinha.png
         videoUrl: "https://www.youtube.com/embed/Di3l9_8eL70?rel=0",
         videoId: "Di3l9_8eL70"
     },
@@ -77,7 +77,7 @@ const catalogo = [
         titulo: "Dark", 
         descricao: "Quatro famílias descobrem segredos sobre viagem no tempo em uma cidade pequena.", 
         imagem: "assets/images/Dark.png", 
-        banner: "assets/images/banner-Dark.png",
+        banner: "assets/images/Dark.png", // antes era banner-Dark.png
         videoUrl: "https://www.youtube.com/embed/ESEUoa-mz2c?rel=0",
         videoId: "ESEUoa-mz2c"
     }
