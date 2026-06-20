@@ -1,5 +1,6 @@
 /* ==========================================
    ARQUIVO: dashboard.css - ESTILOS DA PÁGINA PRINCIPAL
+   CORRIGIDO PARA FICAR IGUAL IMAGEM 2
 ========================================== */
 
 /* ========== RESET E BASE ========== */
@@ -14,6 +15,8 @@ body {
     background-color: #141414;
     color: #ffffff;
     line-height: 1.5;
+    overflow-x: hidden;
+    /* Só a página não rola, as listas sim */
 }
 
 .container {
@@ -68,7 +71,8 @@ body {
 .main-nav {
     display: flex;
     gap: 20px;
-    flex-wrap: wrap;
+    flex-wrap: nowrap !important;
+    /* NUNCA QUEBRA OS LINKS DO MENU */
 }
 
 .nav-link {
@@ -76,6 +80,7 @@ body {
     text-decoration: none;
     font-size: 1rem;
     transition: color 0.2s;
+    white-space: nowrap;
 }
 
 .nav-link:hover {
@@ -89,14 +94,15 @@ body {
 }
 
 .search-box input {
-    padding: 10px 15px;
+    padding: 8px 12px;
     border: none;
     border-radius: 4px;
     background-color: #333;
     color: #fff;
-    width: 220px;
+    width: 180px;
     outline: none;
     transition: background 0.2s;
+    font-size: 0.9rem;
 }
 
 .search-box input:focus {
@@ -104,8 +110,8 @@ body {
 }
 
 .avatar {
-    width: 40px;
-    height: 40px;
+    width: 32px;
+    height: 32px;
     background-color: #E50914;
     border-radius: 50%;
     display: flex;
@@ -113,62 +119,72 @@ body {
     justify-content: center;
     font-weight: bold;
     cursor: pointer;
+    font-size: 0.85rem;
 }
 
 /* ========== SAUDAÇÃO DO USUÁRIO ========== */
 .user-greeting {
-    font-size: 1.3rem;
-    color: #E50914;
-    margin: 20px 0;
+    font-size: 1.1rem;
+    color: #ffffff;
+    margin: 20px 0 15px;
+    font-weight: 500;
 }
 
 /* ========== BANNER DESTAQUE ========== */
 .featured-banner {
     width: 100%;
-    height: 70vh;
+    height: auto !important;
     position: relative;
-    margin-bottom: 40px;
-    overflow: hidden;
+    margin-bottom: 30px;
+    overflow: visible;
+    background-color: transparent;
 }
 
 .featured-banner img {
-    width: 100%;
-    height: 100%;
+    width: 220px;
+    height: 330px;
     object-fit: cover;
+    border-radius: 4px;
+    margin-bottom: 12px;
 }
 
 .banner-content {
-    position: absolute;
-    bottom: 0;
-    left: 0;
+    position: relative;
+    bottom: auto;
+    left: auto;
     width: 100%;
-    padding: 60px 0;
-    background: linear-gradient(to top, #141414, transparent);
+    padding: 0;
+    background: none;
 }
 
 .banner-content h1 {
-    font-size: 3.5rem;
-    margin-bottom: 15px;
-    max-width: 600px;
+    font-size: 1.2rem;
+    margin-bottom: 6px;
+    max-width: 100%;
+    font-weight: 600;
 }
 
 .banner-content p {
-    max-width: 600px;
-    margin-bottom: 20px;
-    color: #e5e5e5;
-    font-size: 1.1rem;
+    max-width: 400px;
+    margin-bottom: 12px;
+    color: #b3b3b3;
+    font-size: 0.85rem;
+    line-height: 1.4;
 }
 
 .banner-buttons {
     display: flex;
-    gap: 15px;
-    flex-wrap: wrap;
+    gap: 10px;
+    flex-wrap: nowrap;
+    margin-bottom: 25px;
 }
 
 .play-btn {
     background-color: #ffffff;
     color: #000000;
-    padding: 12px 25px;
+    padding: 8px 16px;
+    font-size: 0.85rem;
+    font-weight: 500;
 }
 
 .play-btn:hover {
@@ -178,7 +194,8 @@ body {
 .list-btn {
     background-color: rgba(109, 109, 110, 0.7);
     color: #ffffff;
-    padding: 12px 25px;
+    padding: 8px 16px;
+    font-size: 0.85rem;
 }
 
 .list-btn:hover {
@@ -187,84 +204,108 @@ body {
 
 /* ========== SEÇÕES DE FILMES ========== */
 .dashboard-section {
-    margin-bottom: 40px;
+    margin-bottom: 35px;
 }
 
 .section-title {
-    font-size: 1.3rem;
-    margin-bottom: 15px;
+    font-size: 1rem;
+    margin-bottom: 12px;
     font-weight: 600;
     color: #ffffff;
+    display: flex;
+    align-items: center;
+    gap: 6px;
 }
 
-/* LINHA DE FILMES - LADO A LADO COM ROLAGEM */
+/* ==========================================
+   AQUI É O PRINCIPAL - CORRIGINDO A LINHA
+========================================== */
 .movies-row {
     display: flex !important;
     flex-direction: row !important;
-    gap: 16px;
-    overflow-x: auto;
-    scrollbar-width: none;
     flex-wrap: nowrap !important;
-    padding-bottom: 10px;
+    /* 🔴 NUNCA QUEBRA LINHA - OBRIGATÓRIO */
+    gap: 14px !important;
+    /* Espaçamento igual imagem 2 */
+    overflow-x: auto !important;
+    /* Permite rolar para o lado */
+    overflow-y: hidden !important;
+    /* NÃO DEIXA ROLAR PARA BAIXO */
+    scrollbar-width: none !important;
+    padding-bottom: 10px !important;
+    width: 100% !important;
 }
 
+/* Esconde barra de rolagem */
 .movies-row::-webkit-scrollbar {
-    display: none;
+    display: none !important;
 }
 
-/* CARD DE FILME */
+/* CARD DE FILME - TAMANHO IGUAL IMAGEM 2 */
 .movie-card {
-    min-width: 220px;
-    height: 330px;
+    min-width: 165px !important;
+    /* 🔴 Tamanho exato igual na imagem */
+    max-width: 165px !important;
+    height: 240px !important;
     background-color: #333;
     border-radius: 4px;
     overflow: hidden;
     position: relative;
-    transition: transform 0.3s ease;
+    transition: transform 0.2s ease;
     cursor: pointer;
-    flex-shrink: 0;
+    flex-shrink: 0 !important;
+    /* 🔴 NÃO DEIXA O CARD ENCOLHER */
+    flex-grow: 0 !important;
+    /* 🔴 NÃO DEIXA O CARD CRESCER */
 }
 
 .movie-card:hover {
     transform: scale(1.05);
+    z-index: 2;
 }
 
 .movie-card img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    display: block;
 }
 
 /* BOTÃO DE FAVORITO */
 .favorite-btn {
     position: absolute;
-    top: 10px;
-    right: 10px;
-    background: rgba(0, 0, 0, 0.7);
+    top: 8px;
+    right: 8px;
+    background: rgba(0, 0, 0, 0.75);
     border: none;
     color: #fff;
-    width: 30px;
-    height: 30px;
+    width: 26px;
+    height: 26px;
     border-radius: 50%;
     cursor: pointer;
     backdrop-filter: blur(2px);
     transition: background 0.2s;
+    font-size: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .favorite-btn:hover {
-    background: rgba(229, 9, 20, 0.8);
+    background-color: #E50914;
 }
 
 /* ========== BOTÃO SAIR ========== */
 .logout-wrapper {
-    text-align: center;
-    margin: 40px 0 60px;
+    text-align: left;
+    margin: 20px 0 40px;
 }
 
 .logout-btn {
     background-color: #E50914;
     color: #fff;
-    padding: 12px 30px;
+    padding: 8px 20px;
+    font-size: 0.85rem;
 }
 
 .logout-btn:hover {
@@ -285,18 +326,18 @@ body {
 
 .movie-modal-content {
     width: 100%;
-    max-width: 600px;
+    max-width: 500px;
     background-color: #181818;
-    padding: 30px;
-    border-radius: 12px;
+    padding: 25px;
+    border-radius: 8px;
     position: relative;
 }
 
 .close-btn {
     position: absolute;
-    top: 15px;
-    right: 20px;
-    font-size: 28px;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
     cursor: pointer;
     color: #ccc;
     transition: color 0.2s;
@@ -307,14 +348,16 @@ body {
 }
 
 .movie-modal-content h2 {
-    margin-bottom: 15px;
+    margin-bottom: 12px;
     color: #E50914;
+    font-size: 1.2rem;
 }
 
 .movie-modal-content p {
-    margin-bottom: 20px;
-    line-height: 1.6;
+    margin-bottom: 15px;
+    line-height: 1.5;
     color: #cfcfcf;
+    font-size: 0.9rem;
 }
 
 /* ========== NOTIFICAÇÃO ========== */
@@ -325,11 +368,12 @@ body {
     transform: translateX(-50%) translateY(20px);
     background-color: #333;
     color: #fff;
-    padding: 12px 20px;
+    padding: 10px 18px;
     border-radius: 4px;
     opacity: 0;
     transition: all 0.3s ease;
     z-index: 99999;
+    font-size: 0.85rem;
 }
 
 .notification.show {
@@ -338,61 +382,38 @@ body {
 }
 
 /* ========== RESPONSIVIDADE ========== */
-@media (max-width: 992px) {
-    .banner-content h1 {
-        font-size: 2.5rem;
-    }
-}
-
 @media (max-width: 768px) {
     .nav-wrapper {
         flex-direction: column;
-        gap: 15px;
-    }
-
-    .nav-left {
-        flex-direction: column;
-        gap: 15px;
-        text-align: center;
-    }
-
-    .main-nav {
-        justify-content: center;
-    }
-
-    .banner-content h1 {
-        font-size: 2rem;
-    }
-
-    .banner-content p {
-        font-size: 1rem;
-    }
-
-    .featured-banner {
-        height: 50vh;
-    }
-
-    .movie-card {
-        min-width: 160px;
-        height: 240px;
-    }
-
-    .search-box input {
-        width: 180px;
-    }
-}
-
-@media (max-width: 480px) {
-    .banner-content h1 {
-        font-size: 1.6rem;
-    }
-
-    .banner-buttons {
-        flex-direction: column;
+        gap: 12px;
         align-items: flex-start;
     }
 
-    .search-box input {
-        width: 150px;
+    .nav-left {
+        gap: 15px;
+        flex-direction: row;
+    }
+
+    .logo {
+        font-size: 1.5rem;
+    }
+
+    .main-nav {
+        gap: 12px;
+    }
+
+    .nav-link {
+        font-size: 0.85rem;
+    }
+
+    .movie-card {
+        min-width: 130px !important;
+        max-width: 130px !important;
+        height: 190px !important;
+    }
+
+    .featured-banner img {
+        width: 180px;
+        height: 270px;
     }
 }
