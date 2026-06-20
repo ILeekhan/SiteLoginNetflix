@@ -110,7 +110,7 @@ body {
 .banner {
     height: 85vh;
     background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.8)), 
-                url('../assets/images/banner-Stranger Things.png') center/cover no-repeat;
+                url('../assets/images/banner-StrangerThings.png') center/cover no-repeat;
     display: flex;
     align-items: flex-end;
     padding: 0 5% 100px;
