@@ -89,20 +89,15 @@ function trocarBanner() {
     const item = catalogo[indiceBanner];
     const bannerEl = document.querySelector('.banner');
 
-    if (item.titulo === "Stranger Things") {
-        // 🟡 AQUI: SÓ O NOME, SEM IMAGEM DE FUNDO
-        bannerEl.style.background = "#141414";
-        bannerEl.style.backgroundImage = "none";
-    } else {
-        // 🟢 OUTROS: IMAGEM ESTENDIDA BONITA
-        bannerEl.style.background = `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.7)), url('${item.banner}') center / cover no-repeat`;
-        bannerEl.style.backgroundSize = "100% 100%";
-    }
+    // ✅ TODOS aparecem com imagem estendida bonita
+    bannerEl.style.background = `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.7)), url('${item.banner}') center / cover no-repeat`;
+    bannerEl.style.backgroundSize = "100% 100%"; // estica largura toda, mantém proporção
 
     document.getElementById('tituloBanner').textContent = item.titulo;
     document.getElementById('descricaoBanner').textContent = item.descricao;
     indiceBanner = (indiceBanner + 1) % catalogo.length;
 }
+
 setInterval(trocarBanner, 6000);
 trocarBanner();
 
