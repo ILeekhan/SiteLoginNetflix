@@ -4,133 +4,128 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Área de usuário - Netflix Clone: assista aos seus filmes e séries favoritos.">
-    <title>Dashboard | Netflix Clone</title>
-
-    <!-- Fonte otimizada, igual ao landing.html -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <title>Netflix - Página Inicial</title>
+    <link rel="stylesheet" href="css/dashboard.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
-
-    <link rel="stylesheet" href="CSS/dashboard.css">
 </head>
 
 <body>
-    <div class="dashboard">
-        <!-- Cabeçalho -->
-        <header class="dashboard-header">
-            <div class="container nav-wrapper">
-                <div class="nav-left">
-                    <h1 class="logo">NETFLIX</h1>
-                    <nav class="main-nav">
-                        <a href="#" class="nav-link">Início</a>
-                        <a href="#" class="nav-link">Séries</a>
-                        <a href="#" class="nav-link">Filmes</a>
-                        <a href="#" class="nav-link">Minha Lista</a>
-                    </nav>
-                </div>
 
-                <div class="nav-right">
-                    <div class="search-box">
-                        <input type="text" id="searchInput" placeholder="Buscar filme ou série...">
-                    </div>
-                    <div class="avatar" title="Perfil do usuário"></div>
-                </div>
+    <!-- CABEÇALHO -->
+    <header class="dashboard-header">
+        <div class="nav-wrapper">
+            <div class="nav-left">
+                <a href="index.html" class="logo">NETFLIX</a>
+                <nav class="main-nav">
+                    <a href="#" class="nav-link">Início</a>
+                    <a href="#" class="nav-link">Séries</a>
+                    <a href="#" class="nav-link">Filmes</a>
+                    <a href="#" class="nav-link">Minha Lista</a>
+                </nav>
             </div>
-        </header>
-
-        <main class="dashboard-main">
-            <!-- Saudação ao usuário -->
-            <div class="container">
-                <h2 id="userName" class="user-greeting"></h2>
-            </div>
-
-            <!-- BANNER DINÂMICO -->
-            <section class="featured-banner">
-                <img id="bannerImage" src="assets/images/Revisão Código Portfolio (3).png" alt="Destaque: Stranger Things"
-                    loading="lazy">
-                <div class="banner-content">
-                    <div class="container">
-                        <h1 id="bannerTitle">Stranger Things</h1>
-                        <p id="bannerDescription">
-                            Uma cidade pequena enfrenta acontecimentos sobrenaturais e uma dimensão paralela chamada
-                            Mundo Invertido.
-                        </p>
-                        <div class="banner-buttons">
-                            <button class="btn play-btn">▶ Assistir</button>
-                            <button class="btn list-btn">+ Minha Lista</button>
-                        </div>
-                    </div>
+            <div class="nav-right">
+                <div class="search-box">
+                    <input type="text" placeholder="Buscar filme ou série...">
                 </div>
-            </section>
-
-            <!-- SEÇÕES DE CONTEÚDO -->
-            <div class="container">
-                <!-- Continuar Assistindo -->
-                <section class="dashboard-section">
-                    <h3 class="section-title">🔥 Continuar Assistindo</h3>
-                    <div class="movies-row">
-                        <div class="movie-card" data-title="Stranger Things" data-type="series">
-                            <button class="favorite-btn" aria-label="Adicionar à lista">⭐</button>
-                            <img src="assets/images/Revisão Código Portfolio (3).png" alt="Stranger Things" loading="lazy">
-                        </div>
-
-                        <div class="movie-card" data-title="The Witcher" data-type="series">
-                            <button class="favorite-btn" aria-label="Adicionar à lista">⭐</button>
-                            <img src="assets/images/Revisão Código Portfolio (2).png" alt="The Witcher" loading="lazy">
-                        </div>
-
-                        <div class="movie-card" data-title="Wandinha" data-type="series">
-                            <button class="favorite-btn" aria-label="Adicionar à lista">⭐</button>
-                            <img src="assets/images/Revisão Código Portfolio (1).png" alt="Wandinha" loading="lazy">
-                        </div>
-
-                        <div class="movie-card" data-title="Dark" data-type="series">
-                            <button class="favorite-btn" aria-label="Adicionar à lista">⭐</button>
-                            <img src="assets/images/Revisão Código Portfolio.png" alt="Dark" loading="lazy">
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Minha Lista / Favoritos -->
-                <section class="dashboard-section">
-                    <h3 class="section-title">⭐ Minha Lista (<span id="favoritesCount">0</span>)</h3>
-                    <div class="movies-row" id="favoritesList">
-                        <!-- Itens serão inseridos via JS -->
-                    </div>
-                </section>
-
-                <!-- Assistidos Recentemente -->
-                <section class="dashboard-section">
-                    <h3 class="section-title">🎬 Assistidos Recentemente</h3>
-                    <div class="movies-row" id="recentMovies">
-                        <!-- Itens serão inseridos via JS -->
-                    </div>
-                </section>
-
-                <!-- Botão Sair -->
-                <div class="logout-wrapper">
-                    <button id="logoutBtn" class="btn logout-btn">Sair</button>
-                </div>
-            </div>
-        </main>
-
-        <!-- MODAL DE DETALHES -->
-        <div id="movieModal" class="movie-modal">
-            <div class="movie-modal-content">
-                <span id="closeMovieModal" class="close-btn" aria-label="Fechar modal">&times;</span>
-                <h2 id="movieTitle">Título do conteúdo</h2>
-                <p id="movieDescription">Descrição detalhada aparecerá aqui.</p>
-                <button class="btn play-btn">▶ Assistir</button>
+                <div class="avatar">L</div>
             </div>
         </div>
+    </header>
 
-        <!-- NOTIFICAÇÕES -->
-        <div id="notification" class="notification"></div>
+    <!-- SAUDAÇÃO -->
+    <div class="user-greeting">Olá, Leekhan 🔥</div>
+
+    <!-- BANNER PRINCIPAL -->
+    <section class="featured-banner">
+        <img src="assets/images/Revisão Código Portfolio (3).png" alt="Stranger Things - Temporada 1">
+        <div class="banner-content">
+            <h1>Stranger Things</h1>
+            <p>Uma cidade pequena enfrenta acontecimentos sobrenaturais e uma dimensão paralela chamada Mundo Invertido.
+            </p>
+            <div class="banner-buttons">
+                <button class="btn play-btn">▶ Assistir</button>
+                <button class="btn list-btn">+ Minha Lista</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO: EM ALTA -->
+    <section class="dashboard-section">
+        <h2 class="section-title">📈 Em Alta</h2>
+        <div class="movies-row">
+            <div class="movie-card" data-id="1" data-title="Stranger Things"
+                data-description="Quando um garoto desaparece, uma pequena cidade descobre um mistério envolvendo experimentos secretos, forças sobrenaturais e uma garota muito estranha.">
+                <img src="assets/images/Revisão Código Portfolio (3).png" alt="Stranger Things">
+            </div>
+            <div class="movie-card" data-id="2" data-title="The Witcher"
+                data-description="Geralt de Rívia, um caçador de monstros, luta para encontrar seu lugar num mundo onde pessoas são mais perigosas que feras.">
+                <img src="assets/images/Revisão Código Portfolio (2).png" alt="The Witcher">
+            </div>
+            <div class="movie-card" data-id="3" data-title="Wandinha Addams"
+                data-description="Wandinha estuda na Academia Nevermore, onde tenta dominar seus poderes psíquicos e desvendar um mistério que matou sua família.">
+                <img src="assets/images/Revisão Código Portfolio (1).png" alt="Wandinha Addams">
+            </div>
+            <div class="movie-card" data-id="4" data-title="Dark"
+                data-description="Quatro famílias de uma cidade alemã começam a desvendar um segredo que envolve viagem no tempo e o desaparecimento de crianças.">
+                <img src="assets/images/Revisão Código Portfolio.png" alt="Dark">
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO: MINHA LISTA -->
+    <section class="dashboard-section">
+        <h2 class="section-title">⭐ Minha Lista (0)</h2>
+        <p style="color:#999; padding:0 20px; margin-bottom:20px;">Sua lista está vazia.</p>
+    </section>
+
+    <!-- SEÇÃO: ASSISTIDOS RECENTEMENTE -->
+    <section class="dashboard-section">
+        <h2 class="section-title">📌 Assistidos Recentemente</h2>
+        <div class="movies-row">
+            <div class="movie-card" data-id="3" data-title="Wandinha Addams"
+                data-description="Wandinha estuda na Academia Nevermore, onde tenta dominar seus poderes psíquicos e desvendar um mistério que matou sua família.">
+                <img src="assets/images/Revisão Código Portfolio (1).png" alt="Wandinha Addams">
+            </div>
+            <div class="movie-card" data-id="2" data-title="The Witcher"
+                data-description="Geralt de Rívia, um caçador de monstros, luta para encontrar seu lugar num mundo onde pessoas são mais perigosas que feras.">
+                <img src="assets/images/Revisão Código Portfolio (2).png" alt="The Witcher">
+            </div>
+            <div class="movie-card" data-id="1" data-title="Stranger Things"
+                data-description="Quando um garoto desaparece, uma pequena cidade descobre um mistério envolvendo experimentos secretos, forças sobrenaturais e uma garota muito estranha.">
+                <img src="assets/images/Revisão Código Portfolio (3).png" alt="Stranger Things">
+            </div>
+            <div class="movie-card" data-id="4" data-title="Dark"
+                data-description="Quatro famílias de uma cidade alemã começam a desvendar um segredo que envolve viagem no tempo e o desaparecimento de crianças.">
+                <img src="assets/images/Revisão Código Portfolio.png" alt="Dark">
+            </div>
+        </div>
+    </section>
+
+    <!-- ✅ JANELA DE INFORMAÇÕES (ESBOÇO) - AGORA NO LUGAR CERTO -->
+    <div id="movieModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2 id="modalTitle">Título do conteúdo</h2>
+            <p id="modalDescription">Descrição detalhada aparecerá aqui.</p>
+            <div class="modal-buttons">
+                <button class="btn play-btn">▶ Assistir</button>
+                <button class="btn list-btn">+ Minha Lista</button>
+            </div>
+        </div>
     </div>
 
-    <script src="Js/dashboard.js" defer></script>
+    <!-- BOTÃO SAIR -->
+    <div class="logout-container">
+        <a href="index.html" class="logout-btn">Sair</a>
+    </div>
+
+    <footer style="color:#777; font-size:14px; padding:30px 20px; text-align:center;">
+        © 2026 Netflix Clone - Projeto para estudos
+    </footer>
+
+    <!-- ✅ JAVASCRIPT CORRIGIDO E FUNCIONAL -->
+    <script src="js/dashboard.js"></script>
 </body>
 
 </html>

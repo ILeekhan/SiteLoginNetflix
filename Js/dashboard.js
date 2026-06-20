@@ -166,45 +166,59 @@ function atualizarListaFavoritos() {
 // Inicializa a lista ao carregar página
 atualizarListaFavoritos();
 
-/* ===================
-   MODAL DE DETALHES
-=================== */
-const movieModal = document.getElementById("movieModal");
-const modalTitulo = document.getElementById("movieTitle");
-const modalDescricao = document.getElementById("movieDescription");
-const modalFechar = document.getElementById("closeMovieModal");
-const todosCards = document.querySelectorAll(".movie-card");
+// ==========================================
+// JAVASCRIPT - ABRIR JANELA DE INFORMAÇÕES (ADICIONADO E INTEGRADO)
+// ==========================================
 
-// Abrir modal ao clicar no card
-todosCards.forEach(card => {
-    card.addEventListener("click", function () {
-        const titulo = this.dataset.title;
+// Elementos do Modal
+const modal = document.getElementById('movieModal');
+const modalTitle = document.getElementById('movieTitle'); // Ajustado para bater com HTML
+const modalDescription = document.getElementById('movieDescription'); // Ajustado para bater com HTML
+const closeBtn = document.querySelector('.close-btn');
+const movieCards = document.querySelectorAll('.movie-card');
+
+// ABRIR JANELA AO CLICAR NA IMAGEM
+movieCards.forEach(card => {
+    card.addEventListener('click', function () {
+        // Pega os dados da imagem clicada do catálogo
+        const titulo = this.getAttribute('data-title');
         const dados = catalogo[titulo];
 
         if (dados) {
-            modalTitulo.textContent = titulo;
-            modalDescricao.textContent = dados.descricao;
-            movieModal.style.display = "flex";
-            document.body.style.overflow = "hidden";
+            // Coloca os dados na janela
+            modalTitle.textContent = titulo;
+            modalDescription.textContent = dados.descricao;
+
+            // Mostra a janela
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden'; // Trava rolagem apenas da página
         }
     });
 });
 
-// Fechar modal
-if (modalFechar) {
-    modalFechar.addEventListener("click", fecharModal);
+// FECHAR JANELA PELO BOTÃO (X)
+if (closeBtn) {
+    closeBtn.addEventListener('click', function () {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto'; // Libera rolagem
+    });
 }
-window.addEventListener("click", (e) => {
-    if (e.target === movieModal) fecharModal();
-});
-window.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") fecharModal();
+
+// FECHAR JANELA CLICANDO FORA DELA
+window.addEventListener('click', function (event) {
+    if (event.target === modal) {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
 });
 
-function fecharModal() {
-    movieModal.style.display = "none";
-    document.body.style.overflow = "auto";
-}
+// FECHAR JANELA COM TECLA ESC
+window.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+});
 
 /* ===================
    BANNER DESTAQUE DINÂMICO
@@ -241,9 +255,10 @@ botoesAssistir.forEach(btn => {
         let tituloFilme = "";
 
         // Pega do modal ou do banner
-        if (movieModal.style.display === "flex") {
-            tituloFilme = modalTitulo.textContent;
-            fecharModal();
+        if (modal.style.display === "block") { // Ajustado para o novo modal
+            tituloFilme = modalTitle.textContent;
+            modal.style.display = 'none'; // Fecha ao clicar em assistir
+            document.body.style.overflow = 'auto';
         } else {
             tituloFilme = bannerTitulo.textContent;
         }

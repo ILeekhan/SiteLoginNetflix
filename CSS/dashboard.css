@@ -321,3 +321,93 @@ a {
         font-size: 2rem !important;
     }
 }
+
+/* ==========================================
+   ESTILO DA JANELA DE INFORMAÇÕES
+========================================== */
+
+/* Fundo escuro ao abrir */
+.modal {
+    display: none !important;
+    position: fixed !important;
+    z-index: 9999 !important;
+    left: 0 !important;
+    top: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    overflow: auto !important;
+    background-color: rgba(0, 0, 0, 0.85) !important;
+    backdrop-filter: blur(5px) !important;
+}
+
+/* Caixa branca/preta do conteúdo */
+.modal-content {
+    background-color: #181818 !important;
+    margin: 10% auto !important;
+    padding: 30px !important;
+    border: 1px solid #333 !important;
+    width: 90% !important;
+    max-width: 550px !important;
+    border-radius: 8px !important;
+    color: #fff !important;
+    position: relative !important;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Botão de fechar (X) */
+.close-btn {
+    color: #aaa !important;
+    float: right !important;
+    font-size: 28px !important;
+    font-weight: bold !important;
+    cursor: pointer !important;
+    transition: color 0.2s !important;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: #fff !important;
+    text-decoration: none !important;
+    cursor: pointer !important;
+}
+
+.modal-content h2 {
+    margin-top: 0 !important;
+    margin-bottom: 15px !important;
+    font-size: 1.8rem !important;
+    color: #fff !important;
+}
+
+.modal-content p {
+    margin-bottom: 20px !important;
+    color: #ccc !important;
+    line-height: 1.5 !important;
+}
+
+.modal-buttons {
+    display: flex !important;
+    gap: 12px !important;
+}
+
+/* BOTÃO SAIR */
+.logout-container {
+    padding: 0 20px 30px !important;
+    max-width: 1200px !important;
+    margin: 0 auto !important;
+}
+
+.logout-btn {
+    background-color: #E50914 !important;
+    color: #fff !important;
+    padding: 8px 18px !important;
+    border-radius: 3px !important;
+    font-size: 0.9rem !important;
+    font-weight: 500 !important;
+    transition: background 0.2s !important;
+    text-decoration: none !important;
+    display: inline-block !important;
+}
+
+.logout-btn:hover {
+    background-color: #b20710 !important;
+}
