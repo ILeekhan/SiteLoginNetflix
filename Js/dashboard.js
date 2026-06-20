@@ -90,7 +90,8 @@ function trocarBanner() {
     const img = new Image();
     img.src = item.banner;
     img.onload = () => {
-        document.querySelector('.banner').style.background = `linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.8)), url('${item.banner}') center center / contain no-repeat #141414`;
+        document.querySelector('.banner').style.background = `linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.8)), url('${item.banner}') center / cover no-repeat`;
+        document.querySelector('.banner').style.backgroundSize = '100% auto';
     };
     document.getElementById('tituloBanner').textContent = item.titulo;
     document.getElementById('descricaoBanner').textContent = item.descricao;
