@@ -1,71 +1,29 @@
 /* ==========================================
-   PROJETO NETFLIX CLONE - CSS UNIFICADO
-   Arquivos: landing.css | login.css | profiles.css | dashboard.css | player.css
+   ARQUIVO: style.css - PROJETO NETFLIX CLONE
+   ESTILOS DA PÁGINA INICIAL (index.html)
 ========================================== */
 
-/* ==========================================
-   RESET GLOBAL E BASE
-========================================== */
+/* ========== RESET E CONFIGURAÇÕES GERAIS ========== */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
 }
 
 body {
-    background-color: #000000;
+    font-family: 'Poppins', sans-serif;
+    background-color: #141414;
     color: #ffffff;
-    min-height: 100vh;
-    overflow-x: hidden;
     line-height: 1.5;
+    overflow-x: hidden;
+    /* Evita barra de rolagem horizontal da página toda */
 }
 
-/* Botão padrão */
-.btn,
-.btn-login,
-.btn-start,
-.btn-red {
-    background-color: #E50914;
-    color: #ffffff;
-    border: none;
-    padding: 12px 22px;
-    border-radius: 4px;
-    font-weight: 500;
-    cursor: pointer;
+a {
     text-decoration: none;
-    transition: background 0.3s ease;
 }
 
-.btn:hover,
-.btn-login:hover,
-.btn-start:hover,
-.btn-red:hover {
-    background-color: #b20710;
-}
-
-/* Input padrão */
-input {
-    background-color: #333333;
-    color: #ffffff;
-    border: none;
-    padding: 14px 16px;
-    border-radius: 4px;
-    outline: none;
-    font-size: 1rem;
-}
-
-input::placeholder {
-    color: #b3b3b3;
-}
-
-input:focus {
-    background-color: #454545;
-}
-
-/* ==========================================
-   LANDING PAGE (PÁGINA INICIAL)
-========================================== */
+/* ========== CABEÇALHO ========== */
 .landing-header {
     position: absolute;
     width: 100%;
@@ -74,6 +32,8 @@ input:focus {
     justify-content: space-between;
     align-items: center;
     z-index: 10;
+    top: 0;
+    left: 0;
 }
 
 .logo {
@@ -82,16 +42,31 @@ input:focus {
     font-weight: 700;
 }
 
+.btn-login {
+    background-color: #E50914;
+    color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-weight: 500;
+    transition: background 0.3s ease;
+}
+
+.btn-login:hover {
+    background-color: #b20710;
+}
+
+/* ========== SEÇÃO PRINCIPAL / DESTAQUE ========== */
 .hero {
     height: 100vh;
-    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-                url("https://images.unsplash.com/photo-1489599849927-2ee91cede3ba");
+    background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)),
+        url("https://images.unsplash.com/photo-1489599849927-2ee91cede3ba");
     background-size: cover;
     background-position: center;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
+    padding: 0 20px;
 }
 
 .hero-content h2 {
@@ -104,8 +79,27 @@ input:focus {
     font-size: 1.2rem;
     margin-bottom: 30px;
     color: #e5e5e5;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
+.btn-start {
+    background-color: #E50914;
+    color: #ffffff;
+    padding: 15px 30px;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: background 0.3s ease;
+    display: inline-block;
+}
+
+.btn-start:hover {
+    background-color: #b20710;
+}
+
+/* ========== SEÇÃO DE FILMES (AQUI ESTAVA O PROBLEMA) ========== */
 .movies {
     padding: 50px 60px;
     background-color: #141414;
@@ -114,682 +108,101 @@ input:focus {
 .movies h2 {
     font-size: 1.5rem;
     margin-bottom: 20px;
+    font-weight: 600;
 }
 
+/* ESSA PARTE GARANTE QUE FIQUEM LADO A LADO */
 .movies-row {
     display: flex;
+    /* COLOCA OS ITENS EM LINHA */
+    flex-direction: row;
+    /* GARANTE QUE SEJA HORIZONTAL */
     gap: 15px;
+    /* ESPAÇAMENTO ENTRE ELES */
     overflow-x: auto;
+    /* PERMITE ROLAR PARA O LADO */
     scrollbar-width: none;
+    /* ESCONDE BARRA NO FIREFOX */
+    flex-wrap: nowrap;
+    /* NÃO DEIXA QUEBRAR LINHA */
 }
 
+/* ESCONDE BARRA DE ROLAGEM NO CHROME/SAFARI */
 .movies-row::-webkit-scrollbar {
     display: none;
 }
 
+/* CARD DE FILME */
 .movie-card {
-    min-width: 250px;
-    height: 350px;
-    background-color: #333333;
-    border-radius: 8px;
+    min-width: 220px;
+    /* LARGURA MÍNIMA DO CARD */
+    height: 330px;
+    /* ALTURA DO CARD */
+    background-color: #333;
+    border-radius: 4px;
     overflow: hidden;
     transition: transform 0.3s ease;
     cursor: pointer;
+    flex-shrink: 0;
+    /* NÃO DEIXA O CARD ENCOLHER */
 }
 
 .movie-card:hover {
     transform: scale(1.05);
+    /* EFEITO DE ZOOM AO PASSAR O MOUSE */
 }
 
 .movie-card img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    /* IMAGEM COBRE TODO O CARD SEM DISTORCER */
 }
 
+/* ========== RODAPÉ ========== */
+footer {
+    text-align: center;
+    padding: 30px;
+    color: #808080;
+    font-size: 0.9rem;
+    border-top: 1px solid #222;
+}
+
+/* ========== RESPONSIVIDADE (CELULAR E TABLET) ========== */
 @media (max-width: 768px) {
     .landing-header {
         padding: 20px;
     }
+
+    .logo {
+        font-size: 2rem;
+    }
+
     .hero-content h2 {
         font-size: 2rem;
     }
+
+    .hero-content p {
+        font-size: 1rem;
+    }
+
     .movies {
         padding: 30px 20px;
     }
-    .movie-card {
-        min-width: 180px;
-        height: 260px;
-    }
-}
 
-/* ==========================================
-   LOGIN PAGE
-========================================== */
-.background {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)),
-                url("https://images.unsplash.com/photo-1489599849927-2ee91cede3ba");
-    background-size: cover;
-    background-position: center;
-    z-index: -1;
-}
-
-.login-header {
-    padding: 20px 60px;
-    position: relative;
-    z-index: 5;
-}
-
-.login-main {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 85vh;
-    padding: 20px;
-    position: relative;
-    z-index: 5;
-}
-
-.login-container {
-    width: 100%;
-    max-width: 420px;
-    background-color: rgba(0, 0, 0, 0.80);
-    padding: 40px;
-    border-radius: 10px;
-    backdrop-filter: blur(10px);
-}
-
-.login-container h2 {
-    color: #ffffff;
-    margin-bottom: 30px;
-    font-size: 2rem;
-}
-
-.input-group {
-    margin-bottom: 15px;
-}
-
-.password-container {
-    position: relative;
-}
-
-#togglePassword {
-    position: absolute;
-    right: 12px;
-    top: 50%;
-    transform: translateY(-50%);
-    border: none;
-    background: transparent;
-    color: #cccccc;
-    font-size: 1.1rem;
-    cursor: pointer;
-}
-
-.links {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-}
-
-.links button {
-    background: transparent;
-    border: none;
-    color: #cccccc;
-    cursor: pointer;
-    font-size: 0.9rem;
-    transition: color 0.2s;
-}
-
-.links button:hover {
-    color: #ffffff;
-    text-decoration: underline;
-}
-
-.modal {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background-color: rgba(0, 0, 0, 0.8);
-    justify-content: center;
-    align-items: center;
-    z-index: 999;
-}
-
-.modal-content {
-    width: 90%;
-    max-width: 400px;
-    background-color: #141414;
-    padding: 30px;
-    border-radius: 10px;
-    position: relative;
-}
-
-.modal-content h2 {
-    margin-bottom: 20px;
-}
-
-.close {
-    position: absolute;
-    right: 15px;
-    top: 10px;
-    color: #ffffff;
-    font-size: 25px;
-    cursor: pointer;
-}
-
-#message {
-    margin-top: 15px;
-    text-align: center;
-    font-weight: 500;
-}
-
-.message-box.error {
-    color: #E50914;
-}
-.message-box.success {
-    color: #00c853;
-}
-
-@media (max-width: 768px) {
-    .login-header {
-        padding: 20px;
-        text-align: center;
-    }
-    .login-container {
-        width: 90%;
-        padding: 30px;
-    }
-}
-
-/* ==========================================
-   PROFILES PAGE
-========================================== */
-.profiles-page {
-    background-color: #141414;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    padding: 20px;
-}
-
-.profiles-container {
-    text-align: center;
-    width: 100%;
-    max-width: 1000px;
-}
-
-.profiles-container h1 {
-    font-size: 3rem;
-    margin-bottom: 50px;
-    font-weight: 500;
-}
-
-.profiles-grid {
-    display: flex;
-    gap: 40px;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-bottom: 60px;
-}
-
-.profile-card {
-    cursor: pointer;
-    transition: transform 0.3s ease;
-}
-
-.profile-card:hover {
-    transform: scale(1.08);
-}
-
-.profile-card:hover .profile-avatar {
-    border: 4px solid #ffffff;
-}
-
-.profile-avatar {
-    width: 150px;
-    height: 150px;
-    background-color: #333333;
-    border-radius: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 60px;
-    font-weight: bold;
-    margin-bottom: 15px;
-    transition: border 0.2s;
-}
-
-.profile-card:nth-child(1) .profile-avatar { background-color: #E50914; }
-.profile-card:nth-child(2) .profile-avatar { background-color: #0071eb; }
-.profile-card:nth-child(3) .profile-avatar { background-color: #008000; }
-
-.profile-card p {
-    font-size: 1.2rem;
-    color: #b3b3b3;
-    transition: color 0.2s;
-}
-
-.profile-card:hover p {
-    color: #ffffff;
-}
-
-.manage-profiles-btn {
-    background: transparent;
-    border: 1px solid #808080;
-    color: #808080;
-    padding: 12px 30px;
-    border-radius: 4px;
-    font-size: 1rem;
-    transition: all 0.3s;
-}
-
-.manage-profiles-btn:hover {
-    border-color: #ffffff;
-    color: #ffffff;
-}
-
-@media (max-width: 768px) {
-    .profiles-container h1 {
-        font-size: 2rem;
-    }
-    .profile-avatar {
-        width: 120px;
-        height: 120px;
-        font-size: 45px;
-    }
-}
-
-/* ==========================================
-   DASHBOARD PAGE
-========================================== */
-.dashboard-page {
-    background-color: #141414;
-    min-height: 100vh;
-}
-
-.dashboard-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 40px;
-    background-color: #000000;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    border-bottom: 1px solid #222;
-}
-
-.nav-left {
-    display: flex;
-    align-items: center;
-    gap: 40px;
-}
-
-.nav-left nav {
-    display: flex;
-    gap: 20px;
-}
-
-.nav-left a {
-    color: #ffffff;
-    text-decoration: none;
-    transition: color 0.2s;
-}
-
-.nav-left a:hover {
-    color: #b3b3b3;
-}
-
-.nav-right {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-}
-
-#searchInput {
-    padding: 10px 15px;
-    border: none;
-    border-radius: 4px;
-    background-color: #333;
-    color: #fff;
-    width: 220px;
-}
-
-.avatar {
-    width: 40px;
-    height: 40px;
-    background-color: #E50914;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-}
-
-#userName {
-    padding: 20px 40px 10px;
-    color: #E50914;
-    font-size: 1.2rem;
-}
-
-.featured-banner {
-    height: 70vh;
-    position: relative;
-    margin-bottom: 40px;
-}
-
-.featured-banner img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.banner-content {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    padding: 60px 40px;
-    background: linear-gradient(to top, #000, transparent);
-}
-
-.banner-content h1 {
-    font-size: 3.5rem;
-    margin-bottom: 15px;
-}
-
-.banner-content p {
-    max-width: 600px;
-    margin-bottom: 20px;
-    color: #e5e5e5;
-}
-
-.banner-buttons {
-    display: flex;
-    gap: 15px;
-}
-
-.play-btn {
-    background-color: #ffffff;
-    color: #000000;
-}
-
-.play-btn:hover {
-    background-color: #e6e6e6;
-}
-
-.list-btn {
-    background-color: rgba(109, 109, 110, 0.7);
-    color: #ffffff;
-}
-
-.list-btn:hover {
-    background-color: rgba(109, 109, 110, 0.9);
-}
-
-.dashboard-section {
-    padding: 0 40px 40px;
-}
-
-.dashboard-section h3 {
-    margin-bottom: 15px;
-    font-size: 1.3rem;
-}
-
-.movies-row {
-    display: flex;
-    gap: 16px;
-    overflow-x: auto;
-    scrollbar-width: none;
-    padding-bottom: 10px;
-}
-
-.movies-row::-webkit-scrollbar {
-    display: none;
-}
-
-.movie-card {
-    min-width: 220px;
-    border-radius: 4px;
-    overflow: hidden;
-    position: relative;
-    transition: transform 0.3s;
-    cursor: pointer;
-}
-
-.movie-card:hover {
-    transform: scale(1.05);
-}
-
-.movie-card img {
-    width: 100%;
-    height: 330px;
-    object-fit: cover;
-}
-
-.favorite-btn {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: rgba(0,0,0,0.7);
-    border: none;
-    color: #fff;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    cursor: pointer;
-    backdrop-filter: blur(2px);
-}
-
-#logoutBtn {
-    margin: 20px 40px 40px;
-    background-color: #E50914;
-    color: #fff;
-    border: none;
-    padding: 12px 25px;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-/* Modal e Notificação */
-.movie-modal {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.85);
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-}
-
-.movie-modal-content {
-    width: 90%;
-    max-width: 600px;
-    background: #181818;
-    padding: 30px;
-    border-radius: 12px;
-    position: relative;
-}
-
-#closeMovieModal {
-    position: absolute;
-    top: 15px;
-    right: 20px;
-    font-size: 28px;
-    cursor: pointer;
-}
-
-#notification {
-    position: fixed;
-    bottom: 30px;
-    left: 50%;
-    transform: translateX(-50%) translateY(20px);
-    background: #333;
-    color: #fff;
-    padding: 12px 20px;
-    border-radius: 4px;
-    opacity: 0;
-    transition: all 0.3s;
-    z-index: 99999;
-}
-
-#notification.show {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0);
-}
-
-@media (max-width: 768px) {
-    .dashboard-header,
-    #userName,
-    .banner-content,
-    .dashboard-section {
-        padding-left: 20px;
-        padding-right: 20px;
-    }
-    .banner-content h1 {
-        font-size: 2rem;
-    }
     .movie-card {
         min-width: 160px;
-    }
-    .movie-card img {
         height: 240px;
     }
 }
 
-/* ==========================================
-   PLAYER PAGE
-========================================== */
-.player-page {
-    background-color: #141414;
-    min-height: 100vh;
-}
-
-.player-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 40px;
-    background-color: #000;
-    border-bottom: 1px solid #222;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-}
-
-#backBtn {
-    background-color: #E50914;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background 0.3s;
-}
-
-#backBtn:hover {
-    background-color: #b20710;
-}
-
-.player-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 40px 25px;
-}
-
-#movieTitle {
-    font-size: 2.6rem;
-    margin-bottom: 15px;
-    font-weight: 700;
-}
-
-#movieDescription {
-    color: #cfcfcf;
-    line-height: 1.8;
-    margin-bottom: 30px;
-    max-width: 900px;
-}
-
-.episodes-container {
-    margin-bottom: 35px;
-}
-
-.episodes-container h3 {
-    color: #E50914;
-    margin-bottom: 15px;
-    font-size: 1.2rem;
-}
-
-.episodes-list {
-    display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
-}
-
-.episode-btn {
-    background-color: #222;
-    color: #fff;
-    border: none;
-    padding: 12px 20px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.3s;
-    font-weight: 500;
-}
-
-.episode-btn:hover,
-.episode-btn.active {
-    background-color: #E50914;
-    font-weight: 700;
-}
-
-.video-wrapper {
-    width: 100%;
-    overflow: hidden;
-    border-radius: 15px;
-    box-shadow: 0 0 25px rgba(0,0,0,0.5);
-}
-
-iframe {
-    width: 100%;
-    height: 650px;
-    border: none;
-    display: block;
-}
-
-/* Scrollbar personalizada */
-::-webkit-scrollbar {
-    width: 8px;
-}
-::-webkit-scrollbar-track {
-    background: #111;
-}
-::-webkit-scrollbar-thumb {
-    background: #E50914;
-    border-radius: 10px;
-}
-
-@media (max-width: 992px) {
-    iframe { height: 500px; }
-    #movieTitle { font-size: 2.1rem; }
-}
-
-@media (max-width: 768px) {
-    .player-header {
-        padding: 20px;
-        flex-direction: column;
-        gap: 15px;
-    }
-    #movieTitle { font-size: 1.8rem; }
-    iframe { height: 300px; }
-}
-
 @media (max-width: 480px) {
-    #movieTitle { font-size: 1.5rem; }
-    iframe { height: 220px; }
-    .episode-btn { width: 100%; text-align: center; }
+    .hero-content h2 {
+        font-size: 1.6rem;
+    }
+
+    .btn-start {
+        padding: 12px 25px;
+        font-size: 1rem;
+    }
 }
