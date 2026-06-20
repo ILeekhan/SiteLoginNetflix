@@ -1,6 +1,5 @@
 /* ==========================================
-   ARQUIVO: dashboard.css - ESTILOS DA PÁGINA PRINCIPAL
-   CORRIGIDO PARA FICAR IGUAL IMAGEM 2
+   ARQUIVO: dashboard.css - COMPLETO E ATUALIZADO
 ========================================== */
 
 /* ========== RESET E BASE ========== */
@@ -16,7 +15,6 @@ body {
     color: #ffffff;
     line-height: 1.5;
     overflow-x: hidden;
-    /* Só a página não rola, as listas sim */
 }
 
 .container {
@@ -72,7 +70,6 @@ body {
     display: flex;
     gap: 20px;
     flex-wrap: nowrap !important;
-    /* NUNCA QUEBRA OS LINKS DO MENU */
 }
 
 .nav-link {
@@ -130,16 +127,15 @@ body {
     font-weight: 500;
 }
 
-/* ========== BANNER DESTAQUE ========== */
-/* ========== BANNER DESTAQUE - AJUSTADO PARA IMAGEM MAIOR E ENCAIXADA ========== */
+/* ========== BANNER DESTAQUE - AGORA MAIOR E ENCAIXADO ========== */
 .featured-banner {
     width: 100%;
     height: 520px !important;
-    /* Altura maior, boa resolução */
+    /* Tamanho grande, boa resolução */
     position: relative;
     margin-bottom: 30px;
     overflow: hidden;
-    /* Corta o que passar, mantém encaixe */
+    /* Corta só o excesso, mantém encaixe */
     border-radius: 6px;
     background-color: #1a1a1a;
 }
@@ -148,9 +144,9 @@ body {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    /* 🔴 IMAGEM COBRE TUDO, SEM DISTORCER, ENCAIXADA */
+    /* IMAGEM ENCAIXADA, SEM DISTORÇÃO */
     object-position: center top;
-    /* Foca na parte importante da imagem */
+    /* Foca na parte principal da imagem */
     display: block;
 }
 
@@ -161,7 +157,7 @@ body {
     width: 100%;
     padding: 60px 40px 40px;
     background: linear-gradient(to top, #141414 10%, transparent 100%);
-    /* Gradiente suave embaixo */
+    /* Fundo escuro suave embaixo */
 }
 
 .banner-content h1 {
@@ -212,7 +208,7 @@ body {
     background-color: rgba(109, 109, 110, 0.9);
 }
 
-/* ========== SEÇÕES DE FILMES ========== */
+/* ========== SEÇÕES DE FILMES - CONTINUAM LADO A LADO ========== */
 .dashboard-section {
     margin-bottom: 35px;
 }
@@ -227,34 +223,24 @@ body {
     gap: 6px;
 }
 
-/* ==========================================
-   AQUI É O PRINCIPAL - CORRIGINDO A LINHA
-========================================== */
 .movies-row {
     display: flex !important;
     flex-direction: row !important;
     flex-wrap: nowrap !important;
-    /* 🔴 NUNCA QUEBRA LINHA - OBRIGATÓRIO */
     gap: 14px !important;
-    /* Espaçamento igual imagem 2 */
     overflow-x: auto !important;
-    /* Permite rolar para o lado */
     overflow-y: hidden !important;
-    /* NÃO DEIXA ROLAR PARA BAIXO */
     scrollbar-width: none !important;
     padding-bottom: 10px !important;
     width: 100% !important;
 }
 
-/* Esconde barra de rolagem */
 .movies-row::-webkit-scrollbar {
     display: none !important;
 }
 
-/* CARD DE FILME - TAMANHO IGUAL IMAGEM 2 */
 .movie-card {
     min-width: 165px !important;
-    /* 🔴 Tamanho exato igual na imagem */
     max-width: 165px !important;
     height: 240px !important;
     background-color: #333;
@@ -264,9 +250,7 @@ body {
     transition: transform 0.2s ease;
     cursor: pointer;
     flex-shrink: 0 !important;
-    /* 🔴 NÃO DEIXA O CARD ENCOLHER */
     flex-grow: 0 !important;
-    /* 🔴 NÃO DEIXA O CARD CRESCER */
 }
 
 .movie-card:hover {
@@ -281,7 +265,6 @@ body {
     display: block;
 }
 
-/* BOTÃO DE FAVORITO */
 .favorite-btn {
     position: absolute;
     top: 8px;
@@ -322,7 +305,7 @@ body {
     background-color: #b20710;
 }
 
-/* ========== MODAL DE DETALHES ========== */
+/* ========== MODAL E NOTIFICAÇÃO ========== */
 .movie-modal {
     display: none;
     position: fixed;
@@ -370,7 +353,6 @@ body {
     font-size: 0.9rem;
 }
 
-/* ========== NOTIFICAÇÃO ========== */
 .notification {
     position: fixed;
     bottom: 30px;
@@ -391,7 +373,7 @@ body {
     transform: translateX(-50%) translateY(0);
 }
 
-/* ========== RESPONSIVIDADE ========== */
+/* ========== RESPONSIVO ========== */
 @media (max-width: 768px) {
     .nav-wrapper {
         flex-direction: column;
@@ -422,8 +404,11 @@ body {
         height: 190px !important;
     }
 
-    .featured-banner img {
-        width: 180px;
-        height: 270px;
+    .featured-banner {
+        height: 350px !important;
+    }
+
+    .banner-content h1 {
+        font-size: 1.8rem;
     }
 }
