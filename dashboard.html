@@ -1,17 +1,12 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Netflix - Página Inicial</title>
-    <!-- Fonte alternativa, sem erro -->
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
-        /* ==========================================
-           ESTILOS DIRETOS - SEM ERRO DE CAMINHO
-        ========================================== */
         * {
             margin: 0 !important;
             padding: 0 !important;
@@ -26,10 +21,7 @@
             overflow-x: hidden !important;
         }
 
-        a {
-            text-decoration: none !important;
-            color: inherit !important;
-        }
+        a { text-decoration: none !important; color: inherit !important; }
 
         /* CABEÇALHO */
         .dashboard-header {
@@ -76,9 +68,7 @@
             transition: color 0.2s !important;
         }
 
-        .nav-link:hover {
-            color: #b3b3b3 !important;
-        }
+        .nav-link:hover { color: #b3b3b3 !important; }
 
         .nav-right {
             display: flex !important;
@@ -113,7 +103,7 @@
             position: fixed !important;
             top: 20px !important;
             right: 20px !important;
-            background: rgba(0, 0, 0, 0.9) !important;
+            background: rgba(0,0,0,0.9) !important;
             color: white !important;
             padding: 12px 20px !important;
             border-radius: 4px !important;
@@ -123,9 +113,7 @@
             border-left: 4px solid #E50914 !important;
         }
 
-        .notification.show {
-            transform: translateX(0) !important;
-        }
+        .notification.show { transform: translateX(0) !important; }
 
         /* SAUDAÇÃO */
         .user-greeting {
@@ -155,6 +143,7 @@
             object-fit: cover !important;
             object-position: center 15% !important;
             display: block !important;
+            transition: opacity 0.8s ease !important;
         }
 
         .banner-content {
@@ -172,14 +161,14 @@
             margin-bottom: 12px !important;
             font-weight: 700 !important;
             color: #ffffff !important;
-            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8) !important;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.8) !important;
         }
 
         .banner-content p {
             font-size: 1.05rem !important;
             margin-bottom: 20px !important;
             color: #e5e5e5 !important;
-            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8) !important;
+            text-shadow: 0 1px 4px rgba(0,0,0,0.8) !important;
         }
 
         .banner-buttons {
@@ -202,18 +191,14 @@
             color: #000 !important;
         }
 
-        .play-btn:hover {
-            background-color: #e6e6e6 !important;
-        }
+        .play-btn:hover { background-color: #e6e6e6 !important; }
 
         .list-btn {
             background-color: rgba(109, 109, 110, 0.7) !important;
             color: #fff !important;
         }
 
-        .list-btn:hover {
-            background-color: rgba(109, 109, 110, 0.9) !important;
-        }
+        .list-btn:hover { background-color: rgba(109, 109, 110, 0.9) !important; }
 
         /* SEÇÕES */
         .dashboard-section {
@@ -242,9 +227,7 @@
             width: 100% !important;
         }
 
-        .movies-row::-webkit-scrollbar {
-            display: none !important;
-        }
+        .movies-row::-webkit-scrollbar { display: none !important; }
 
         .movie-card {
             min-width: 170px !important;
@@ -259,9 +242,7 @@
             flex-shrink: 0 !important;
         }
 
-        .movie-card:hover {
-            transform: scale(1.05) !important;
-        }
+        .movie-card:hover { transform: scale(1.05) !important; }
 
         .movie-card img {
             width: 100% !important;
@@ -274,7 +255,7 @@
             position: absolute !important;
             top: 8px !important;
             right: 8px !important;
-            background: rgba(0, 0, 0, 0.7) !important;
+            background: rgba(0,0,0,0.7) !important;
             color: #fff !important;
             border: none !important;
             width: 26px !important;
@@ -294,7 +275,7 @@
             top: 0 !important;
             width: 100% !important;
             height: 100% !important;
-            background-color: rgba(0, 0, 0, 0.85) !important;
+            background-color: rgba(0,0,0,0.85) !important;
             backdrop-filter: blur(5px) !important;
             align-items: center !important;
             justify-content: center !important;
@@ -320,9 +301,7 @@
             cursor: pointer !important;
         }
 
-        .close-btn:hover {
-            color: #fff !important;
-        }
+        .close-btn:hover { color: #fff !important; }
 
         #modalTitle {
             margin-top: 0 !important;
@@ -360,9 +339,7 @@
             transition: background 0.2s !important;
         }
 
-        .logout-btn:hover {
-            background-color: #b20710 !important;
-        }
+        .logout-btn:hover { background-color: #b20710 !important; }
 
         /* RODAPÉ */
         footer {
@@ -376,40 +353,15 @@
 
         /* RESPONSIVO */
         @media (max-width: 768px) {
-            .nav-wrapper {
-                flex-direction: column !important;
-                gap: 12px !important;
-                align-items: flex-start !important;
-            }
-
-            .logo {
-                font-size: 1.5rem !important;
-            }
-
-            .featured-banner {
-                height: 70vh !important;
-                min-height: 400px !important;
-            }
-
-            .banner-content {
-                left: 20px !important;
-                bottom: 8% !important;
-                max-width: 85% !important;
-            }
-
-            .banner-content h1 {
-                font-size: 1.7rem !important;
-            }
-
-            .movie-card {
-                min-width: 130px !important;
-                max-width: 130px !important;
-                height: 190px !important;
-            }
+            .nav-wrapper { flex-direction: column !important; gap: 12px !important; align-items: flex-start !important; }
+            .logo { font-size: 1.5rem !important; }
+            .featured-banner { height: 70vh !important; min-height: 400px !important; }
+            .banner-content { left: 20px !important; bottom: 8% !important; max-width: 85% !important; }
+            .banner-content h1 { font-size: 1.7rem !important; }
+            .movie-card { min-width: 130px !important; max-width: 130px !important; height: 190px !important; }
         }
     </style>
 </head>
-
 <body>
 
     <!-- CABEÇALHO -->
@@ -444,10 +396,9 @@
         <img id="bannerImage" src="assets/images/Revisão Código Portfolio (3).png" alt="Stranger Things">
         <div class="banner-content">
             <h1 id="bannerTitle">Stranger Things</h1>
-            <p id="bannerDescription">Uma cidade pequena enfrenta acontecimentos sobrenaturais e uma dimensão paralela
-                chamada Mundo Invertido.</p>
+            <p id="bannerDescription">Uma cidade pequena enfrenta acontecimentos sobrenaturais e uma dimensão paralela chamada Mundo Invertido.</p>
             <div class="banner-buttons">
-                <button class="btn play-btn">▶ Assistir</button>
+                <button class="btn play-btn" onclick="irParaPlayer('Stranger Things')">▶ Assistir</button>
                 <button class="btn list-btn">+ Minha Lista</button>
             </div>
         </div>
@@ -457,19 +408,19 @@
     <section class="dashboard-section">
         <h2 class="section-title">📈 Em Alta</h2>
         <div class="movies-row">
-            <div class="movie-card" data-title="Stranger Things">
+            <div class="movie-card" data-title="Stranger Things" data-description="Uma cidade pequena enfrenta acontecimentos sobrenaturais e uma dimensão paralela chamada Mundo Invertido.">
                 <img src="assets/images/Revisão Código Portfolio (3).png" alt="Stranger Things">
                 <button class="favorite-btn">⭐</button>
             </div>
-            <div class="movie-card" data-title="The Witcher">
+            <div class="movie-card" data-title="The Witcher" data-description="Geralt de Rívia luta contra monstros e enfrenta conflitos políticos em um mundo medieval fantástico.">
                 <img src="assets/images/Revisão Código Portfolio (2).png" alt="The Witcher">
                 <button class="favorite-btn">⭐</button>
             </div>
-            <div class="movie-card" data-title="Wandinha">
+            <div class="movie-card" data-title="Wandinha" data-description="A filha da Família Addams investiga mistérios sobrenaturais enquanto estuda na Escola Nunca Mais.">
                 <img src="assets/images/Revisão Código Portfolio (1).png" alt="Wandinha">
                 <button class="favorite-btn">⭐</button>
             </div>
-            <div class="movie-card" data-title="Dark">
+            <div class="movie-card" data-title="Dark" data-description="Uma série alemã sobre viagens no tempo, desaparecimentos e segredos familiares.">
                 <img src="assets/images/Revisão Código Portfolio.png" alt="Dark">
                 <button class="favorite-btn">⭐</button>
             </div>
@@ -495,7 +446,7 @@
             <h2 id="modalTitle">Título do conteúdo</h2>
             <p id="modalDescription">Descrição detalhada aparecerá aqui.</p>
             <div class="modal-buttons">
-                <button class="btn play-btn">▶ Assistir</button>
+                <button class="btn play-btn" id="modalPlayBtn">▶ Assistir</button>
                 <button class="btn list-btn">+ Minha Lista</button>
             </div>
         </div>
@@ -513,5 +464,4 @@
     <!-- SEU JAVASCRIPT -->
     <script src="js/dashboard.js"></script>
 </body>
-
 </html>
