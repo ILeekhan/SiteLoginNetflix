@@ -4,7 +4,7 @@
 [![Status](https://img.shields.io/badge/Status-Concluído%20%7C%20Em%20Melhorias-brightgreen?style=flat-square)]()
 
 > Projeto desenvolvido com o objetivo de praticar e demonstrar habilidades em **Desenvolvimento Web Front-end**, simulando a interface, navegação e funcionalidades principais da plataforma Netflix.  
-> Criado por **Hian Leekhan** — Estudante de Desenvolvimento, em busca de oportunidades de **Estágio** ou vaga de **Desenvolvedor Júnior**.
+> Criado por **Francis Diel Fraga (Leekhan)** — Estudante de Desenvolvimento, em busca de oportunidades de **Estágio** ou vaga de **Desenvolvedor Júnior**.
 
 ---
 
